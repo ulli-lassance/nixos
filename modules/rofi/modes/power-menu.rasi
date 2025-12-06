@@ -1,0 +1,25 @@
+@import "main.rasi" 
+
+window {
+    width:  10%;
+}
+
+element-text {
+    horizontal-align:   0.5;
+}
+
+element-icon {
+    enabled:    false;
+}
+
+
+inputbar {
+    children:   [ prompt ];
+    enabled:    false;
+    
+}
+
+listview {
+    lines:  4;
+    fixed-height:   false;
+}

@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+MOD="5%"
+check() {
+  command -v "$1" 1>/dev/null
+}
+
+notify() {
+  check notify-send && notify-send -a "Volume" "$@" || echo "$@"
+}
+
+check pactl || {
+  notify "Pactl is not present"
+  exit 1
+}
+[[ "$(pactl get-sink-mute @DEFAULT_SINK@)" == *"no"* ]] && mute=false || mute=true
+
+toggleMute() {
+  pactl set-sink-mute @DEFAULT_SINK@ toggle
+  $mute && mute=false || mute=true
+}
+
+getVolume() {
+  pactl get-sink-volume @DEFAULT_SINK@ | grep -o '\w\+%' | head -n1 | sed 's/%//g'
+}
+
+send_notification() {
+  if $mute; then
+    vol_val=0
+    vol_text="Muted"
+  else
+    vol_val=$(getVolume)
+    vol_text="Volume: ${vol_val}%"
+  fi
+
+  notify \
+    --hint=string:x-dunst-stack-tag:volume \
+    --hint=string:synchronous:volume \
+    -u low \
+    -h int:value:"$vol_val" "$vol_text" \
+    -t 1000
+}
+
+case $1 in
+up)
+  $mute && toggleMute
+  [ $(($(getVolume))) -gt 95 ] && {
+    send_notification
+    exit
+  }
+  pactl set-sink-volume @DEFAULT_SINK@ +${MOD}
+  send_notification
+  ;;
+down)
+  $mute && toggleMute
+  pactl set-sink-volume @DEFAULT_SINK@ -${MOD}
+  send_notification
+  ;;
+mute)
+  toggleMute
+  send_notification
+  ;;
+esac
