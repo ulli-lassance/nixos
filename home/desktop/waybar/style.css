@@ -1,0 +1,154 @@
+* {
+  font-family: "JetBrainsMono Nerd Font Propo";
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+window#waybar {
+  background: transparent;
+}
+
+window#waybar.main .modules-left,
+window#waybar.main .modules-center,
+window#waybar.main .modules-right {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+#workspaces,
+#clock,
+#mpris,
+#pulseaudio,
+#cpu,
+#memory,
+#temperature,
+#network,
+#language,
+#custom-r_border,
+#custom-power,
+#custom-l_border {
+  color: @text;
+  background: @background;
+  margin: 4px 0px;
+  padding: 0px 4px;
+  transition: all 0.2s ease;
+}
+
+#custom-r_border {
+  border-radius: 0px 20px 20px 0px;
+  margin-right: 4px;
+}
+
+#custom-l_border {
+  border-radius: 20px 0px 0px 20px;
+  margin-left: 4px;
+}
+
+#workspaces {
+  border-radius: 20px;
+  padding: 0px 10px;
+}
+
+#custom-power {
+  border-radius: 20px;
+  padding: 0px 13px;
+  margin: 4px 4px;
+}
+
+#custom-power:hover,
+#clock:hover,
+#mpris:hover,
+#pulseaudio:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#network:hover,
+#language:hover {
+  color: @text-select;
+}
+
+
+#workspaces button {
+  all: unset; 
+  padding: 0px 5px;
+  color: alpha(@text, 0.4);
+  transition: all 0.2s ease;
+}
+
+#workspaces button:hover {
+  color: @text;
+}
+
+#workspaces button.active {
+  color: @text-select;
+}
+
+#workspaces button.empty {
+  color: @bg-select;
+}
+
+#workspaces button.empty:hover {
+  color: @text;
+}
+
+#workspaces button.empty.active {
+  color: @text-select;
+}
+
+#taskbar,
+#tray {
+  background-color: @background;
+  border-radius: 20px;
+  margin: 4px 4px;
+}
+
+#taskbar {
+  color: @text;
+  padding: 0px 2px;
+}
+
+#taskbar.empty {
+  background-color: transparent;
+  padding: 0px;
+  margin: 0px;
+}
+
+#taskbar button {
+  padding: 4px;
+  margin: 4px 2px;
+  border-radius: 50%;
+}
+
+#taskbar button:hover {
+  background-color: @bg-select;
+  transition: all 0.2s ease;
+}
+
+#taskbar button.active {
+  background-color: alpha(@text, 0.3);
+  transition: all 0.2s ease;
+}
+
+#tray {
+  padding: 0px 8px;
+}
+
+tooltip {
+  background-color: @background;
+  padding: 3px;
+  border-radius: 20px;
+  border: 2px solid @border;
+}
+
+tooltip label {
+  padding: 5px;
+  border-radius: 20px;
+  color: @text;
+}

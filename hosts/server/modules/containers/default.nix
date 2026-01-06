@@ -1,0 +1,17 @@
+{ ... }:
+
+{
+  imports = [
+    ./adguard.nix
+    ./navidrome.nix
+    ./jellyfin.nix
+    ./lidarr.nix
+    ./radarr.nix
+    ./bazarr.nix
+    ./prowlarr.nix
+    ./qbittorrent.nix
+    ./vaultwarden.nix
+    ./flaresolverr.nix
+    ./cleanuparr.nix
+  ];
+}

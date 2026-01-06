@@ -1,0 +1,9 @@
+{ ... }:
+
+{
+  imports = [
+    ./containers
+    ./hardware
+    ./services
+  ];
+}

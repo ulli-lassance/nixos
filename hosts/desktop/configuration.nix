@@ -1,0 +1,49 @@
+{
+  config,
+  lib,
+  pkgs,
+  vars,
+  inputs,
+  ...
+}:
+
+{
+  imports = [
+    ./hardware.nix
+    ../../shared
+    ./modules
+    inputs.home-manager.nixosModules.home-manager
+    inputs.stylix.nixosModules.stylix
+  ];
+
+  # Toggle features for the desktop here
+  system = {
+    bluetooth.enable = false;
+    virtualMachines.enable = true;
+    ssh.enable = false;
+  };
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = { inherit inputs vars; };
+    users."${vars.username}" = import ./home.nix;
+    backupFileExtension = "backup";
+  };
+
+  networking.hostName = "desktop";
+
+  stylix = {
+    targets = {
+      console.enable = true;
+      qt.enable = true;
+      gtk.enable = true;
+    };
+  };
+
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+  };
+
+  system.stateVersion = vars.stateVersion;
+}
