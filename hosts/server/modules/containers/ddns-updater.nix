@@ -2,7 +2,7 @@
 
 {
   systemd.tmpfiles.rules = [
-    "d ${vars.volumeDirectory}/ddns-updater 0755 ${vars.username} users -"
+    "d ${vars.volumeDirectory}/ddns-updater/data: 0755 ${vars.username} users -"
   ];
 
   sops.secrets.cloudflare_dns = { };
