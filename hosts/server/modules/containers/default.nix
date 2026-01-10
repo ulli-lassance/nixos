@@ -13,5 +13,6 @@
     ./vaultwarden.nix
     ./flaresolverr.nix
     ./cleanuparr.nix
+    ./ddns-updater.nix
   ];
 }
