@@ -17,7 +17,7 @@
               zone_identifier = "960b2eaed430da59562a035a0048b525";
               domain = "vpn.${vars.domain}";
               ttl = 600;
-              token = config.sops.secrets.cloudflare_dns.placeholder;
+              token = config.sops.placeholder."cloudflare_dns";
               ip_version = "ipv4";
               ipv6_suffix = "";
             }

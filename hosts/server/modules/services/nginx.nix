@@ -9,7 +9,7 @@
   sops.secrets.cloudflare_dns = {};
 
   sops.templates."acme-cloudflare.env".content = ''
-    CLOUDFLARE_DNS_API_TOKEN=${config.sops.secrets.cloudflare_dns.placeholder}
+    CLOUDFLARE_DNS_API_TOKEN=${config.sops.placeholder."cloudflare_dns"}
   '';
 
   security.acme = {
