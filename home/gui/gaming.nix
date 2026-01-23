@@ -8,7 +8,7 @@
     # lutris
 
     # Check if outdated, else build from source
-    # xivlauncher
-    (callPackage ./xivlauncher/xivlauncher.nix { })
+    xivlauncher
+    # (callPackage ./xivlauncher/xivlauncher.nix { })
   ];
 }
