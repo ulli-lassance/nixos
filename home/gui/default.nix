@@ -11,7 +11,8 @@
     ./mpv
     ./firefox.nix
     ./mimeapps.nix
-    ./discord.nix
+    # ./discord.nix
+    ./vesktop.nix
     ./latex.nix
     ./packages.nix
   ];

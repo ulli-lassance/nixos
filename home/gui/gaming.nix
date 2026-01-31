@@ -5,7 +5,6 @@
     heroic
     prismlauncher
     fflogs
-    # lutris
 
     # Check if outdated, else build from source
     xivlauncher

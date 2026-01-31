@@ -32,9 +32,9 @@
     # Layer Rules
     layerrule = [
       "match:namespace ^(rofi)$,dim_around on"
-      "match:namespace hyprpicker,no_anim on"
-      "match:namespace selection,no_anim on"
-      "match:namespace slurp,no_anim on"
+      "match:namespace hyprpicker,animation fade"
+      "match:namespace selection,animation fade"
+      "match:namespace slurp,animation fade"
     ];
   };
 }
