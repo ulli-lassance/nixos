@@ -8,6 +8,9 @@
   virtualisation.oci-containers.containers = {
     cleanuparr = {
       autoStart = true;
+      labels = {
+        "io.containers.autoupdate" = "registry";
+      };
       image = "ghcr.io/cleanuparr/cleanuparr:latest";
       environment = {
         PUID = "1000";

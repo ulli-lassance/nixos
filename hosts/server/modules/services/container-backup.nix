@@ -34,7 +34,7 @@ in
 
   config = mkIf cfg.enable {
     systemd.services.container-volume-backup = {
-      description = "Backup container volumes";
+      description = "Container volumes backup service";
 
       after = [ "local-fs.target" ];
 

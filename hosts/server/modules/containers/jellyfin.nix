@@ -9,6 +9,9 @@
   virtualisation.oci-containers.containers = {
     jellyfin = {
       autoStart = true;
+      labels = {
+        "io.containers.autoupdate" = "registry";
+      };
       image = "jellyfin/jellyfin";
       environment = {
         PUID = "1000";

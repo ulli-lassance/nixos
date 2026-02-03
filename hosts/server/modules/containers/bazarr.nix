@@ -9,6 +9,9 @@
   virtualisation.oci-containers.containers = {
     bazarr = {
       autoStart = true;
+      labels = {
+        "io.containers.autoupdate" = "registry";
+      };
       image = "lscr.io/linuxserver/bazarr:latest";
       environment = {
         PUID = "1000";

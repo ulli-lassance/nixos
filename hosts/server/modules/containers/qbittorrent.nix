@@ -9,6 +9,9 @@
   virtualisation.oci-containers.containers = {
     qbittorrent = {
       autoStart = true;
+      labels = {
+        "io.containers.autoupdate" = "registry";
+      };
       image = "lscr.io/linuxserver/qbittorrent:latest";
       environment = {
         PUID = "1000";

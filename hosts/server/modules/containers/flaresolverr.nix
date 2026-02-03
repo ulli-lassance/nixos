@@ -4,6 +4,9 @@
   virtualisation.oci-containers.containers = {
     flaresolverr = {
       autoStart = true;
+      labels = {
+        "io.containers.autoupdate" = "registry";
+      };
       image = "ghcr.io/flaresolverr/flaresolverr:latest";
       environment = {
         TZ = vars.timezone;

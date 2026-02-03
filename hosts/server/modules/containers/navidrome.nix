@@ -9,6 +9,9 @@
   virtualisation.oci-containers.containers = {
     navidrome = {
       autoStart = true;
+      labels = {
+        "io.containers.autoupdate" = "registry";
+      };
       image = "deluan/navidrome:latest";
       environment = {
         ND_SCANSCHEDULE = "1h";

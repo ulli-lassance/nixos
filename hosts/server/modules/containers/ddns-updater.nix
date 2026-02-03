@@ -29,6 +29,9 @@
 
   virtualisation.oci-containers.containers."ddns-updater" = {
     autoStart = true;
+    labels = {
+        "io.containers.autoupdate" = "registry";
+      };
     image = "qmcgaw/ddns-updater";
     volumes = [
       "${vars.volumeDirectory}/ddns-updater/data:/updater/data:U"

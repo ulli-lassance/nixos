@@ -7,6 +7,9 @@
 
   virtualisation.oci-containers.containers."adguardhome" = {
     autoStart = true;
+    labels = {
+        "io.containers.autoupdate" = "registry";
+      };
     image = "adguard/adguardhome:latest";
     ports = [
       "53:53/tcp"

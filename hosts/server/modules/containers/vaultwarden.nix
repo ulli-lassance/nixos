@@ -10,6 +10,9 @@
   virtualisation.oci-containers.containers = {
     vaultwarden = {
       autoStart = true;
+      labels = {
+        "io.containers.autoupdate" = "registry";
+      };
       image = "vaultwarden/server:latest";
       environment = {
         ROCKET_PORT = "1984";

@@ -11,6 +11,9 @@
   virtualisation.oci-containers.containers = {
     slskd = {
       autoStart = true;
+      labels = {
+        "io.containers.autoupdate" = "registry";
+      };
       image = "slskd/slskd:latest";
       environment = {
         SLSKD_REMOTE_CONFIGURATION = "true";

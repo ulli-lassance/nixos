@@ -9,6 +9,9 @@
   virtualisation.oci-containers.containers = {
     lidarr = {
       autoStart = true;
+      labels = {
+        "io.containers.autoupdate" = "registry";
+      };
       image = "lscr.io/linuxserver/lidarr:latest";
       environment = {
         PUID = "1000";

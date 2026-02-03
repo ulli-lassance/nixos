@@ -9,6 +9,9 @@
   virtualisation.oci-containers.containers = {
     radarr = {
       autoStart = true;
+      labels = {
+        "io.containers.autoupdate" = "registry";
+      };
       image = "lscr.io/linuxserver/radarr:latest";
       environment = {
         PUID = "1000";

@@ -8,6 +8,9 @@
   virtualisation.oci-containers.containers = {
     prowlarr = {
       autoStart = true;
+      labels = {
+        "io.containers.autoupdate" = "registry";
+      };
       image = "lscr.io/linuxserver/prowlarr:latest";
       environment = {
         PUID = "1000";
