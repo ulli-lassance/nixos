@@ -3,6 +3,7 @@
 {
   systemd.tmpfiles.rules = [
     "d ${vars.volumeDirectory}/qbittorrent 0755 ${vars.username} users -"
+    "d ${vars.homeDirectory}/downloads 0755 ${vars.username} users -"
   ];
 
   virtualisation.oci-containers.containers = {
