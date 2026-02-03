@@ -13,7 +13,7 @@
         SLSKD_REMOTE_CONFIGURATION = "true";
       };
       volumes = [
-        "${vars.volumeDirectory}/slskd/data:/app:U"
+        "${vars.volumeDirectory}/slskd:/app:U"
         "${vars.homeDirectory}/downloads:/downloads"
         "${vars.homeDirectory}/music:/music"
       ];
