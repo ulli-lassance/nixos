@@ -12,7 +12,7 @@
       labels = {
         "io.containers.autoupdate" = "registry";
       };
-      image = "jellyfin/jellyfin";
+      image = "docker.io/jellyfin/jellyfin";
       environment = {
         PUID = "1000";
         PGID = "100";

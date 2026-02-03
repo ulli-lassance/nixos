@@ -12,7 +12,7 @@
       labels = {
         "io.containers.autoupdate" = "registry";
       };
-      image = "deluan/navidrome:latest";
+      image = "docker.io/deluan/navidrome:latest";
       environment = {
         ND_SCANSCHEDULE = "1h";
         ND_PORT = "4533";

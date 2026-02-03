@@ -32,7 +32,7 @@
     labels = {
         "io.containers.autoupdate" = "registry";
       };
-    image = "qmcgaw/ddns-updater";
+    image = "docker.io/qmcgaw/ddns-updater";
     volumes = [
       "${vars.volumeDirectory}/ddns-updater/data:/updater/data:U"
     ];

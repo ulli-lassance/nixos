@@ -10,7 +10,7 @@
     labels = {
         "io.containers.autoupdate" = "registry";
       };
-    image = "adguard/adguardhome:latest";
+    image = "docker.io/adguard/adguardhome:latest";
     ports = [
       "53:53/tcp"
       "53:53/udp"

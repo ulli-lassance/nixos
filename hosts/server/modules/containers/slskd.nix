@@ -14,7 +14,7 @@
       labels = {
         "io.containers.autoupdate" = "registry";
       };
-      image = "slskd/slskd:latest";
+      image = "docker.io/slskd/slskd:latest";
       environment = {
         SLSKD_REMOTE_CONFIGURATION = "true";
         SLSKD_DOWNLOADS_DIR = "/downloads";

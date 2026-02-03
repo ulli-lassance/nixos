@@ -13,7 +13,7 @@
       labels = {
         "io.containers.autoupdate" = "registry";
       };
-      image = "vaultwarden/server:latest";
+      image = "docker.io/vaultwarden/server:latest";
       environment = {
         ROCKET_PORT = "1984";
       };
