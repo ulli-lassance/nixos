@@ -14,5 +14,6 @@
     ./flaresolverr.nix
     ./cleanuparr.nix
     ./ddns-updater.nix
+    ./slskd.nix
   ];
 }
