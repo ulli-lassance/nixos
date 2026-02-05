@@ -12,10 +12,15 @@
     package = pkgs.steam.override {
       extraPkgs =
         pkgs: with pkgs; [
-
         ];
     };
   };
+
+  # programs.gamescope = {
+  #   enable = true;
+  #   package = pkgs.gamescope;
+  #   capSysNice = false;
+  # };
 
   powerManagement.cpuFreqGovernor = "performance";
 }
