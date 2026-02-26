@@ -193,6 +193,8 @@ in
           # UI
           "browser.uitour.enabled" = false;
           "browser.urlbar.suggest.engines" = false;
+
+          "webgl.disabled" = false;
         };
 
         # Whether to override all previous firefox settings.

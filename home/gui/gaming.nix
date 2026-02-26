@@ -6,8 +6,7 @@
     prismlauncher
     fflogs
 
-    # Check if outdated, else build from source
-    xivlauncher
-    # (callPackage ./xivlauncher/xivlauncher.nix { })
+    # xivlauncher
+    (callPackage ./xivlauncher-rb/xivlauncher.nix { })
   ];
 }

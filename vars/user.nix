@@ -1,6 +1,6 @@
 {
   editor = "codium";
   browser = "firefox";
-  terminal = "ghostty";
+  terminal = "kitty";
   fileManager = "nemo";
 }

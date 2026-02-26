@@ -2,8 +2,8 @@
 
 {
   imports = [
-    ./ghostty.nix
-    # ./kitty
+    ./kitty
+    # ./ghostty.nix
     ./nemo.nix
     ./gaming.nix
     ./vscode.nix

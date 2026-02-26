@@ -43,6 +43,7 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = [ "ntsync" ];
   };
 
   system.stateVersion = vars.stateVersion;

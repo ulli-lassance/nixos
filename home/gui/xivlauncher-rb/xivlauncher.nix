@@ -14,20 +14,22 @@
   makeDesktopItem,
   makeWrapper,
   useSteamRun ? true,
+  nvngxPath ? "",
 }:
 
 let
-  rev = "1.3.1";
+  ver = "1.3.1.2";
+  tag = "rb-v${ver}";
 in
 buildDotnetModule rec {
-  pname = "XIVLauncher";
-  version = rev;
+  pname = "xivlauncher-rb";
+  version = ver;
 
   src = fetchFromGitHub {
-    owner = "goatcorp";
+    owner = "rankynbass";
     repo = "XIVLauncher.Core";
-    inherit rev;
-    hash = "sha256-a5lxQFNJjC4LVlokLeEEiPAXPTK9KkgboqjlEc+Viw0=";
+    rev = tag;
+    hash = "sha256-f2Nia+XRCY8FtjjdZajkpKBKnFVtWYzNpr2ht74jsy8=";
     fetchSubmodules = true;
   };
 
@@ -46,23 +48,24 @@ buildDotnetModule rec {
   ];
 
   projectFile = "src/XIVLauncher.Core/XIVLauncher.Core.csproj";
-  nugetDeps = ./deps.json; # File generated with `nix-build -A xivlauncher.passthru.fetch-deps`
+  nugetDeps = ./deps.json; # File generated with `nix-build -A xivlauncher-rb.passthru.fetch-deps`
 
   # please do not unpin these even if they match the defaults, xivlauncher is sensitive to .NET versions
-  dotnet-sdk = dotnetCorePackages.sdk_9_0;
-  dotnet-runtime = dotnetCorePackages.runtime_9_0;
+  dotnet-sdk = dotnetCorePackages.dotnet_9.sdk;
+  dotnet-runtime = dotnetCorePackages.runtime_9_0-bin;
 
   dotnetFlags = [
-    "-p:BuildHash=${rev}"
+    "-p:BuildHash=${ver}"
     "-p:PublishSingleFile=false"
   ];
 
   postPatch = ''
-    substituteInPlace lib/FFXIVQuickLauncher/src/XIVLauncher.Common/Game/Patch/Acquisition/Aria/AriaHttpPatchAcquisition.cs \
+    substituteInPlace lib/FFXIVQuickLauncher/src/XIVLauncher.Common/Game/Patch/Acquisition/Aria/AriaPatchAcquisition.cs \
       --replace-fail 'ariaPath = "aria2c"' 'ariaPath = "${aria2}/bin/aria2c"'
   '';
 
   postInstall = ''
+    echo -n '${tag}' > $out/lib/${pname}/versiondata
     mkdir -p $out/share/pixmaps
     cp src/XIVLauncher.Core/Resources/logo.png $out/share/pixmaps/xivlauncher.png
   '';
@@ -72,7 +75,10 @@ buildDotnetModule rec {
       let
         steam-run =
           (steam.override {
-            extraPkgs = pkgs: [ pkgs.libunwind ];
+            extraPkgs = pkgs: [
+              pkgs.libunwind
+              pkgs.zstd
+            ];
             extraProfile = ''
               unset TZ
             '';
@@ -80,11 +86,11 @@ buildDotnetModule rec {
       in
       ''
         substituteInPlace $out/bin/XIVLauncher.Core \
-          --replace-fail 'exec' 'exec ${steam-run}/bin/steam-run'
+          --replace-warn 'exec' 'exec ${steam-run}/bin/steam-run'
       ''
     )
     + ''
-      wrapProgram $out/bin/XIVLauncher.Core --prefix GST_PLUGIN_SYSTEM_PATH_1_0 ":" "$GST_PLUGIN_SYSTEM_PATH_1_0"
+      wrapProgram $out/bin/XIVLauncher.Core --prefix GST_PLUGIN_SYSTEM_PATH_1_0 ":" "$GST_PLUGIN_SYSTEM_PATH_1_0" --prefix XL_NVNGXPATH ":" ${nvngxPath}
       # the reference to aria2 gets mangled as UTF-16LE and isn't detectable by nix: https://github.com/NixOS/nixpkgs/issues/220065
       mkdir -p $out/nix-support
       echo ${aria2} >> $out/nix-support/depends
@@ -101,24 +107,21 @@ buildDotnetModule rec {
 
   desktopItems = [
     (makeDesktopItem {
-      name = "xivlauncher";
+      name = "xivlauncher-rb";
       exec = "XIVLauncher.Core";
       icon = "xivlauncher";
-      desktopName = "XIVLauncher";
+      desktopName = "XIVLauncher-RB";
       comment = meta.description;
       categories = [ "Game" ];
       startupWMClass = "XIVLauncher.Core";
     })
   ];
 
-  meta = {
+  meta = with lib; {
     description = "Custom launcher for FFXIV";
-    homepage = "https://github.com/goatcorp/XIVLauncher.Core";
-    license = lib.licenses.gpl3;
-    maintainers = with lib.maintainers; [
-      keysmashes
-      witchof0x20
-    ];
+    homepage = "https://github.com/rankynbass/XIVLauncher.Core";
+    license = licenses.gpl3;
+    #maintainers = with maintainers; [ sersorrel witchof0x20 ];
     platforms = [ "x86_64-linux" ];
     mainProgram = "XIVLauncher.Core";
   };
