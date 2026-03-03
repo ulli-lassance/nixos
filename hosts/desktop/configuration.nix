@@ -21,6 +21,7 @@
     bluetooth.enable = false;
     virtualMachines.enable = true;
     ssh.enable = false;
+    podman.enable = false;
   };
 
   home-manager = {

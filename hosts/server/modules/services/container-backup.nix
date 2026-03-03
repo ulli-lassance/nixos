@@ -56,10 +56,6 @@ in
         Type = "oneshot";
         User = "root";
         TimeoutStartSec = "300";
-        RequiresMountsFor = [
-          cfg.source
-          cfg.destination
-        ];
       };
 
       script = ''
