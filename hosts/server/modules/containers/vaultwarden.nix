@@ -14,6 +14,9 @@
         "io.containers.autoupdate" = "registry";
       };
       image = "docker.io/vaultwarden/server:latest";
+
+      podman.user = vars.username;
+      
       environment = {
         ROCKET_PORT = "1984";
       };

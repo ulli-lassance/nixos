@@ -21,6 +21,9 @@
     ssh.enable = true;
   };
 
+  # needed for rootless podman
+  users.users."${vars.username}".linger = true;
+
   services.containerVolumeBackup = {
     enable = true;
     source = vars.volumeDirectory;

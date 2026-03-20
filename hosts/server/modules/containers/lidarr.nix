@@ -13,11 +13,9 @@
         "io.containers.autoupdate" = "registry";
       };
       image = "lscr.io/linuxserver/lidarr:latest";
-      environment = {
-        PUID = "1000";
-        PGID = "100";
-        TZ = vars.timezone;
-      };
+
+      podman.user = vars.username;
+
       volumes = [
         "${vars.volumeDirectory}/lidarr/config:/config:U"
         "${vars.containerCache}/lidarr/MediaCover:/config/MediaCover"

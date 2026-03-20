@@ -12,7 +12,11 @@
       labels = {
         "io.containers.autoupdate" = "registry";
       };
+
       image = "docker.io/deluan/navidrome:latest";
+
+      podman.user = vars.username;
+
       environment = {
         ND_SCANSCHEDULE = "1h";
         ND_PORT = "4533";

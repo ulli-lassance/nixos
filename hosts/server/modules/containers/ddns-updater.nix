@@ -30,19 +30,21 @@
   virtualisation.oci-containers.containers."ddns-updater" = {
     autoStart = true;
     labels = {
-        "io.containers.autoupdate" = "registry";
-      };
+      "io.containers.autoupdate" = "registry";
+    };
     image = "docker.io/qmcgaw/ddns-updater";
+
+    podman.user = vars.username;
+
     volumes = [
       "${vars.volumeDirectory}/ddns-updater/data:/updater/data:U"
     ];
-    environment = {
-      TZ = vars.timezone;
-    };
+
     extraOptions = [
       "--network=bridge"
     ];
     ports = [ "127.0.0.1:8000:8000" ];
+
     environmentFiles = [ config.sops.templates."ddns-updater.env".path ];
   };
 

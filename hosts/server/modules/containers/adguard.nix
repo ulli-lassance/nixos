@@ -5,17 +5,17 @@
     "d ${vars.volumeDirectory}/adguardhome 0755 ${vars.username} users -"
   ];
 
+  boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 53;
+
   virtualisation.oci-containers.containers."adguardhome" = {
     autoStart = true;
     labels = {
         "io.containers.autoupdate" = "registry";
       };
     image = "docker.io/adguard/adguardhome:latest";
-    ports = [
-      "53:53/tcp"
-      "53:53/udp"
-      "3000:3000/tcp"
-    ];
+
+    podman.user = vars.username;
+
     volumes = [
       "${vars.volumeDirectory}/adguardhome/work:/opt/adguardhome/work:U"
       "${vars.volumeDirectory}/adguardhome/conf:/opt/adguardhome/conf:U"

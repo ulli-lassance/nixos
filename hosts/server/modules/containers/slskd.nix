@@ -15,6 +15,9 @@
         "io.containers.autoupdate" = "registry";
       };
       image = "docker.io/slskd/slskd:latest";
+
+      podman.user = vars.username;
+
       environment = {
         SLSKD_REMOTE_CONFIGURATION = "true";
         SLSKD_DOWNLOADS_DIR = "/downloads";

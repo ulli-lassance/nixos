@@ -12,12 +12,13 @@
         "io.containers.autoupdate" = "registry";
       };
       image = "ghcr.io/cleanuparr/cleanuparr:latest";
+
+      podman.user = vars.username;
+
       environment = {
-        PUID = "1000";
-        PGID = "100";
         PORT = "11011";
-        TZ = vars.timezone;
       };
+
       volumes = [
         "${vars.volumeDirectory}/cleanuparr/config:/config:U"
       ];

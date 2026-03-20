@@ -12,12 +12,11 @@
         "io.containers.autoupdate" = "registry";
       };
       image = "lscr.io/linuxserver/prowlarr:latest";
-      environment = {
-        PUID = "1000";
-        PGID = "100";
-        TZ = vars.timezone;
-      };
+
+      podman.user = vars.username;
+
       volumes = [ "${vars.volumeDirectory}/prowlarr/config:/config:U" ];
+      
       ports = [ "127.0.0.1:9696:9696" ];
     };
   };

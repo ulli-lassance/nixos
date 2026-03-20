@@ -13,10 +13,10 @@
         "io.containers.autoupdate" = "registry";
       };
       image = "lscr.io/linuxserver/qbittorrent:latest";
+
+      podman.user = vars.username;
+      
       environment = {
-        PUID = "1000";
-        PGID = "100";
-        TZ = vars.timezone;
         WEBUI_PORT = "8080";
         TORRENTING_PORT = "6881";
       };

@@ -13,11 +13,9 @@
         "io.containers.autoupdate" = "registry";
       };
       image = "lscr.io/linuxserver/radarr:latest";
-      environment = {
-        PUID = "1000";
-        PGID = "100";
-        TZ = vars.timezone;
-      };
+
+      podman.user = vars.username;
+      
       volumes = [
         "${vars.volumeDirectory}/radarr/config:/config:U"
         "${vars.containerCache}/radarr/MediaCover:/config/MediaCover:U"

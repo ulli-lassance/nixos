@@ -13,11 +13,9 @@
         "io.containers.autoupdate" = "registry";
       };
       image = "lscr.io/linuxserver/bazarr:latest";
-      environment = {
-        PUID = "1000";
-        PGID = "100";
-        TZ = vars.timezone;
-      };
+
+      podman.user = vars.username;
+
       volumes = [
         "${vars.volumeDirectory}/bazarr/config:/config:U"
         "${vars.containerCache}/bazarr:/config/cache:U"

@@ -13,10 +13,9 @@
         "io.containers.autoupdate" = "registry";
       };
       image = "docker.io/jellyfin/jellyfin";
-      environment = {
-        PUID = "1000";
-        PGID = "100";
-      };
+
+      podman.user = vars.username;
+
       volumes = [
         "${vars.homeDirectory}/hd2/movies:/data/movies"
         "${vars.volumeDirectory}/jellyfin/config:/config:U"
@@ -31,6 +30,12 @@
       ];
     };
   };
+
+  # needed for rootless podman gpu passthru
+  users.users."${vars.username}".extraGroups = [
+    "render"
+    "video"
+  ];
 
   services.nginx.virtualHosts."jellyfin.lan.${vars.domain}" = {
     useACMEHost = vars.domain;

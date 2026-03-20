@@ -8,9 +8,9 @@
         "io.containers.autoupdate" = "registry";
       };
       image = "ghcr.io/flaresolverr/flaresolverr:latest";
-      environment = {
-        TZ = vars.timezone;
-      };
+
+      podman.user = vars.username;
+
       ports = [ "127.0.0.1:8191:8191" ];
     };
   };
