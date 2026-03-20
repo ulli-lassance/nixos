@@ -24,7 +24,10 @@
       ];
       ports = [ "127.0.0.1:11011:11011" ];
 
-      extraOptions = [ "--network=media-net" ];
+      extraOptions = [ 
+        "--network=media-net" 
+        "--userns=keep-id"
+      ];
     };
   };
 

@@ -30,7 +30,10 @@
       ];
       ports = [ "127.0.0.1:4533:4533" ];
 
-      extraOptions = [ "--network=media-net" ];
+      extraOptions = [ 
+        "--network=media-net" 
+        "--userns=keep-id"
+      ];
     };
   };
 

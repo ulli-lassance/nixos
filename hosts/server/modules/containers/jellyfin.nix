@@ -27,6 +27,7 @@
         "--device=/dev/dri:/dev/dri"
         "--group-add=${toString config.ids.gids.render}"
         "--network=media-net"
+        "--userns=keep-id"
       ];
     };
   };

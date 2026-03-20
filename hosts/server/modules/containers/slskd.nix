@@ -35,6 +35,11 @@
         "127.0.0.1:5030:5030"
         "50300:50300"
       ];
+
+      extraOptions = [ 
+        "--network=media-net" 
+        "--userns=keep-id"
+      ];
     };
   };
 

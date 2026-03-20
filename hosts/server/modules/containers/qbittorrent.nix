@@ -30,7 +30,10 @@
         "6881:6881/udp"
       ];
 
-      extraOptions = [ "--network=media-net" ];
+      extraOptions = [ 
+        "--network=media-net" 
+        "--userns=keep-id"
+      ];
     };
   };
 

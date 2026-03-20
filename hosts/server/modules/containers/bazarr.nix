@@ -31,7 +31,7 @@
 
       extraOptions = [ 
         "--network=media-net" 
-        "--userns=keep-id" 
+        "--userns=keep-id"
       ];
     };
   };
