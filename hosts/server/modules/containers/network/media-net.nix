@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, vars, ... }:
 
 {
   systemd.services."podman-network-media-net" = {
@@ -6,6 +6,10 @@
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
+      User = vars.username;
+    };
+    environment = {
+      HOME = vars.homeDirectory; 
     };
     script = ''
       podman network exists media-net || podman network create media-net
