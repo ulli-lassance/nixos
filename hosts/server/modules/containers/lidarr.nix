@@ -16,6 +16,11 @@
 
       podman.user = vars.username;
 
+      environment = {
+        PUID = "1000";
+        PGID = "100";
+      };
+
       volumes = [
         "${vars.volumeDirectory}/lidarr/config:/config:U"
         "${vars.containerCache}/lidarr/MediaCover:/config/MediaCover"

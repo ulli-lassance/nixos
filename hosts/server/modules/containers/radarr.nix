@@ -15,6 +15,11 @@
       image = "lscr.io/linuxserver/radarr:latest";
 
       podman.user = vars.username;
+
+      environment = {
+        PUID = "1000";
+        PGID = "100";
+      };
       
       volumes = [
         "${vars.volumeDirectory}/radarr/config:/config:U"

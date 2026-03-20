@@ -15,6 +15,11 @@
 
       podman.user = vars.username;
 
+      environment = {
+        PUID = "1000";
+        PGID = "100";
+      };
+
       volumes = [ "${vars.volumeDirectory}/prowlarr/config:/config:U" ];
       
       ports = [ "127.0.0.1:9696:9696" ];

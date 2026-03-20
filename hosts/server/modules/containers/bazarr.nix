@@ -16,6 +16,11 @@
 
       podman.user = vars.username;
 
+      environment = {
+        PUID = "1000";
+        PGID = "100";
+      };
+
       volumes = [
         "${vars.volumeDirectory}/bazarr/config:/config:U"
         "${vars.containerCache}/bazarr:/config/cache:U"
