@@ -36,7 +36,7 @@
 
   systemd.services."podman-qbittorrent" = {
     after = [ "podman-network-media-net.service" ];
-    requires = [ "podman-network-media-net" ];
+    requires = [ "podman-network-media-net.service" ];
   };
 
   networking.firewall.allowedTCPPorts = [

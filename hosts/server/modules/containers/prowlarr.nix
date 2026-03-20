@@ -25,7 +25,7 @@
 
   systemd.services."podman-prowlarr" = {
     after = [ "podman-network-media-net.service" ];
-    requires = [ "podman-network-media-net" ];
+    requires = [ "podman-network-media-net.service" ];
   };
 
   services.nginx.virtualHosts."prowlarr.lan.${vars.domain}" = {

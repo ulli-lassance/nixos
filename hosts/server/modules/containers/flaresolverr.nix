@@ -19,7 +19,7 @@
 
   systemd.services."podman-flaresolverr" = {
     after = [ "podman-network-media-net.service" ];
-    requires = [ "podman-network-media-net" ];
+    requires = [ "podman-network-media-net.service" ];
   };
 
   services.nginx.virtualHosts."flaresolverr.lan.${vars.domain}" = {

@@ -30,7 +30,7 @@
 
   systemd.services."podman-bazarr" = {
     after = [ "podman-network-media-net.service" ];
-    requires = [ "podman-network-media-net" ];
+    requires = [ "podman-network-media-net.service" ];
   };
 
   services.nginx.virtualHosts."bazarr.lan.${vars.domain}" = {

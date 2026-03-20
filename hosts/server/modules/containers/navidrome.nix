@@ -36,7 +36,7 @@
 
   systemd.services."podman-navidrome" = {
     after = [ "podman-network-media-net.service" ];
-    requires = [ "podman-network-media-net" ];
+    requires = [ "podman-network-media-net.service" ];
   };
 
   services.nginx.virtualHosts."navidrome.lan.${vars.domain}" = {

@@ -30,7 +30,7 @@
 
   systemd.services."podman-lidarr" = {
     after = [ "podman-network-media-net.service" ];
-    requires = [ "podman-network-media-net" ];
+    requires = [ "podman-network-media-net.service" ];
   };
 
   services.nginx.virtualHosts."lidarr.lan.${vars.domain}" = {

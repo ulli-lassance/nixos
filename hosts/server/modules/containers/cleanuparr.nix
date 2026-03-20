@@ -30,7 +30,7 @@
 
   systemd.services."podman-cleanuparr" = {
     after = [ "podman-network-media-net.service" ];
-    requires = [ "podman-network-media-net" ];
+    requires = [ "podman-network-media-net.service" ];
   };
 
   services.nginx.virtualHosts."cleanuparr.lan.${vars.domain}" = {
