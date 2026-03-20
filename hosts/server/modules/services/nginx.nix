@@ -6,11 +6,14 @@
     443
   ];
 
-  sops.secrets.cloudflare_dns = {};
+  sops.secrets.cloudflare_dns = { };
 
-  sops.templates."acme-cloudflare.env".content = ''
-    CLOUDFLARE_DNS_API_TOKEN=${config.sops.placeholder."cloudflare_dns"}
-  '';
+  sops.templates."acme-cloudflare.env" = {
+    owner = "acme";
+    content = ''
+      CLOUDFLARE_DNS_API_TOKEN=${config.sops.placeholder."cloudflare_dns"}
+    '';
+  };
 
   security.acme = {
     acceptTerms = true;
@@ -18,10 +21,10 @@
 
     certs."${vars.domain}" = {
       domain = "*.lan.${vars.domain}";
-      dnsProvider = "cloudflare"; # Check Lego docs for your provider code
+      dnsProvider = "cloudflare"; # check Lego docs for your provider code
 
-      # Path to a file containing your API token
-      environmentFile = config.sops.secrets.cloudflare_dns.path;
+      # path to a file containing your API token
+      environmentFile = config.sops.templates."acme-cloudflare.env".path;
 
       group = "nginx";
     };
