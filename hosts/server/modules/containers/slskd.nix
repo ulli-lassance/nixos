@@ -43,6 +43,11 @@
     };
   };
 
+  systemd.services."podman-slskd" = {
+    after = [ "podman-network-media-net.service" ];
+    requires = [ "podman-network-media-net.service" ];
+  };
+
   services.nginx.virtualHosts."soulseek.lan.${vars.domain}" = {
     useACMEHost = vars.domain;
     forceSSL = true;
