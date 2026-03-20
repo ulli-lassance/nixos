@@ -28,12 +28,13 @@
         "--group-add=${toString config.ids.gids.render}"
         "--network=media-net"
       ];
-
-      dependsOn = [ "podman-network-media-net" ];
     };
   };
 
-  systemd.services."podman-jellyfin".after = [ "podman-network-media-net.service" ];
+  systemd.services."podman-jellyfin" = {
+    after = [ "podman-network-media-net.service" ];
+    requires = [ "podman-network-media-net" ];
+  };
 
   # needed for rootless podman gpu passthru
   users.users."${vars.username}".extraGroups = [

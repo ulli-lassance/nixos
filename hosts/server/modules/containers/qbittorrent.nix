@@ -15,7 +15,7 @@
       image = "lscr.io/linuxserver/qbittorrent:latest";
 
       podman.user = vars.username;
-      
+
       environment = {
         WEBUI_PORT = "8080";
         TORRENTING_PORT = "6881";
@@ -31,11 +31,13 @@
       ];
 
       extraOptions = [ "--network=media-net" ];
-      dependsOn = [ "podman-network-media-net" ];
     };
   };
 
-  systemd.services."podman-qbittorrent".after = [ "podman-network-media-net.service" ];
+  systemd.services."podman-qbittorrent" = {
+    after = [ "podman-network-media-net.service" ];
+    requires = [ "podman-network-media-net" ];
+  };
 
   networking.firewall.allowedTCPPorts = [
     8080

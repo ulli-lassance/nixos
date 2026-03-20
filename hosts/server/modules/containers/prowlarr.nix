@@ -20,11 +20,13 @@
       ports = [ "127.0.0.1:9696:9696" ];
 
       extraOptions = [ "--network=media-net" ];
-      dependsOn = [ "podman-network-media-net" ];
     };
   };
 
-  systemd.services."podman-prowlarr".after = [ "podman-network-media-net.service" ];
+  systemd.services."podman-prowlarr" = {
+    after = [ "podman-network-media-net.service" ];
+    requires = [ "podman-network-media-net" ];
+  };
 
   services.nginx.virtualHosts."prowlarr.lan.${vars.domain}" = {
     useACMEHost = vars.domain;

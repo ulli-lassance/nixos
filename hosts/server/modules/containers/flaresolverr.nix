@@ -14,11 +14,13 @@
       ports = [ "127.0.0.1:8191:8191" ];
 
       extraOptions = [ "--network=media-net" ];
-      dependsOn = [ "podman-network-media-net" ];
     };
   };
 
-  systemd.services."podman-flaresolverr".after = [ "podman-network-media-net.service" ];
+  systemd.services."podman-flaresolverr" = {
+    after = [ "podman-network-media-net.service" ];
+    requires = [ "podman-network-media-net" ];
+  };
 
   services.nginx.virtualHosts."flaresolverr.lan.${vars.domain}" = {
     useACMEHost = vars.domain;
