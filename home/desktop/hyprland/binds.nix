@@ -27,8 +27,8 @@ in
       "${mainMod}, Q, killactive"
       "${mainMod}, W, togglefloating"
       "${mainMod}, F, fullscreen"
-      "${mainMod}, U, togglesplit"
-      "${mainMod}, I, swapsplit"
+      "${mainMod}, U, layoutmsg, togglesplit"
+      "${mainMod}, I, layoutmsg, swapsplit"
       "${mainMod}, K, exec, ~/.config/hypr/scripts/cycle_kb_layout"
 
       # Focus movement

@@ -33,7 +33,7 @@
         "col.inactive_border" = "0xff${base03}";
 
         resize_on_border = false;
-        allow_tearing = false;
+        allow_tearing = true;
         layout = "dwindle";
       };
 
@@ -57,22 +57,21 @@
         bezier = "easeOutExpo, 0.16, 1, 0.3, 1";
 
         animation = [
-          "windowsIn, 1, 2, easeOutExpo, slide"
-          "windowsOut, 1, 2, easeOutExpo, slide"
-          "windowsMove, 1, 2, easeOutExpo, slide"
-          "fade, 1, 2, easeOutExpo"
+          "windowsIn, 1, 3, easeOutExpo, slide"
+          "windowsOut, 1, 3, easeOutExpo, slide"
+          "windowsMove, 1, 3, easeOutExpo, slide"
+          "fade, 1, 3, easeOutExpo"
           "workspaces, 1, 3, easeOutExpo, slide"
           "specialWorkspace, 1, 3, easeOutExpo, slidevert"
-          "layers, 1, 2, easeOutExpo, slidevert"
+          "layers, 1, 3, easeOutExpo, slidevert"
         ];
       };
 
       dwindle = {
-        pseudotile = false;
         preserve_split = true;
       };
 
-      master = {
+      scrolling = {
       };
 
       misc = {
