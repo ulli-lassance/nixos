@@ -18,8 +18,13 @@
       volumes = [ "${vars.volumeDirectory}/prowlarr/config:/config:U" ];
       
       ports = [ "127.0.0.1:9696:9696" ];
+
+      extraOptions = [ "--network=media-net" ];
+      dependsOn = [ "podman-network-media-net" ];
     };
   };
+
+  systemd.services."podman-prowlarr".after = [ "podman-network-media-net.service" ];
 
   services.nginx.virtualHosts."prowlarr.lan.${vars.domain}" = {
     useACMEHost = vars.domain;

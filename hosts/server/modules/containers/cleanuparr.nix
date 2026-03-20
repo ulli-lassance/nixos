@@ -23,8 +23,13 @@
         "${vars.volumeDirectory}/cleanuparr/config:/config:U"
       ];
       ports = [ "127.0.0.1:11011:11011" ];
+
+      extraOptions = [ "--network=media-net" ];
+      dependsOn = [ "podman-network-media-net" ];
     };
   };
+
+  systemd.services."podman-cleanuparr".after = [ "podman-network-media-net.service" ];
 
   services.nginx.virtualHosts."cleanuparr.lan.${vars.domain}" = {
     useACMEHost = vars.domain;

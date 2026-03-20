@@ -2,6 +2,8 @@
 
 {
   imports = [
+    ./network
+
     ./adguard.nix
     ./navidrome.nix
     ./jellyfin.nix

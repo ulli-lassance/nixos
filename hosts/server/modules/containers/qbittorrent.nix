@@ -29,8 +29,13 @@
         "6881:6881"
         "6881:6881/udp"
       ];
+
+      extraOptions = [ "--network=media-net" ];
+      dependsOn = [ "podman-network-media-net" ];
     };
   };
+
+  systemd.services."podman-qbittorrent".after = [ "podman-network-media-net.service" ];
 
   networking.firewall.allowedTCPPorts = [
     8080

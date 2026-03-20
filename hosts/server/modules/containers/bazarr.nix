@@ -23,8 +23,13 @@
         "${vars.homeDirectory}/hd2/series:/series"
       ];
       ports = [ "127.0.0.1:6767:6767" ];
+
+      extraOptions = [ "--network=media-net" ];
+      dependsOn = [ "podman-network-media-net" ];
     };
   };
+
+  systemd.services."podman-bazarr".after = [ "podman-network-media-net.service" ];
 
   services.nginx.virtualHosts."bazarr.lan.${vars.domain}" = {
     useACMEHost = vars.domain;
