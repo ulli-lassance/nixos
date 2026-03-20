@@ -25,7 +25,7 @@
         "${vars.homeDirectory}/downloads:/downloads"
       ];
       ports = [
-        "8080:8080"
+        "127.0.0.1:8080:8080"
         "6881:6881"
         "6881:6881/udp"
       ];
@@ -39,18 +39,14 @@
     requires = [ "podman-network-media-net.service" ];
   };
 
-  networking.firewall.allowedTCPPorts = [
-    8080
-    6881
-  ];
-
+  networking.firewall.allowedTCPPorts = [ 6881 ];
   networking.firewall.allowedUDPPorts = [ 6881 ];
 
   services.nginx.virtualHosts."qbittorrent.lan.${vars.domain}" = {
     useACMEHost = vars.domain;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://${vars.serverIP}:8080";
+      proxyPass = "http://127.0.0.1:8080";
       proxyWebsockets = true;
       extraConfig = ''
         proxy_set_header Host $host;
