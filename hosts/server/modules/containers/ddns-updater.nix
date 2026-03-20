@@ -8,6 +8,7 @@
   sops.secrets.cloudflare_dns = { };
 
   sops.templates."ddns-updater.env" = {
+    owner = vars.username;
     content =
       let
         configObject = {
