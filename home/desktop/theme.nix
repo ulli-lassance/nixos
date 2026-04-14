@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
   stylix.targets = {
@@ -20,6 +20,11 @@
       listTargetIndex.enable = true;
     };
 
+  };
+
+  gtk = {
+    enable = true;
+    gtk4.theme = lib.mkForce null;
   };
 
   dconf.settings = {

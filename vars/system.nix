@@ -1,7 +1,7 @@
 rec {
   username = "lassance";
   timezone = "America/Sao_Paulo";
-  stateVersion = "25.11";
+  stateVersion = "26.05";
 
   theme = "rose-pine.yaml";
   wallpaper = "moon.jpg";

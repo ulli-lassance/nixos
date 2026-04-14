@@ -3,8 +3,8 @@
 {
 
   home.packages = with pkgs; [
-    xivlauncher
+    # xivlauncher
     (callPackage ./fflogs { })
-    # (callPackage ./xivlauncher-rb { })
+    (callPackage ./xivlauncher-rb { })
   ];
 }
