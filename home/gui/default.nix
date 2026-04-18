@@ -2,10 +2,10 @@
 
 {
   imports = [
+    ./gaming.nix
     ./kitty
     # ./ghostty.nix
     ./nemo.nix
-    ./gaming.nix
     ./vscode.nix
     ./imv.nix
     ./mpv

@@ -32,6 +32,7 @@
       systemVars = import ./vars/system.nix;
       userVars = import ./vars/user.nix;
       vars = systemVars // userVars;
+      packageOverlay = import ./packages/overlay.nix;
     in
     {
       nixosConfigurations = {
@@ -40,6 +41,12 @@
           specialArgs = { inherit inputs vars; };
           modules = [
             ./hosts/desktop/configuration.nix
+            inputs.home-manager.nixosModules.home-manager
+            inputs.stylix.nixosModules.stylix
+
+            ({ config, pkgs, ... }: {
+              nixpkgs.overlays = [ packageOverlay ];
+            })
           ];
         };
 
@@ -47,6 +54,8 @@
           specialArgs = { inherit inputs vars; };
           modules = [
             ./hosts/server/configuration.nix
+            inputs.home-manager.nixosModules.home-manager
+            inputs.stylix.nixosModules.stylix
           ];
         };
       };

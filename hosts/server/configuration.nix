@@ -12,8 +12,6 @@
     ./hardware.nix
     ../../shared
     ./modules
-    inputs.home-manager.nixosModules.home-manager
-    inputs.stylix.nixosModules.stylix
   ];
 
   system = {
