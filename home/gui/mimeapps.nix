@@ -1,19 +1,13 @@
-{ lib, ... }:
+{ lib, vars, ... }:
 
 let
   # Applications
-  browser = [ "firefox.desktop" ];
-  imageViewer = [
-    "imv-dir.desktop"
-    "firefox.desktop"
-  ];
+  browser = [ "${vars.browser}.desktop" ];
+  imageViewer = [ "imv-dir.desktop" ];
   videoPlayer = [ "mpv.desktop" ];
   audioPlayer = [ "mpv.desktop" ];
   textEditor = [ "codium.desktop" ];
-  pdfViewer = [
-    "org.gnome.Evince.desktop"
-    "firefox.desktop"
-  ];
+  pdfViewer = [ "org.gnome.Evince.desktop" ];
   fileManager = [ "nemo.desktop" ];
   remoteDesktop = [ "org.remmina.Remmina.desktop" ];
   archiveManager = [ "org.gnome.FileRoller.desktop" ];

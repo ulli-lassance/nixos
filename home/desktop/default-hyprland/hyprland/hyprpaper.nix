@@ -1,7 +1,7 @@
 { pkgs, vars, ... }:
 
 let
-  wallpaper = ./../../../assets/wallpapers + "/${vars.wallpaper}";
+  wallpaper = ./../../../../assets/wallpapers + "/${vars.wallpaper}";
 in
 
 {

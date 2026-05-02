@@ -10,6 +10,7 @@
     ./imv.nix
     ./mpv
     ./firefox.nix
+    ./brave.nix
     ./mimeapps.nix
     # ./discord.nix
     ./vesktop.nix

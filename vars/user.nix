@@ -1,6 +1,6 @@
 {
   editor = "codium";
-  browser = "firefox";
+  browser = "brave-origin-beta";
   terminal = "kitty";
   fileManager = "nemo";
 }

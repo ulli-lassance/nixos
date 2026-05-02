@@ -1,0 +1,9 @@
+{ ... }:
+
+{
+  imports = [
+    ./noctalia-shell
+    ./hyprland
+  ];
+}
+

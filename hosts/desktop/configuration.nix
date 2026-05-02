@@ -16,7 +16,7 @@
 
   # Toggle features for the desktop here
   system = {
-    bluetooth.enable = false;
+    bluetooth.enable = true;
     virtualMachines.enable = true;
     ssh.enable = false;
     podman.enable = false;

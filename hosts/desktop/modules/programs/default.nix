@@ -5,6 +5,6 @@
     ./steam.nix
     ./localsend.nix
     ./seahorse.nix
-    ./waydroid.nix
+    # ./waydroid.nix
   ];
 }

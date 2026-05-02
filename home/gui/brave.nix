@@ -2,11 +2,8 @@
 
 {
   home.packages = with pkgs; [
-    tree
-    fd
-    ripgrep
-    bat
-    grc
-    fzf
+    brave-origin-beta
   ];
+
 }
+

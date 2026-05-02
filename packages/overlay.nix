@@ -1,4 +1,4 @@
 final: prev: {
-  fflogs = prev.callPackage ./fflogs { };
   xivlauncher-rb = prev.callPackage ./xivlauncher-rb { };
+  brave-origin-beta = prev.callPackage ./brave/make-brave.nix { } (import ./brave/brave-origin-beta.nix);
 }
