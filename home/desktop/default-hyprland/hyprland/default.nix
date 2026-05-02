@@ -7,7 +7,9 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = null; # Use the NixOS system module to intall Hyprland
+    # Set the Hyprland and XDPH packages to null to use the ones from the NixOS module
+    package = null;
+    portalPackage = null;
 
     systemd = {
       enable = true;
@@ -17,7 +19,6 @@
   };
 
   imports = [
-    ./portals.nix
     ./hyprland.nix
     ./hyprpaper.nix
     ./hyprlock.nix
