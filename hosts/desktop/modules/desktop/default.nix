@@ -3,7 +3,8 @@
 {
   imports = [
     ./greetd.nix
-    ./hyprland.nix
     ./fonts.nix
+    ./hyprland.nix
+    ./niri.nix
   ];
 }

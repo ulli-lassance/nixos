@@ -21,6 +21,7 @@
       ];
 
       exec-once = [
+        "noctalia-shell"
         "bash -c 'for i in {1..5}; do hyprctl dispatch workspace $i; done; hyprctl dispatch workspace 1'"
       ];
 
@@ -38,32 +39,46 @@
       };
 
       decoration = {
-        rounding = 5;
+        rounding = 0;
         active_opacity = 0.95;
         inactive_opacity = 0.95;
 
         blur = {
           enabled = true;
           size = 3;
-          passes = 3;
-          new_optimizations = true;
+          passes = 2;
           vibrancy = 0.1696;
-          ignore_opacity = true;
+        };
+
+        shadow = {
+          enabled = true;
+          range = 4;
+          render_power = 3;
+          color = "0xff${base00}";
         };
       };
 
       animations = {
         enabled = true;
-        bezier = "easeOutExpo, 0.16, 1, 0.3, 1";
+        bezier = [
+          "easeOutExpo, 0.16, 1, 0.3, 1"
+          "easeOutQuad, 0.5, 1, 0.89, 1"
+
+          "criticallyDamped, 0.1, 1, 0.1, 1"
+        ];
 
         animation = [
-          "windowsIn, 1, 3, easeOutExpo, slide"
-          "windowsOut, 1, 3, easeOutExpo, slide"
-          "windowsMove, 1, 3, easeOutExpo, slide"
-          "fade, 1, 3, easeOutExpo"
-          "workspaces, 1, 3, easeOutExpo, slide"
-          "specialWorkspace, 1, 3, easeOutExpo, slidevert"
-          "layers, 1, 3, easeOutExpo, slidevert"
+          "windowsIn, 1, 1.5, easeOutExpo, slide"
+          
+          "windowsOut, 1, 1.5, easeOutQuad, slide"
+          
+          "windowsMove, 1, 2.5, criticallyDamped, slide"
+          
+          "fade, 1, 1.5, easeOutQuad"
+          
+          "workspaces, 1, 2.0, criticallyDamped, slide"
+          "specialWorkspace, 1, 2.0, criticallyDamped, slidevert"
+          "layers, 1, 2.0, criticallyDamped, slidevert"
         ];
       };
 
@@ -72,6 +87,11 @@
       };
 
       scrolling = {
+        fullscreen_on_one_column = false;
+        column_width = 0.5;
+        direction = "right";
+        explicit_column_widths = "0.5, 0.667, 1.0";
+        follow_min_visible = 1;
       };
 
       misc = {

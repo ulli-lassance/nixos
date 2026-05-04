@@ -10,7 +10,7 @@
     "capsuleOpacity": 1,
     "capsuleColorKey": "none",
     "widgetSpacing": 6,
-    "contentPadding": 4,
+    "contentPadding": 2,
     "fontScale": 1.2000000000000002,
     "enableExclusionZoneInset": true,
     "backgroundOpacity": 1,
@@ -92,7 +92,7 @@
           "id": "Workspace",
           "labelMode": "none",
           "occupiedColor": "secondary",
-          "pillSize": 0.65,
+          "pillSize": 0.75,
           "showApplications": false,
           "showApplicationsHover": false,
           "showBadge": true,
@@ -145,8 +145,8 @@
     "showScreenCorners": false,
     "forceBlackScreenCorners": false,
     "scaleRatio": 1,
-    "radiusRatio": 0.4,
-    "iRadiusRatio": 0.6,
+    "radiusRatio": 0,
+    "iRadiusRatio": 0,
     "boxRadiusRatio": 1,
     "screenRadiusRatio": 1,
     "animationSpeed": 1,
@@ -251,7 +251,7 @@
   },
   "wallpaper": {
     "enabled": true,
-    "overviewEnabled": false,
+    "overviewEnabled": true,
     "directory": "/home/lassance/Pictures/wallpapers",
     "monitorDirectories": [],
     "enableMultiMonitorDirectories": false,
@@ -458,7 +458,7 @@
     "showHeader": true,
     "showKeybinds": true,
     "largeButtonsStyle": true,
-    "largeButtonsLayout": "single-row",
+    "largeButtonsLayout": "grid",
     "powerOptions": [
       {
         "action": "lock",
@@ -506,8 +506,8 @@
         "action": "rebootToUefi",
         "command": "",
         "countdownEnabled": true,
-        "enabled": true,
-        "keybind": "7"
+        "enabled": false,
+        "keybind": ""
       },
       {
         "action": "userspaceReboot",

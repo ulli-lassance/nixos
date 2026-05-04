@@ -5,12 +5,11 @@
     windowrule = [
       "suppress_event maximize, match:class .*"
 
-      "float on, match:class ^(firefox)$, match:title (Picture-in-Picture)"
-      "size 720 405, match:title (Picture-in-Picture)"
+      "float on, match:title (?i)picture[- ]in[- ]picture"
+      "size 720 405, match:title (?i)picture[- ]in[- ]picture"
 
       "float on, match:class ^(xdg-desktop-portal-gtk)$"
       "float on, match:class ^(xdg-desktop-portal-hyprland)$"
-      "float on, match:class ^(org.kde.ark)$"
       "float on, match:class ^(org.gnome.FileRoller)$"
       "float on, match:class ^(org.gnome.seahorse.Application)$"
       "float on, match:class ^(qalculate-gtk)$"
@@ -31,10 +30,13 @@
 
     # Layer Rules
     layerrule = [
-      "match:namespace ^(rofi)$,dim_around on"
-      "match:namespace hyprpicker,animation fade"
-      "match:namespace selection,animation fade"
-      "match:namespace slurp,animation fade"
+      "match:namespace hyprpicker, animation fade"
+      "match:namespace selection, animation fade"
+      "match:namespace slurp, animation fade"
+
+      "match:namespace ^noctalia-background-.*$, ignore_alpha 0.5"
+      "match:namespace ^noctalia-background-.*$, blur on"
+      "match:namespace ^noctalia-background-.*$, blur_popups on"
     ];
   };
 }

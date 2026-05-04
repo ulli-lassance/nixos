@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-pkill -x rofi || rofi \
-    -show window \
-    -theme "~/.config/rofi/modes/window-switcher.rasi"

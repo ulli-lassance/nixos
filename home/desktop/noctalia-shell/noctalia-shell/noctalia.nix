@@ -42,28 +42,4 @@ in
   home.file.".cache/noctalia/wallpapers.json" = {
     text = builtins.toJSON { defaultWallpaper = "${wallpaper}"; };
   };
-
-  systemd.user.services.noctalia-shell = {
-    Unit = {
-      Description = "Noctalia Shell";
-      PartOf = [
-        "tray.target"
-        "graphical-session.target"
-      ];
-      After = [ "graphical-session.target" ];
-    };
-
-    Service = {
-      ExecStart = "${pkgs.coreutils}/bin/env noctalia-shell";
-      Restart = "on-failure";
-      RestartSec = "2s";
-    };
-
-    Install = {
-      WantedBy = [
-        "tray.target"
-        "graphical-session.target"
-      ];
-    };
-  };
 }

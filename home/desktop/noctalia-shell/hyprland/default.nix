@@ -22,10 +22,6 @@
     ./hyprland.nix
   ];
 
-  services = {
-    polkit-gnome.enable = true;
-  };
-
   home.packages = with pkgs; [
     hyprshot
     # Script dependencies
@@ -37,5 +33,11 @@
       source = ./scripts;
       recursive = true;
     };
+
+    ".config/hypr/xdph.conf".text = ''
+      screencopy {
+          allow_token_by_default = true
+      }
+    '';
   };
 }

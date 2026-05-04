@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     file-roller
-    evince
+    papers
     qalculate-gtk
     pavucontrol
 

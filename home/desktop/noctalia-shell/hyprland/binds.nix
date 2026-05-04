@@ -25,13 +25,32 @@ in
       "${mainMod}, M, exec, ${ipc} sessionMenu toggle"
       "${mainMod}, L, exec, ${ipc} lockScreen lock"
 
+      # Screenshots
+      "${mainMod}, P, exec, hyprshot -zm region -o ~/Pictures/Screenshots"
+
       # Window control
       "${mainMod}, Q, killactive"
       "${mainMod}, W, togglefloating"
       "${mainMod}, F, fullscreen"
+      "${mainMod}, K, exec, ~/.config/hypr/scripts/cycle_kb_layout"
+
+      # Dwindle layout
       "${mainMod}, U, layoutmsg, togglesplit"
       "${mainMod}, I, layoutmsg, swapsplit"
-      "${mainMod}, K, exec, ~/.config/hypr/scripts/cycle_kb_layout"
+      "${mainMod}, mouse_down, workspace, e+1"
+      "${mainMod}, mouse_up, workspace, e-1"
+      "${mainMod}, A, exec, ~/.config/hypr/scripts/move_active_to_empty"
+      "${mainMod} SHIFT, A, exec, ~/.config/hypr/scripts/move_active_to_empty_silent"
+
+      # # Scrolling layout
+      # "${mainMod}, U, layoutmsg, swapcol l"
+      # "${mainMod}, I, layoutmsg, swapcol r"
+      # "${mainMod}, A, layoutmsg, colresize +conf"
+      # "${mainMod} SHIFT, A, layoutmsg, fit active"
+      # "${mainMod}, mouse_down, layoutmsg, move +col"
+      # "${mainMod}, mouse_up, layoutmsg, move -col"
+      # "${mainMod}, Z, layoutmsg, fit visible"
+      # "${mainMod}, X, layoutmsg, fit all"
 
       # Focus movement
       "${mainMod}, left, movefocus, l"
@@ -60,36 +79,22 @@ in
       "${mainMod} SHIFT, 7, movetoworkspace, 7"
       "${mainMod} SHIFT, 8, movetoworkspace, 8"
       "${mainMod} SHIFT, 9, movetoworkspace, 9"
-
-      # Move window to first empty workspace
-      "${mainMod}, A, exec, ~/.config/hypr/scripts/move_active_to_empty"
-      "${mainMod} SHIFT, A, exec, ~/.config/hypr/scripts/move_active_to_empty_silent"
-
-      # Scroll through workspaces
-      "${mainMod}, mouse_down, workspace, e+1"
-      "${mainMod}, mouse_up, workspace, e-1"
-
-      # Screenshots
-      "${mainMod}, P, exec, hyprshot -zm region -o ~/Pictures/Screenshots"
-
     ];
 
     bindel = [
-       # Audio
+      # Audio
       ", XF86AudioRaiseVolume, exec, ${ipc} volume increase"
       ", XF86AudioLowerVolume, exec, ${ipc} volume decrease"
       ", XF86AudioMute, exec, ${ipc} volume muteOutput"
     ];
 
-    # Mouse binds (Move/Resize)
+    # Mouse binds
     bindm = [
       "${mainMod}, mouse:272, movewindow"
       "${mainMod}, mouse:273, resizewindow"
-      "${mainMod}, Z, movewindow"
-      "${mainMod}, X, resizewindow"
     ];
 
-    # Repeating binds (Resize)
+    # Rezise
     binde = [
       "${mainMod}+Shift, Right, resizeactive, 30 0"
       "${mainMod}+Shift, Left, resizeactive, -30 0"

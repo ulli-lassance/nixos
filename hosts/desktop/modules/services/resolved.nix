@@ -3,13 +3,14 @@
 {
   services.resolved = {
     enable = true;
-    
+
     settings.Resolve = {
-      Cache = true;
+      Cache = "yes";
       LLMNR = "resolve";
-      MulticastDNS = false;
-      DNSSEC = false;
-      DNSOverTLS = false;
+      MulticastDNS = "no";
+      DNSSEC = "no";
+      DNSOverTLS = "no";
+      # ResolveUnicastSingleLabel = "yes"; # needed for cloudflare warp
     };
   };
 }

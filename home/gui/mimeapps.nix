@@ -7,7 +7,7 @@ let
   videoPlayer = [ "mpv.desktop" ];
   audioPlayer = [ "mpv.desktop" ];
   textEditor = [ "codium.desktop" ];
-  pdfViewer = [ "org.gnome.Evince.desktop" ];
+  pdfViewer = [ "org.gnome.Papers.desktop" ];
   fileManager = [ "nemo.desktop" ];
   remoteDesktop = [ "org.remmina.Remmina.desktop" ];
   archiveManager = [ "org.gnome.FileRoller.desktop" ];

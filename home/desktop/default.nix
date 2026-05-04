@@ -3,9 +3,6 @@
 {
   imports = [
     ./theme.nix
-
-    # ./default-hyprland
-
-    ./noctalia-hyprland
+    ./noctalia-shell
   ];
 }

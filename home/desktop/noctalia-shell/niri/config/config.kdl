@@ -1,0 +1,116 @@
+input {
+    keyboard {
+        xkb {
+            layout "us,br"
+            options "caps:escape"
+        }
+    }
+
+    mod-key "Super"
+    mod-key-nested "Super"
+
+    mouse {
+        accel-profile "flat"
+    }
+
+    focus-follows-mouse max-scroll-amount="0%"
+
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+
+output "DP-1" {
+    mode "2560x1440"
+    scale 1.0
+    transform "normal"
+    position x=0 y=0
+}
+
+gestures {
+    hot-corners {
+        off
+    }
+}
+
+spawn-at-startup "noctalia-shell"
+
+prefer-no-csd
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+
+layout {
+    gaps 5
+
+    center-focused-column "on-overflow"
+
+    always-center-single-column
+
+    preset-column-widths {
+        proportion 0.5
+        proportion 0.667
+        proportion 1.0
+    }
+
+    default-column-width { proportion 0.5; }
+
+    focus-ring {
+        off
+    }
+
+    shadow {
+        on
+    }
+
+    border {
+        on
+
+        width 2
+        active-color "#cba6f7"
+        inactive-color "#6e6a86"
+
+        urgent-color "#eb6f92"
+    }
+}
+
+blur {
+  passes 2
+  offset 3.0
+  noise 0.03
+  saturation 1.0
+}
+
+
+overview {
+    backdrop-color "#191724"
+    zoom 0.35
+}
+
+animations {
+    on
+}
+
+recent-windows {
+    debounce-ms 750
+
+    open-delay-ms 100
+
+    highlight {
+        active-color "#6e6a86"
+        urgent-color "#eb6f92"
+        padding 30
+        corner-radius 0
+    }
+
+    previews {
+        max-height 480
+        max-scale 0.3
+    }
+}
+
+include "rules.kdl"
+include "binds.kdl"
+include "env.kdl"

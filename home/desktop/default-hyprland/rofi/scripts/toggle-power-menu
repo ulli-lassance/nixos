@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-pkill -x rofi || rofi \
-    -show power-menu -modi power-menu:~/.config/rofi/scripts/rofi-power-menu \
-    -theme "~/.config/rofi/modes/power-menu.rasi"
