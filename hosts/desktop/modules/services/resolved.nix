@@ -10,7 +10,6 @@
       MulticastDNS = "no";
       DNSSEC = "no";
       DNSOverTLS = "no";
-      # ResolveUnicastSingleLabel = "yes"; # needed for cloudflare warp
     };
   };
 }
