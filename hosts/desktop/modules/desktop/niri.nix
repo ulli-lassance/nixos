@@ -6,7 +6,7 @@
     useNautilus = false;
   };
 
-  environment.systemPackages = with pkgs; [ xwayland-satellite ];
+  environment.systemPackages = with pkgs; [ xwayland-satellite-git ];
 
   xdg.portal = {
     enable = true;
