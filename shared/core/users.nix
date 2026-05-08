@@ -31,6 +31,10 @@
     hashedPasswordFile = config.sops.secrets."root_password".path;
   };
 
+  security = {
+    sudo.execWheelOnly = true;
+  };
+
   users.mutableUsers = false;
 
   programs.fish.enable = true;

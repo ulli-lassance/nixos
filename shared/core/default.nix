@@ -7,7 +7,6 @@
     ./zram.nix
     ./network.nix
     ./nix.nix
-    ./security.nix
     ./sops
     ./users.nix
     ./stylix.nix
