@@ -5,6 +5,11 @@ let
   externalInterface = "enp2s0";
 in
 {
+  boot.kernel.sysctl = {
+    "net.ipv4.conf.all.src_valid_mark" = 1;
+    "net.ipv4.ip_forward" = 1;
+  };
+
   sops.secrets.wg_server_private_key = {
     owner = "root";
   };
@@ -18,6 +23,7 @@ in
 
   networking.firewall = {
     allowedUDPPorts = [ 51820 ];
+    checkReversePath = "loose";
   };
 
   networking.wg-quick.interfaces = {

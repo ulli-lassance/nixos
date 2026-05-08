@@ -47,6 +47,7 @@ read -r -d '' CLIENT_CONF <<EOF
 [Interface]
 PrivateKey = $CLIENT_PRIV
 Address = $CLIENT_IP/24
+MTU = 1280
 DNS = $DNS
 
 [Peer]
@@ -62,4 +63,4 @@ echo ""
 echo "--- CONFIG FILE CONTENT ---"
 echo "$CLIENT_CONF"
 echo "-----------------------------------------"
-echo "Don't forget to run: nixos-rebuild switch"
+echo "Don't forget to rebuild"

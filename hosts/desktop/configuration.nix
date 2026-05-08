@@ -18,7 +18,7 @@
   system = {
     bluetooth.enable = true;
     virtualMachines.enable = true;
-    ssh.enable = false;
+    ssh.enable = true;
     podman.enable = false;
   };
 
