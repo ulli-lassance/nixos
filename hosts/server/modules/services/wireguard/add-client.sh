@@ -35,6 +35,7 @@ echo "        {"
 echo "          # $NAME"
 echo "          publicKey = \"$CLIENT_PUB\";"
 echo "          allowedIPs = [ \"$CLIENT_IP/32\" ];"
+echo "          persistentKeepalive = 25;"
 echo "        }"
 echo ""
 
@@ -53,7 +54,7 @@ DNS = $DNS
 [Peer]
 PublicKey = $SERVER_PUB
 Endpoint = $ENDPOINT
-AllowedIPs = 0.0.0.0/0, ::/0
+AllowedIPs = 0.0.0.0/0
 PersistentKeepalive = 25
 EOF
 
