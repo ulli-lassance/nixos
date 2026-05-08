@@ -1,4 +1,5 @@
 {
+  osConfig,
   config,
   lib,
   pkgs,
@@ -19,6 +20,8 @@
       set fish_greeting
 
       fzf_configure_bindings --directory=\ec --history=\cr
+
+      export GITHUB_TOKEN=$(cat ${osConfig.sops.secrets.github_token.path})
     '';
 
     plugins = [

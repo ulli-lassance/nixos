@@ -26,6 +26,10 @@ in
     SOPS_AGE_KEY_FILE = keyPath;
   };
 
+  sops.secrets.github_token = {
+    owner = vars.username; 
+  };
+
   environment.systemPackages = with pkgs; [
     sops
     age
