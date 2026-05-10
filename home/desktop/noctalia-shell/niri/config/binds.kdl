@@ -9,7 +9,7 @@ binds {
     Mod+WheelScrollDown   { focus-column-left; }
 
     Mod+Return { spawn "kitty"; }
-    Mod+B { spawn "brave-origin-beta"; }
+    Mod+B { spawn "brave-origin"; }
     Mod+C { spawn "codium"; }
     Mod+E { spawn "nemo"; }
     

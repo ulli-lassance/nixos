@@ -24,8 +24,8 @@ layer-rule {
 }
 
 window-rule {
-  match app-id="brave-origin-beta$"
-  match app-id="firefox$"
+  match app-id=r#"^brave*"#
+  match app-id=r#"^firefox*"#
 
   open-maximized true
 }

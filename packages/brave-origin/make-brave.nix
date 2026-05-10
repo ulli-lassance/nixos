@@ -78,19 +78,7 @@
 {
   pname,
   version,
-  # Map from Nix system strings ("x86_64-linux", "aarch64-darwin", ...) to
-  # the corresponding upstream `{ url, hash }` record. Encoding the per-system
-  # sources as data rather than positional arguments lets channel-specific
-  # package.nix files drop platforms that upstream hasn't published yet.
   archives,
-  # Release channel: "stable", "beta" or "nightly". Selects the upstream
-  # filesystem layout (opt directory, desktop files, icon names, darwin app
-  # bundle name) produced by the matching .deb / .zip artifact.
-  channel ? "stable",
-  # Upstream product flavor: "browser" (the regular Brave) or "origin" (the
-  # stripped-down Brave Origin). Origin has no stable channel upstream, so
-  # flavor = "origin" implies channel != "stable".
-  flavor ? "browser",
 }:
 
 let
@@ -105,67 +93,8 @@ let
     escapeShellArg
     ;
 
-  # Flavor-specific naming stems. browser follows the historical Brave layout;
-  # origin uses a parallel tree under /opt/brave.com/brave-origin-<channel>/.
-  flavorData = {
-    browser = {
-      optStem = "brave";
-      fileStem = "brave-browser";
-      appIdStem = "com.brave.Browser";
-      darwinStem = "Brave Browser";
-      changelogFile = "CHANGELOG_DESKTOP.md";
-      # browser ships its icons with a channel suffix in the filename.
-      iconsCarryChannelSuffix = true;
-      homepages = {
-        stable = "https://brave.com/";
-        beta = "https://brave.com/download-beta/";
-        nightly = "https://brave.com/download-nightly/";
-      };
-    };
-    origin = {
-      optStem = "brave-origin";
-      fileStem = "brave-origin";
-      appIdStem = "com.brave.Origin";
-      darwinStem = "Brave Origin";
-      changelogFile = "CHANGELOG_DESKTOP_ORIGIN.md";
-      # origin keeps icons un-suffixed, because the parent directory already
-      # encodes the channel.
-      iconsCarryChannelSuffix = false;
-      homepages = {
-        beta = "https://brave.com/origin/download-beta/";
-        nightly = "https://brave.com/origin/download-nightly/";
-      };
-    };
-  };
-
-  fd = flavorData.${flavor};
-
-  # Suffix used by upstream for non-stable channels.
-  channelDashSuffix = if channel == "stable" then "" else "-${channel}";
-  channelDotSuffix = if channel == "stable" then "" else ".${channel}";
-  channelSpaceSuffix =
-    if channel == "stable" then
-      ""
-    else
-      " ${lib.toUpper (lib.substring 0 1 channel)}${lib.substring 1 (-1) channel}";
-
-  # /opt/brave.com/<optName>/
-  optName = fd.optStem + channelDashSuffix;
-  # Basename used for .desktop, gnome-control-center xml and icon files.
-  fileBase = fd.fileStem + channelDashSuffix;
-  # Secondary .desktop app-id.
-  appId = fd.appIdStem + channelDotSuffix;
-  # Upstream shell wrapper inside /opt.
-  innerWrapper = fileBase;
-  # macOS .app bundle name (inside the zip).
-  darwinApp = fd.darwinStem + channelSpaceSuffix;
-  # Upstream Exec= target in .desktop files (replaced with our wrapper).
-  # browser-stable uniquely uses "brave-browser-stable" rather than the plain
-  # filename stem; every other combination matches `fileBase`.
-  upstreamBin =
-    if flavor == "browser" && channel == "stable" then "brave-browser-stable" else fileBase;
-  # Upstream icon filename suffix ("_beta", "_nightly", or empty).
-  iconSuffix = if fd.iconsCarryChannelSuffix && channel != "stable" then "_${channel}" else "";
+  packagePath = "brave-origin-nightly";
+  appName = "Brave Origin Nightly";
 
   deps = [
     alsa-lib
@@ -253,7 +182,9 @@ stdenv.mkDerivation {
       dpkg
       # override doesn't preserve splicing https://github.com/NixOS/nixpkgs/issues/132651
       # Has to use `makeShellWrapper` from `buildPackages` even though `makeShellWrapper` from the inputs is spliced because `propagatedBuildInputs` would pick the wrong one because of a different offset.
-      (buildPackages.wrapGAppsHook3.override { makeWrapper = buildPackages.makeShellWrapper; })
+      (buildPackages.wrapGAppsHook3.override {
+        makeWrapper = buildPackages.makeShellWrapper;
+      })
     ]
     ++ lib.optionals stdenv.hostPlatform.isDarwin [
       unzip
@@ -280,27 +211,27 @@ stdenv.mkDerivation {
       cp -R usr/share $out
       cp -R opt/ $out/opt
 
-      export BINARYWRAPPER=$out/opt/brave.com/${optName}/${innerWrapper}
+      export BINARYWRAPPER=$out/opt/brave.com/${packagePath}/${packagePath}
 
       # Fix path to bash in $BINARYWRAPPER
       substituteInPlace $BINARYWRAPPER \
           --replace-fail /bin/bash ${stdenv.shell} \
           --replace-fail 'CHROME_WRAPPER' 'WRAPPER'
 
-      ln -sf $BINARYWRAPPER $out/bin/${pname}
+      ln -sf $BINARYWRAPPER $out/bin/brave-origin
 
-      for exe in $out/opt/brave.com/${optName}/{brave,chrome_crashpad_handler}; do
+      for exe in $out/opt/brave.com/${packagePath}/{brave,chrome_crashpad_handler}; do
           patchelf \
               --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
               --set-rpath "${rpath}" $exe
       done
 
       # Fix paths
-      substituteInPlace $out/share/applications/{${fileBase},${appId}}.desktop \
-          --replace-fail /usr/bin/${upstreamBin} $out/bin/${pname}
-      substituteInPlace $out/share/gnome-control-center/default-apps/${fileBase}.xml \
+      substituteInPlace $out/share/applications/{brave-origin-nightly,com.brave.Origin.nightly}.desktop \
+          --replace-fail /usr/bin/brave-origin-nightly $out/bin/brave-origin
+      substituteInPlace $out/share/gnome-control-center/default-apps/brave-origin-nightly.xml \
           --replace-fail /opt/brave.com $out/opt/brave.com
-      substituteInPlace $out/opt/brave.com/${optName}/default-app-block \
+      substituteInPlace $out/opt/brave.com/${packagePath}/default-app-block \
           --replace-fail /opt/brave.com $out/opt/brave.com
 
       # Correct icons location
@@ -308,13 +239,13 @@ stdenv.mkDerivation {
 
       for icon in ''${icon_sizes[*]}
       do
-          mkdir -p $out/share/icons/hicolor/''${icon}x''${icon}/apps
-          ln -s $out/opt/brave.com/${optName}/product_logo_''${icon}${iconSuffix}.png $out/share/icons/hicolor/''${icon}x''${icon}/apps/${fileBase}.png
+          mkdir -p $out/share/icons/hicolor/$icon\x$icon/apps
+          ln -s $out/opt/brave.com/${packagePath}/product_logo_''${icon}_nightly.png $out/share/icons/hicolor/$icon\x$icon/apps/brave-origin-nightly.png
       done
 
       # Replace xdg-settings and xdg-mime
-      ln -sf ${xdg-utils}/bin/xdg-settings $out/opt/brave.com/${optName}/xdg-settings
-      ln -sf ${xdg-utils}/bin/xdg-mime $out/opt/brave.com/${optName}/xdg-mime
+      ln -sf ${xdg-utils}/bin/xdg-settings $out/opt/brave.com/${packagePath}/xdg-settings
+      ln -sf ${xdg-utils}/bin/xdg-mime $out/opt/brave.com/${packagePath}/xdg-mime
 
       runHook postInstall
     ''
@@ -323,9 +254,9 @@ stdenv.mkDerivation {
 
       mkdir -p $out/{Applications,bin}
 
-      cp -r . "$out/Applications/${darwinApp}.app"
+      cp -r . "$out/Applications/${appName}.app"
 
-      makeWrapper "$out/Applications/${darwinApp}.app/Contents/MacOS/${darwinApp}" $out/bin/${pname}
+      makeWrapper "$out/Applications/${appName}.app/Contents/MacOS/${appName}" $out/bin/brave-origin
 
       runHook postInstall
     '';
@@ -358,45 +289,26 @@ stdenv.mkDerivation {
 
   installCheckPhase = ''
     # Bypass upstream wrapper which suppresses errors
-    $out/opt/brave.com/${optName}/brave --version
+    $out/opt/brave.com/${packagePath}/brave --version
   '';
 
   passthru.updateScript = ./update.sh;
 
   meta = {
-    homepage = fd.homepages.${channel};
-    description =
-      "Privacy-oriented browser for Desktop and Laptop computers"
-      + lib.optionalString (flavor == "origin") " (Origin variant)"
-      + lib.optionalString (channel != "stable") " (${channel} channel)";
+    homepage = "https://brave.com/origin/download-nightly/";
+    description = "Privacy-oriented browser for Desktop and Laptop computers";
     changelog =
-      "https://github.com/brave/brave-browser/blob/master/${fd.changelogFile}#"
+      "https://github.com/brave/brave-browser/blob/master/CHANGELOG_DESKTOP_ORIGIN.md#"
       + lib.replaceStrings [ "." ] [ "" ] version;
-    longDescription =
-      if flavor == "origin" then
-        ''
-          Brave Origin is a stripped-down variant of the Brave browser that
-          removes most non-privacy features (rewards, wallet, AI, etc.) while
-          keeping the core privacy, adblock and Chromium-based browsing
-          experience.
-        ''
-      else
-        ''
-          Brave browser blocks the ads and trackers that slow you down,
-          chew up your bandwidth, and invade your privacy. Brave lets you
-          contribute to your favorite creators automatically.
-        '';
+    longDescription = ''
+      Brave browser blocks the ads and trackers that slow you down,
+      chew up your bandwidth, and invade your privacy. Brave lets you
+      contribute to your favorite creators automatically.
+    '';
     sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
     license = lib.licenses.mpl20;
-    maintainers = with lib.maintainers; [
-      uskudnik
-      rht
-      jefflabonte
-      nasirhm
-      buckley310
-      Dreaming-Codes
-    ];
+    maintainers = with lib.maintainers; [ WitteShadovv ];
     platforms = builtins.attrNames archives;
-    mainProgram = pname;
+    mainProgram = "brave-origin";
   };
 }

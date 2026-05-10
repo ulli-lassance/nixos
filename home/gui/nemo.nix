@@ -12,7 +12,7 @@
   dconf = {
     settings = {
       "org/cinnamon/desktop/applications/terminal" = {
-        exec = "${vars.terminal} --working-directory=%f";
+        exec = "${vars.terminal}";
       };
     };
   };

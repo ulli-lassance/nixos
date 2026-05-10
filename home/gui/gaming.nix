@@ -8,7 +8,7 @@
     deadlock-mod-manager
     
     fflogs
-    xivlauncher
+    xivlauncher-rb
   ];
 
 }
