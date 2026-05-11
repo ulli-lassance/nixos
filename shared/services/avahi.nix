@@ -18,7 +18,6 @@ in
     services.avahi = {
       enable = true;
       nssmdns4 = true;
-      domainName = "lan";
       openFirewall = true;
 
       publish = {
