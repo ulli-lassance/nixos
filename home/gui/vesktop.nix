@@ -1,10 +1,7 @@
 { pkgs, ... }:
 
 {
-  stylix.targets = {
-    vesktop.enable = true;
-    vencord.enable = false;
-  };
+  stylix.targets.vesktop.enable = true;
 
   xdg.configFile."vesktop/settings/quickCss.css".text = ''
     @import url(https://croissantdunord.github.io/discord-adblock/adblock.css);

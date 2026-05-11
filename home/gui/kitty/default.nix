@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 {
-  stylix.targets.kitty.enable = false;
-
   imports = [ ./theme.nix ];
 
   programs.kitty = {

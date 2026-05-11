@@ -42,7 +42,7 @@ in
       "${mainMod}, A, exec, ~/.config/hypr/scripts/move_active_to_empty"
       "${mainMod} SHIFT, A, exec, ~/.config/hypr/scripts/move_active_to_empty_silent"
 
-      # # Scrolling layout
+      # Scrolling layout
       # "${mainMod}, U, layoutmsg, swapcol l"
       # "${mainMod}, I, layoutmsg, swapcol r"
       # "${mainMod}, A, layoutmsg, colresize +conf"

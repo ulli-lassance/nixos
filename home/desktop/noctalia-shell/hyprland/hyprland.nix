@@ -68,17 +68,17 @@
         ];
 
         animation = [
-          "windowsIn, 1, 1.5, easeOutExpo, slide"
+          "windowsIn, 1, 2.0, easeOutExpo, slide"
           
-          "windowsOut, 1, 1.5, easeOutQuad, slide"
+          "windowsOut, 1, 2.0, easeOutQuad, slide"
           
           "windowsMove, 1, 2.5, criticallyDamped, slide"
           
-          "fade, 1, 1.5, easeOutQuad"
+          "fade, 1, 2.0, easeOutQuad"
           
-          "workspaces, 1, 2.0, criticallyDamped, slide"
-          "specialWorkspace, 1, 2.0, criticallyDamped, slidevert"
-          "layers, 1, 2.0, criticallyDamped, slidevert"
+          "workspaces, 1, 2.5, criticallyDamped, slidevert"
+          "specialWorkspace, 1, 2.5, criticallyDamped, slidevert"
+          "layers, 1, 2.5, criticallyDamped, slidevert"
         ];
       };
 

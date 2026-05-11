@@ -21,16 +21,13 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
   outputs =
     {
       self,
       nixpkgs,
-      home-manager,
-      stylix,
-      sops-nix,
-      noctalia,
       ...
     }@inputs:
     let
@@ -49,9 +46,12 @@
             inputs.home-manager.nixosModules.home-manager
             inputs.stylix.nixosModules.stylix
 
-            ({ config, pkgs, ... }: {
-              nixpkgs.overlays = [ packageOverlay ];
-            })
+            (
+              { config, pkgs, ... }:
+              {
+                nixpkgs.overlays = [ packageOverlay ];
+              }
+            )
           ];
         };
 

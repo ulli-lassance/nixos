@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  stylix.targets.mpv.enable = false;
-
   imports = [
     ./profiles.nix
     ./input.nix
