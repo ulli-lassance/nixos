@@ -27,21 +27,23 @@ in
         userServices = true;
         workstation = true;
       };
-      
-      extraServiceConf = ''
-        <service-group>
-          <name replace-wildcards="yes">%h</name>
-          <service>
-            <type>_smb._tcp</type>
-            <port>445</port>
-          </service>
-          <service>
-            <type>_device-info._tcp</type>
-            <port>0</port>
-            <txt-record>model=RackMac</txt-record>
-          </service>
-        </service-group>
-      '';
+
+      extraServiceFiles = {
+        smb = ''
+          <service-group>
+            <name replace-wildcards="yes">%h</name>
+            <service>
+              <type>_smb._tcp</type>
+              <port>445</port>
+            </service>
+            <service>
+              <type>_device-info._tcp</type>
+              <port>0</port>
+              <txt-record>model=RackMac</txt-record>
+            </service>
+          </service-group>
+        '';
+      };
     };
   };
 }
