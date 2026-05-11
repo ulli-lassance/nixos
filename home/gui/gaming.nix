@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     heroic
-    prismlauncher
+    # prismlauncher
 
     deadlock-mod-manager
     

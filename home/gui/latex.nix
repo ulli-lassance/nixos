@@ -14,6 +14,9 @@ let
       float
       gensymb
       latexmk
+      metafont
+      cm-super
+      ec
       ;
   };
 in

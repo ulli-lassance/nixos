@@ -25,15 +25,5 @@ in
         PermitRootLogin = "no";
       };
     };
-    services.fail2ban = {
-      enable = true;
-      maxretry = 3;
-      bantime = "24h";
-      ignoreIP = [
-        "192.168.15.2"
-        "192.168.15.3"
-        "192.168.15.4"
-      ];
-    };
   };
 }
