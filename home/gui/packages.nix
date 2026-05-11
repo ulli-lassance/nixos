@@ -10,8 +10,6 @@
     feishin
 
     qbittorrent
-    nicotine-plus
-    remmina
 
     inkscape
     gimp

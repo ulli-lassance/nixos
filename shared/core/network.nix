@@ -9,6 +9,7 @@
       allowPing = true;
       allowedTCPPorts = [ ];
       allowedUDPPorts = [ ];
+      checkReversePath = "loose";
     };
 
     nameservers = [

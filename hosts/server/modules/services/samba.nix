@@ -24,4 +24,10 @@
       };
     };
   };
+
+  # for windows discovery
+  # services.samba-wsdd = {
+  #   openFirewall = true;
+  #   enable = true;
+  # };
 }
