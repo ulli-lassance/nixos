@@ -19,6 +19,7 @@
     bluetooth.enable = true;
     virtualMachines.enable = true;
     ssh.enable = true;
+    avahi.enable = true;
     podman.enable = false;
   };
 

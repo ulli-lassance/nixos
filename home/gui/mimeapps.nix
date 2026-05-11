@@ -109,6 +109,7 @@ in
 
         # Directories
         "inode/directory" = fileManager;
+        "application/x-gnome-saved-search" = fileManager;
 
         # Misc
         "x-scheme-handler/discord" = [ "vesktop.desktop" ];

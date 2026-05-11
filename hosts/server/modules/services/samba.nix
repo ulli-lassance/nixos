@@ -1,10 +1,6 @@
 { vars, ... }:
 {
   # Don't forget to set a password with 'sudo smbpasswd -a <your-username>'
-  services.samba-wsdd = {
-    openFirewall = true;
-    enable = true;
-  };
   services.samba = {
     enable = true;
     openFirewall = true;

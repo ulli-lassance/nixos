@@ -17,6 +17,7 @@
   system = {
     podman.enable = true;
     ssh.enable = true;
+    avahi.enable = true;
   };
 
   # needed for rootless podman
