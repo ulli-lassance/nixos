@@ -10,14 +10,18 @@
   };
 
   systemd.services."podman-auto-update" = {
-    description = "Dynamic Podman auto-update for rootless NixOS containers";
+    description = "podman auto-update for rootless nixos containers";
     serviceConfig = {
       Type = "oneshot";
     };
-    
-    # Provide the necessary tools to the script's environment
-    path = with pkgs; [ sudo podman gnugrep systemd ];
-    
+
+    path = with pkgs; [
+      sudo
+      podman
+      gnugrep
+      systemd
+    ];
+
     script = ''
       echo "starting rootless container update check..."
 
@@ -30,7 +34,7 @@
         # skip if the line is empty
         if [ -z "$NAME" ]; then continue; fi
         
-        echo "Checking updates for $NAME ($IMAGE)..."
+        echo "checking updates for $NAME ($IMAGE)..."
         
         # pull the latest image as unprivileged user
         OUTPUT=$(sudo -u ${vars.username} podman pull "$IMAGE" 2>&1)
@@ -47,8 +51,8 @@
 
       echo "cleaning up old images..."
       sudo -u ${vars.username} podman image prune -f
-      
-      echo "update process complete"
+
+      echo "update process complete."
     '';
   };
 }

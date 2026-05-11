@@ -8,7 +8,6 @@
     ./polkit.nix
     ./keyring.nix
     ./tuned.nix
-    ./resolved.nix
     ./virtualization.nix
     ./mullvad-vpn.nix
   ];

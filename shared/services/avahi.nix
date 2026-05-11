@@ -17,8 +17,10 @@ in
   config = lib.mkIf cfg.enable {
     services.avahi = {
       enable = true;
-      nssmdns4 = true;
+      nssmdns4 = false;
       openFirewall = true;
+
+      denyInterfaces = [ "wg0-mullvad" ];
 
       publish = {
         enable = true;

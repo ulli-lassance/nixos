@@ -1,4 +1,4 @@
-{ vars, ... }:
+{ vars, lib, ... }:
 
 {
   systemd.tmpfiles.rules = [
@@ -6,6 +6,8 @@
   ];
 
   boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 53;
+
+  services.resolved.settings.Resolve.DNSStubListener = lib.mkForce "no";
 
   virtualisation.oci-containers.containers."adguardhome" = {
     autoStart = true;
