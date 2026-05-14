@@ -6,7 +6,6 @@
 
     firewall = {
       enable = true;
-      backend = "nftables";
       allowPing = true;
       allowedTCPPorts = [ ];
       allowedUDPPorts = [ ];
