@@ -6,7 +6,7 @@
 
     settings.Resolve = {
       Cache = "yes";
-      LLMNR = "resolve";
+      LLMNR = "yes";
       MulticastDNS = "yes";
       DNSSEC = "no";
       DNSOverTLS = "no";
