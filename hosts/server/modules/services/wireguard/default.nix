@@ -7,7 +7,7 @@
 
 let
   # Set you WAN interface name (check with "ip addr")
-  externalInterface = "enp2s0";
+  externalInterface = "enp1s0";
 in
 {
   sops.secrets.wg_server_private_key = {
