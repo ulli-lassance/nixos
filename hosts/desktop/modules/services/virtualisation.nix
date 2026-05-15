@@ -23,8 +23,14 @@ in
         onShutdown = "shutdown";
         qemu = {
           package = pkgs.qemu_kvm;
-          runAsRoot = true;
           swtpm.enable = true;
+          vhostUserPackages = with pkgs; [ virtiofsd ];
+          # runs qemu as your user
+          verbatimConfig = ''
+            user = "${vars.username}"
+            group = "libvirtd"
+            namespaces = []
+          '';
         };
       };
     };

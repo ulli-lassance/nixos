@@ -11,7 +11,7 @@ binds {
     Mod+Return { spawn "kitty"; }
     Mod+B { spawn "brave-origin"; }
     Mod+C { spawn "codium"; }
-    Mod+E { spawn "nemo"; }
+    Mod+E { spawn "thunar"; }
     
     Mod+S { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
     Mod+M { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"; }

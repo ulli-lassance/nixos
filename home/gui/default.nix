@@ -4,7 +4,6 @@
   imports = [
     ./gaming.nix
     ./kitty
-    ./nemo.nix
     ./vscode.nix
     ./imv.nix
     ./mpv
