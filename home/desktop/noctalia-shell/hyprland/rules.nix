@@ -2,41 +2,111 @@
 
 {
   wayland.windowManager.hyprland.settings = {
-    windowrule = [
-      "suppress_event maximize, match:class .*"
+    window_rule = [
+      {
+        match = { class = ".*"; };
+        suppress_event = "maximize";
+      }
 
-      "float on, match:title (?i)picture[- ]in[- ]picture"
-      "size 720 405, match:title (?i)picture[- ]in[- ]picture"
+      {
+        match = { title = "(?i)picture[- ]in[- ]picture"; };
+        float = true;
+      }
+      {
+        match = { title = "(?i)picture[- ]in[- ]picture"; };
+        size = { 720, 405 };
+      }
 
-      "float on, match:class ^(xdg-desktop-portal-gtk)$"
-      "float on, match:class ^(xdg-desktop-portal-hyprland)$"
-      "float on, match:class ^(org.gnome.FileRoller)$"
-      "float on, match:class ^(org.gnome.seahorse.Application)$"
-      "float on, match:class ^(qalculate-gtk)$"
+      {
+        match = { class = "^(xdg-desktop-portal-gtk)$"; };
+        float = true;
+      }
+      {
+        match = { class = "^(xdg-desktop-portal-hyprland)$"; };
+        float = true;
+      }
+      {
+        match = { class = "^(org.gnome.FileRoller)$"; };
+        float = true;
+      }
+      {
+        match = { class = "^(org.gnome.seahorse.Application)$"; };
+        float = true;
+      }
+      {
+        match = { class = "^(qalculate-gtk)$"; };
+        float = true;
+      }
 
-      "float on, size 900 700, center on, match:class ^(pavucontrol-qt)$"
-      "float on, size 900 700, center on, match:class ^(org.pulseaudio.pavucontrol)$"
+      {
+        match = { class = "^(pavucontrol-qt)$"; };
+        float = true;
+        size = { 900, 700 };
+        center = true;
+      }
+      {
+        match = { class = "^(org.pulseaudio.pavucontrol)$"; };
+        float = true;
+        size = { 900, 700 };
+        center = true;
+      }
 
-      "float on, size 670 760, match:title ^(Remmina Remote Desktop Client)$"
+      {
+        match = { title = "^(Remmina Remote Desktop Client)$"; };
+        float = true;
+        size = { 670, 760 };
+      }
 
-      "float on, match:class ^(qt6ct)$"
-      "float on, match:class ^(qt5ct)$"
-      "float on, match:title ^(Kvantum Manager)$"
+      {
+        match = { class = "^(qt6ct)$"; };
+        float = true;
+      }
+      {
+        match = { class = "^(qt5ct)$"; };
+        float = true;
+      }
+      {
+        match = { title = "^(Kvantum Manager)$"; };
+        float = true;
+      }
 
       # Gaming
-      "fullscreen on, match:class ^(ffxiv_dx11.exe)$"
-      "fullscreen on, match:title ^(Overwatch)$"
+      {
+        match = { class = "^(ffxiv_dx11.exe)$"; };
+        fullscreen = true;
+      }
+      {
+        match = { title = "^(Overwatch)$"; };
+        fullscreen = true;
+      }
     ];
 
-    # Layer Rules
-    layerrule = [
-      "match:namespace hyprpicker, animation fade"
-      "match:namespace selection, animation fade"
-      "match:namespace slurp, animation fade"
+    layer_rule = [
+      {
+        match = { namespace = "hyprpicker"; };
+        animation = "fade";
+      }
+      {
+        match = { namespace = "selection"; };
+        animation = "fade";
+      }
+      {
+        match = { namespace = "slurp"; };
+        animation = "fade";
+      }
 
-      "match:namespace ^noctalia-background-.*$, ignore_alpha 0.5"
-      "match:namespace ^noctalia-background-.*$, blur on"
-      "match:namespace ^noctalia-background-.*$, blur_popups on"
+      {
+        match = { namespace = "^noctalia-background-.*$"; };
+        ignore_alpha = 0.5;
+      }
+      {
+        match = { namespace = "^noctalia-background-.*$"; };
+        blur = true;
+      }
+      {
+        match = { namespace = "^noctalia-background-.*$"; };
+        blur_popups = true;
+      }
     ];
   };
 }
