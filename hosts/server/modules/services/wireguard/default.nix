@@ -14,32 +14,35 @@ in
     owner = "root";
   };
 
-  networking.nat = {
-    enable = true;
-    enableIPv6 = true;
-    externalInterface = externalInterface;
-    internalInterfaces = [ "wg0" ];
-  };
+  networking = {
+    nat = {
+      enable = true;
+      enableIPv6 = true;
+      externalInterface = externalInterface;
+      internalInterfaces = [ "wg0" ];
+    };
 
-  networking.firewall = {
-    allowedUDPPorts = [ config.networking.wg-quick.interfaces.wg0.listenPort ];
-    checkReversePath = lib.mkForce "loose";
-  };
+    firewall = {
+      trustedInterfaces = [ "wg0" ];
+      allowedUDPPorts = [ config.networking.wg-quick.interfaces.wg0.listenPort ];
+      checkReversePath = lib.mkForce "loose";
+    };
 
-  networking.wg-quick.interfaces = {
-    wg0 = {
-      address = [ "10.100.0.1/24" ];
-      listenPort = 51820;
-      privateKeyFile = config.sops.secrets.wg_server_private_key.path;
+    wg-quick.interfaces = {
+      wg0 = {
+        address = [ "10.100.0.1/24" ];
+        listenPort = 51820;
+        privateKeyFile = config.sops.secrets.wg_server_private_key.path;
 
-      peers = [
-        {
-          # iphone
-          publicKey = "TPLeVbp3qn/JVuesGtTAzrciFTsINAv2nT4DqqEexE4=";
-          allowedIPs = [ "10.100.0.2/32" ];
-          persistentKeepalive = 25;
-        }
-      ];
+        peers = [
+          {
+            # iphone
+            publicKey = "TPLeVbp3qn/JVuesGtTAzrciFTsINAv2nT4DqqEexE4=";
+            allowedIPs = [ "10.100.0.2/32" ];
+            persistentKeepalive = 25;
+          }
+        ];
+      };
     };
   };
 

@@ -35,6 +35,10 @@ in
       };
     };
 
+    networking = {
+      firewall.trustedInterfaces = [ "virbr0" ]; 
+    };
+
     users.users."${vars.username}".extraGroups = [ "libvirtd" ];
 
     programs.virt-manager.enable = true;
