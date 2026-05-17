@@ -17,5 +17,6 @@
     ./cleanuparr.nix
     ./ddns-updater.nix
     ./slskd.nix
+    ./invidious.nix
   ];
 }

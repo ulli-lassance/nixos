@@ -1,6 +1,9 @@
 { ... }:
 
 {
-  imports = [ ./media-net.nix ];
+  imports = [
+    ./media-net.nix
+    ./invidious-net.nix
+  ];
 
 }
