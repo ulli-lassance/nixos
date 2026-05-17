@@ -37,7 +37,7 @@
       image = "quay.io/invidious/invidious-companion:latest";
       podman.user = vars.username;
       environment = {
-        SERVER_SECRET_KEY = "CHANGE_ME";
+        SERVER_SECRET_KEY = "da0eich2opahWieh";
       };
       volumes = [
         "${vars.containerCache}/invidious/companion:/var/tmp/youtubei.js:U"
@@ -72,8 +72,8 @@
               private_url = "http://invidious-companion:8282/companion";
             }
           ];
-          invidious_companion_key = "CHANGE_ME";
-          hmac_key = "CHANGE_ME";
+          invidious_companion_key = "da0eich2opahWieh";
+          hmac_key = "MaeZoerahz5Oosu9";
           domain = "invidious.lan.${vars.domain}";
           external_port = 443;
           https_only = true;
