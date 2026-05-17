@@ -21,6 +21,4 @@
   #   package = pkgs.gamescope;
   #   capSysNice = false;
   # };
-
-  powerManagement.cpuFreqGovernor = "performance";
 }

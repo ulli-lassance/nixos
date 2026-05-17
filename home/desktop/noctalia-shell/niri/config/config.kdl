@@ -4,6 +4,9 @@ input {
             layout "us,br"
             options "caps:escape"
         }
+        repeat-delay 300
+        repeat-rate 25
+        
     }
 
     mod-key "Super"

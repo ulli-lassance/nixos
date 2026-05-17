@@ -6,6 +6,6 @@
   home.stateVersion = vars.stateVersion;
 
   imports = [
-    ../../home/cli
+    ../../home/terminal
   ];
 }

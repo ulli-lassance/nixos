@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./noctalia-shell
+    ./noctalia
     ./polkit.nix
     ./cliphist.nix
     ./hyprland

@@ -1,0 +1,11 @@
+hl.curve("easeOutExpo", { type = "bezier", points = { { 0.16, 1 }, { 0.3, 1 } } })
+hl.curve("easeOutQuad", { type = "bezier", points = { { 0.5, 1 }, { 0.89, 1 } } })
+hl.curve("decel", { type = "bezier", points = { { 0.05, 0.7 }, { 0.1, 1 } } })
+hl.curve("accel", { type = "bezier", points = { { 0.3, 0 }, { 0.8, 0.15 } } })
+
+hl.animation({ leaf = "windows", enabled = true, speed = 3, bezier = "decel", style = "popin 60%" })
+hl.animation({ leaf = "windowsIn", enabled = true, speed = 3, bezier = "decel", style = "popin 60%" })
+hl.animation({ leaf = "windowsOut", enabled = true, speed = 3, bezier = "accel", style = "popin 60%" })
+hl.animation({ leaf = "fade", enabled = true, speed = 2.5, bezier = "decel" })
+hl.animation({ leaf = "workspaces", enabled = true, speed = 3.5, bezier = "easeOutExpo", style = "slide" })
+hl.animation({ leaf = "layers", enabled = true, speed = 2.5, bezier = "easeOutQuad", style = "fade" })

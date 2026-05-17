@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 {
-  home.file = {
-    ".config/niri" = {
+  xdg.configFile = {
+    "niri" = {
       source = ./config;
       recursive = true;
     };
