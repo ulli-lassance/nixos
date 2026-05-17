@@ -22,16 +22,15 @@ input {
 
 }
 
-hotkey-overlay {
-    skip-at-startup
-}
-
-
 output "DP-1" {
     mode "2560x1440"
     scale 1.0
     transform "normal"
     position x=0 y=0
+}
+
+hotkey-overlay {
+    skip-at-startup
 }
 
 gestures {
@@ -119,3 +118,4 @@ recent-windows {
 include "rules.kdl"
 include "binds.kdl"
 include "env.kdl"
+include "animations.kdl"

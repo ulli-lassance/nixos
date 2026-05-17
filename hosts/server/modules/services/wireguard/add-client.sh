@@ -4,7 +4,7 @@
 
 # --- CONFIGURATION ---
 ENDPOINT="vpn.lassance.net.br:51820"
-DNS="1.1.1.1"
+DNS="10.100.0.1"
 
 NAME=$1
 OCTET=$2
@@ -48,7 +48,6 @@ read -r -d '' CLIENT_CONF <<EOF
 [Interface]
 PrivateKey = $CLIENT_PRIV
 Address = $CLIENT_IP/24
-MTU = 1280
 DNS = $DNS
 
 [Peer]
