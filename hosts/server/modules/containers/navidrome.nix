@@ -31,15 +31,9 @@
       ports = [ "127.0.0.1:4533:4533" ];
 
       extraOptions = [ 
-        "--network=media-net" 
         "--userns=keep-id"
       ];
     };
-  };
-
-  systemd.services."podman-navidrome" = {
-    after = [ "podman-network-media-net.service" ];
-    requires = [ "podman-network-media-net.service" ];
   };
 
   services.nginx.virtualHosts."navidrome.lan.${vars.domain}" = {

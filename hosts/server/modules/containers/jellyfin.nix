@@ -26,15 +26,9 @@
       extraOptions = [
         "--device=/dev/dri:/dev/dri"
         "--group-add=${toString config.ids.gids.render}"
-        "--network=media-net"
         "--userns=keep-id"
       ];
     };
-  };
-
-  systemd.services."podman-jellyfin" = {
-    after = [ "podman-network-media-net.service" ];
-    requires = [ "podman-network-media-net.service" ];
   };
 
   # needed for rootless podman gpu passthru

@@ -38,15 +38,9 @@
       ];
 
       extraOptions = [ 
-        "--network=media-net" 
         "--userns=keep-id"
       ];
     };
-  };
-
-  systemd.services."podman-slskd" = {
-    after = [ "podman-network-media-net.service" ];
-    requires = [ "podman-network-media-net.service" ];
   };
 
   services.nginx.virtualHosts."soulseek.lan.${vars.domain}" = {
