@@ -67,16 +67,17 @@ layout {
 
     shadow {
         on
+        // color "#191724"
     }
 
     border {
         on
 
         width 2
-        active-color "#cba6f7"
-        inactive-color "#6e6a86"
+        // active-color "#cba6f7"
+        // inactive-color "#6e6a86"
 
-        urgent-color "#eb6f92"
+        // urgent-color "#eb6f92"
     }
 }
 
@@ -89,7 +90,7 @@ blur {
 
 
 overview {
-    backdrop-color "#191724"
+    // backdrop-color "#191724"
     zoom 0.35
 }
 
@@ -103,8 +104,8 @@ recent-windows {
     open-delay-ms 100
 
     highlight {
-        active-color "#6e6a86"
-        urgent-color "#eb6f92"
+        // active-color "#6e6a86"
+        // urgent-color "#eb6f92"
         padding 30
         corner-radius 0
     }
@@ -115,6 +116,7 @@ recent-windows {
     }
 }
 
+include "colors.kdl"
 include "rules.kdl"
 include "binds.kdl"
 include "env.kdl"

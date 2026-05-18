@@ -68,10 +68,8 @@ in
       image = "docker.io/library/postgres:14";
       podman.user = vars.username;
 
-      # Inject the secret password here
       environmentFiles = [ config.sops.templates."invidious-db.env".path ];
 
-      # Keep non-secret environment variables here
       environment = {
         POSTGRES_DB = "invidious";
         POSTGRES_USER = "kemal";
@@ -153,15 +151,22 @@ in
     description = "periodic restart of Invidious";
     after = [ "podman-invidious.service" ];
     script = ''
-      systemctl restart podman-invidious.service
+      echo "triggering scheduled restart of podman-invidious.service..."
+      
+      if systemctl restart podman-invidious.service; then
+        echo "successfully restarted podman-invidious.service."
+      else
+        echo "FAILED to restart podman-invidious.service!" >&2
+        exit 1
+      fi
     '';
     serviceConfig.Type = "oneshot";
   };
 
   systemd.timers."restart-invidious" = {
-    description = "Hourly restart timer for Invidious";
+    description = "hourly restart timer for Invidious";
     timerConfig = {
-      OnUnitActiveSec = "1h";
+      OnCalendar = "hourly";
       RandomizedDelaySec = "5min";
     };
     wantedBy = [ "timers.target" ];

@@ -10,6 +10,7 @@
     ./brave.nix
     ./mimeapps.nix
     ./vesktop.nix
+    ./obs.nix
     ./latex.nix
     ./packages.nix
   ];
