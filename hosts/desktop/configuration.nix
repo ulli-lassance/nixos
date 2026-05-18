@@ -37,7 +37,6 @@
       console.enable = true;
       qt.enable = true;
       gtk.enable = true;
-      limine.enable = true;
     };
   };
 

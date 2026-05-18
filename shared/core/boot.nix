@@ -7,14 +7,9 @@
       efiSysMountPoint = "/boot";
     };
 
-    # systemd-boot = {
-    #   enable = true;
-    #   configurationLimit = 10;
-    # };
-
-    limine = {
+    systemd-boot = {
       enable = true;
-      maxGenerations = 20;
+      configurationLimit = 10;
     };
   };
 }
