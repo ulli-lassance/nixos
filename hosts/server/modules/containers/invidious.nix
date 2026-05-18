@@ -1,5 +1,9 @@
 { vars, ... }:
 
+let
+  invidiousPort = 3010;
+in
+
 {
   systemd.tmpfiles.rules = [
     "d ${vars.volumeDirectory}/invidious 0755 ${vars.username} users -"
@@ -69,6 +73,7 @@
             host = "invidious-db";
             port = 5432;
           };
+          port = invidiousPort;
           check_tables = true;
           invidious_companion = [
             {
@@ -84,10 +89,10 @@
           use_innertube_for_captions = true;
         };
       };
-      ports = [ "127.0.0.1:3000:3000" ];
+      ports = [ "127.0.0.1:${toString invidiousPort}:${toString invidiousPort}" ];
       extraOptions = [
         "--network=invidious-net"
-        "--health-cmd=wget -nv --tries=1 --spider http://127.0.0.1:3000/api/v1/stats || exit 1"
+        "--health-cmd=wget -nv --tries=1 --spider http://127.0.0.1:${toString invidiousPort}/api/v1/stats || exit 1"
         "--health-interval=30s"
         "--health-timeout=5s"
         "--health-retries=2"
@@ -114,7 +119,7 @@
     useACMEHost = vars.domain;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://127.0.0.1:3000";
+      proxyPass = "http://127.0.0.1:${toString invidiousPort}";
       proxyWebsockets = true;
     };
   };
