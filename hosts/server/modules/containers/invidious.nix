@@ -4,21 +4,21 @@ let
   invidiousPort = 3010;
 in
 {
-  sops.secrets."invidious_companion_key" = { };
-  sops.secrets."invidious_hmac_key" = { };
-  sops.secrets."invidious_db_password" = { };
+  sops.secrets."invidious/companion_key" = { };
+  sops.secrets."invidious/hmac_key" = { };
+  sops.secrets."invidious/db_password" = { };
 
   sops.templates."invidious-db.env" = {
     owner = vars.username;
     content = ''
-      POSTGRES_PASSWORD=${config.sops.placeholder."invidious_db_password"}
+      POSTGRES_PASSWORD=${config.sops.placeholder."invidious/db_password"}
     '';
   };
 
   sops.templates."invidious-companion.env" = {
     owner = vars.username;
     content = ''
-      SERVER_SECRET_KEY=${config.sops.placeholder."invidious_companion_key"}
+      SERVER_SECRET_KEY=${config.sops.placeholder."invidious/companion_key"}
     '';
   };
 
@@ -30,7 +30,7 @@ in
           db = {
             dbname = "invidious";
             user = "kemal";
-            password = config.sops.placeholder."invidious_db_password";
+            password = config.sops.placeholder."invidious/db_password";
             host = "invidious-db";
             port = 5432;
           };
@@ -41,8 +41,8 @@ in
               private_url = "http://invidious-companion:8282/companion";
             }
           ];
-          invidious_companion_key = config.sops.placeholder."invidious_companion_key";
-          hmac_key = config.sops.placeholder."invidious_hmac_key";
+          invidious_companion_key = config.sops.placeholder."invidious/companion_key";
+          hmac_key = config.sops.placeholder."invidious/hmac_key";
           domain = "invidious.lan.${vars.domain}";
           external_port = 443;
           https_only = true;
