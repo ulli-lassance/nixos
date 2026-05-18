@@ -4,45 +4,54 @@ let
   invidiousPort = 3010;
 in
 {
-  sops.secrets."invidious/companion_key" = { };
-  sops.secrets."invidious/hmac_key" = { };
-  sops.secrets."invidious/db_password" = { };
+  sops.secrets."invidious_companion_key" = { };
+  sops.secrets."invidious_hmac_key" = { };
+  sops.secrets."invidious_db_password" = { };
 
-  sops.templates."invidious-db.env".content = ''
-    POSTGRES_PASSWORD=${config.sops.placeholder."invidious/db_password"}
-  '';
+  sops.templates."invidious-db.env" = {
+    owner = vars.username;
+    content = ''
+      POSTGRES_PASSWORD=${config.sops.placeholder."invidious_db_password"}
+    '';
+  };
 
-  sops.templates."invidious-companion.env".content = ''
-    SERVER_SECRET_KEY=${config.sops.placeholder."invidious/companion_key"}
-  '';
+  sops.templates."invidious-companion.env" = {
+    owner = vars.username;
+    content = ''
+      SERVER_SECRET_KEY=${config.sops.placeholder."invidious_companion_key"}
+    '';
+  };
 
-  sops.templates."invidious.env".content = ''
-    INVIDIOUS_CONFIG=${
-      builtins.toJSON {
-        db = {
-          dbname = "invidious";
-          user = "kemal";
-          password = config.sops.placeholder."invidious/db_password";
-          host = "invidious-db";
-          port = 5432;
-        };
-        port = invidiousPort;
-        check_tables = true;
-        invidious_companion = [
-          {
-            private_url = "http://invidious-companion:8282/companion";
-          }
-        ];
-        invidious_companion_key = config.sops.placeholder."invidious/companion_key";
-        hmac_key = config.sops.placeholder."invidious/hmac_key";
-        domain = "invidious.lan.${vars.domain}";
-        external_port = 443;
-        https_only = true;
-        use_pubsub_feeds = true;
-        use_innertube_for_captions = true;
+  sops.templates."invidious.env" = {
+    owner = vars.username;
+    content = ''
+      INVIDIOUS_CONFIG=${
+        builtins.toJSON {
+          db = {
+            dbname = "invidious";
+            user = "kemal";
+            password = config.sops.placeholder."invidious_db_password";
+            host = "invidious-db";
+            port = 5432;
+          };
+          port = invidiousPort;
+          check_tables = true;
+          invidious_companion = [
+            {
+              private_url = "http://invidious-companion:8282/companion";
+            }
+          ];
+          invidious_companion_key = config.sops.placeholder."invidious_companion_key";
+          hmac_key = config.sops.placeholder."invidious_hmac_key";
+          domain = "invidious.lan.${vars.domain}";
+          external_port = 443;
+          https_only = true;
+          use_pubsub_feeds = true;
+          use_innertube_for_captions = true;
+        }
       }
-    }
-  '';
+    '';
+  };
 
   systemd.tmpfiles.rules = [
     "d ${vars.volumeDirectory}/invidious 0755 ${vars.username} users -"
