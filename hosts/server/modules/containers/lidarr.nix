@@ -3,6 +3,8 @@
 {
   systemd.tmpfiles.rules = [
     "d ${vars.volumeDirectory}/lidarr 0755 ${vars.username} users -"
+
+    "d ${vars.containerCache}/lidarr 0755 ${vars.username} users -"
     "d ${vars.containerCache}/lidarr/MediaCover 0755 ${vars.username} users -"
   ];
 

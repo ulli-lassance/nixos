@@ -3,6 +3,7 @@
 {
   systemd.tmpfiles.rules = [
     "d ${vars.volumeDirectory}/slskd 0755 ${vars.username} users -"
+    
     "d ${vars.homeDirectory}/downloads 0755 ${vars.username} users -"
     "d ${vars.homeDirectory}/downloads/slskd 0755 ${vars.username} users -"
     "d ${vars.homeDirectory}/downloads/slskd/incomplete 0755 ${vars.username} users -"

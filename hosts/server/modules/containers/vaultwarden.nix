@@ -3,6 +3,8 @@
 {
   systemd.tmpfiles.rules = [
     "d ${vars.volumeDirectory}/vaultwarden 0755 ${vars.username} users -"
+
+    "d ${vars.containerCache}/vaultwarden 0755 ${vars.username} users -"
     "d ${vars.containerCache}/vaultwarden/icon_cache 0755 ${vars.username} users -"
     "d ${vars.containerCache}/vaultwarden/tmp 0755 ${vars.username} users -"
   ];

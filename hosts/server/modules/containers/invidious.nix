@@ -2,8 +2,11 @@
 
 {
   systemd.tmpfiles.rules = [
+    "d ${vars.volumeDirectory}/invidious 0755 ${vars.username} users -"
     "d ${vars.volumeDirectory}/invidious/postgres 0755 ${vars.username} users -"
     "d ${vars.volumeDirectory}/invidious/data 0755 ${vars.username} users -"
+
+    "d ${vars.containerCache}/invidious 0755 ${vars.username} users -"
     "d ${vars.containerCache}/invidious/companion 0755 ${vars.username} users -"
   ];
 
