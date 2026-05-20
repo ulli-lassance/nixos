@@ -7,7 +7,8 @@
     withUWSM = false;
 
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    portalPackage =
+      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
 
   # if using hyprlock
@@ -23,10 +24,11 @@
           "hyprland"
           "gtk"
         ];
+        "org.freedesktop.impl.portal.ScreenCast" = "hyprland";
         "org.freedesktop.impl.portal.Access" = "gtk";
-        "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+        "org.freedesktop.impl.portal.FileChooser" = "gtk";
         "org.freedesktop.impl.portal.Notification" = "gtk";
-        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+        "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
       };
     };
   };
