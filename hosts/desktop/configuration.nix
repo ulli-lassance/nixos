@@ -1,15 +1,10 @@
-{
-  pkgs,
-  config,
-  inputs,
-  vars,
-  ...
-}:
+{ pkgs, config, ... }:
 
 {
   imports = [
     ./hardware.nix
     ../../shared
+    ./home-manager.nix
     ./modules
   ];
 
@@ -28,14 +23,6 @@
       withGui = true;
     };
     ssh.enable = true;
-  };
-
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    extraSpecialArgs = { inherit inputs vars; };
-    users."${config.settings.user.username}" = import ./home.nix;
-    backupFileExtension = "backup";
   };
 
   stylix = {

@@ -1,16 +1,10 @@
-{
-  config,
-  lib,
-  pkgs,
-  vars,
-  inputs,
-  ...
-}:
+{ config, pkgs, ... }:
 
 {
   imports = [
     ./hardware.nix
     ../../shared
+    ./home-manager.nix
     ./modules
     ./settings.nix
   ];
@@ -24,6 +18,7 @@
     server = {
       domain = "lassance.net.br";
       lanIP = "192.168.15.3";
+      externalInterface = "enp1s0";
     };
 
     network.hostName = "server";
@@ -37,13 +32,6 @@
     destination = "${config.settings.user.home}/ssd2/backup/containerVolumes";
   };
 
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    extraSpecialArgs = { inherit inputs vars; };
-    users."${config.settings.user.username}" = import ./home.nix;
-    backupFileExtension = "backup";
-  };
 
   boot = {
     kernelPackages = pkgs.linuxPackages;
