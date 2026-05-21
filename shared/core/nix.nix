@@ -1,4 +1,4 @@
-{ vars, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
@@ -12,7 +12,7 @@
       ];
 
       trusted-users = [
-        vars.username
+        "${config.settings.user.username}"
       ];
 
       extra-substituters = [
@@ -32,7 +32,7 @@
 
   programs.nh = {
     enable = true;
-    flake = "${vars.homeDirectory}/nixos";
+    flake = "${config.settings.user.home}/nixos";
     clean = {
       enable = true;
       dates = "daily";

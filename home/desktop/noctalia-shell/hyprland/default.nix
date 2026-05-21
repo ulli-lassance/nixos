@@ -1,9 +1,4 @@
-{
-  pkgs,
-  config,
-  vars,
-  ...
-}:
+{ pkgs, config, ... }:
 
 {
   wayland.windowManager.hyprland = {
@@ -28,10 +23,10 @@
       _G.vars = {
         layout = "master",
 
-        fileManager = "${vars.fileManager}",
-        editor = "${vars.editor}",
-        terminal = "${vars.terminal}",
-        browser = "${vars.browser}",
+        fileManager = "${config.settings.desktop.applications.fileManager}",
+        editor = "${config.settings.desktop.applications.editor}",
+        terminal = "${config.settings.desktop.applications.terminal}",
+        browser = "${config.settings.desktop.applications.browser}",
 
         shadow_color = "0xff${base00}",
         active_border_color = "0xff${base0D}",

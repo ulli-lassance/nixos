@@ -1,11 +1,11 @@
-{ vars, ... }:
+{ osConfig, ... }:
 
 {
   programs.git = {
     enable = true;
     settings.user = {
-      name = vars.name;
-      email = vars.email;
+      name = osConfig.settings.user.name;
+      email = osConfig.settings.user.email;
     };
   };
 

@@ -8,5 +8,6 @@
     bat
     grc
     fzf
+    jq
   ];
 }

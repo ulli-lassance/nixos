@@ -1,9 +1,9 @@
-{ vars, ... }:
+{ config, ... }:
 
 {
   systemd.tmpfiles.rules = [
-    "d ${vars.volumeDirectory}/bazarr 0755 ${vars.username} users -"
-    "d ${vars.containerCache}/bazarr 0755 ${vars.username} users -"
+    "d ${config.settings.server.volumeDirectory}/bazarr 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.server.containerCache}/bazarr 0755 ${config.settings.user.username} users -"
   ];
 
   virtualisation.oci-containers.containers = {
@@ -14,7 +14,7 @@
       };
       image = "lscr.io/linuxserver/bazarr:latest";
 
-      podman.user = vars.username;
+      podman.user = config.settings.user.username;
 
       environment = {
         PUID = "1000";
@@ -22,10 +22,10 @@
       };
 
       volumes = [
-        "${vars.volumeDirectory}/bazarr/config:/config:U"
-        "${vars.containerCache}/bazarr:/config/cache:U"
-        "${vars.homeDirectory}/hd2/movies:/movies"
-        "${vars.homeDirectory}/hd2/series:/series"
+        "${config.settings.server.volumeDirectory}/bazarr/config:/config:U"
+        "${config.settings.server.containerCache}/bazarr:/config/cache:U"
+        "${config.settings.user.home}/hd2/movies:/movies"
+        "${config.settings.user.home}/hd2/series:/series"
       ];
       ports = [ "127.0.0.1:6767:6767" ];
 
@@ -41,8 +41,8 @@
     requires = [ "podman-network-media-net.service" ];
   };
 
-  services.nginx.virtualHosts."bazarr.lan.${vars.domain}" = {
-    useACMEHost = vars.domain;
+  services.nginx.virtualHosts."bazarr.lan.${config.settings.server.domain}" = {
+    useACMEHost = config.settings.server.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://127.0.0.1:6767";

@@ -1,9 +1,8 @@
 {
-  config,
-  lib,
   pkgs,
-  vars,
+  config,
   inputs,
+  vars,
   ...
 }:
 
@@ -14,23 +13,30 @@
     ./modules
   ];
 
-  # Toggle features for the desktop here
-  system = {
+  # Toggle settings for the desktop here
+  settings = {
+    user = {
+      username = "lassance";
+      email = "john.lassance@gmail.com";
+    };
+
+    network.hostName = "desktop";
+
     bluetooth.enable = true;
-    virtualMachines.enable = true;
+    virtualMachines = {
+      enable = true;
+      withGui = true;
+    };
     ssh.enable = true;
-    podman.enable = false;
   };
 
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = { inherit inputs vars; };
-    users."${vars.username}" = import ./home.nix;
+    users."${config.settings.user.username}" = import ./home.nix;
     backupFileExtension = "backup";
   };
-
-  networking.hostName = "desktop";
 
   stylix = {
     targets = {
@@ -45,5 +51,5 @@
     kernelModules = [ "ntsync" ];
   };
 
-  system.stateVersion = vars.stateVersion;
+  system.stateVersion = config.settings.stateVersion;
 }

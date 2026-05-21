@@ -1,4 +1,4 @@
-{ config, vars, ... }:
+{ config, ... }:
 
 let
   invidiousPort = 3010;
@@ -9,21 +9,21 @@ in
   sops.secrets."invidious/db_password" = { };
 
   sops.templates."invidious-db.env" = {
-    owner = vars.username;
+    owner = config.settings.user.username;
     content = ''
       POSTGRES_PASSWORD=${config.sops.placeholder."invidious/db_password"}
     '';
   };
 
   sops.templates."invidious-companion.env" = {
-    owner = vars.username;
+    owner = config.settings.user.username;
     content = ''
       SERVER_SECRET_KEY=${config.sops.placeholder."invidious/companion_key"}
     '';
   };
 
   sops.templates."invidious.env" = {
-    owner = vars.username;
+    owner = config.settings.user.username;
     content = ''
       INVIDIOUS_CONFIG=${
         builtins.toJSON {
@@ -43,7 +43,7 @@ in
           ];
           invidious_companion_key = config.sops.placeholder."invidious/companion_key";
           hmac_key = config.sops.placeholder."invidious/hmac_key";
-          domain = "invidious.lan.${vars.domain}";
+          domain = "invidious.lan.${config.settings.server.domain}";
           external_port = 443;
           https_only = true;
           use_pubsub_feeds = true;
@@ -54,19 +54,19 @@ in
   };
 
   systemd.tmpfiles.rules = [
-    "d ${vars.volumeDirectory}/invidious 0755 ${vars.username} users -"
-    "d ${vars.volumeDirectory}/invidious/postgres 0755 ${vars.username} users -"
-    "d ${vars.volumeDirectory}/invidious/data 0755 ${vars.username} users -"
+    "d ${config.settings.server.volumeDirectory}/invidious 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.server.volumeDirectory}/invidious/postgres 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.server.volumeDirectory}/invidious/data 0755 ${config.settings.user.username} users -"
 
-    "d ${vars.containerCache}/invidious 0755 ${vars.username} users -"
-    "d ${vars.containerCache}/invidious/companion 0755 ${vars.username} users -"
+    "d ${config.settings.server.containerCache}/invidious 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.server.containerCache}/invidious/companion 0755 ${config.settings.user.username} users -"
   ];
 
   virtualisation.oci-containers.containers = {
     invidious-db = {
       autoStart = true;
       image = "docker.io/library/postgres:14";
-      podman.user = vars.username;
+      podman.user = config.settings.user.username;
 
       environmentFiles = [ config.sops.templates."invidious-db.env".path ];
 
@@ -76,7 +76,7 @@ in
       };
 
       volumes = [
-        "${vars.volumeDirectory}/invidious/postgres:/var/lib/postgresql/data:U"
+        "${config.settings.server.volumeDirectory}/invidious/postgres:/var/lib/postgresql/data:U"
       ];
       extraOptions = [
         "--network=invidious-net"
@@ -93,12 +93,12 @@ in
         "io.containers.autoupdate" = "registry";
       };
       image = "quay.io/invidious/invidious-companion:latest";
-      podman.user = vars.username;
+      podman.user = config.settings.user.username;
 
       environmentFiles = [ config.sops.templates."invidious-companion.env".path ];
 
       volumes = [
-        "${vars.containerCache}/invidious/companion:/var/tmp/youtubei.js:U"
+        "${config.settings.server.containerCache}/invidious/companion:/var/tmp/youtubei.js:U"
       ];
       extraOptions = [
         "--network=invidious-net"
@@ -114,7 +114,7 @@ in
         "io.containers.autoupdate" = "registry";
       };
       image = "quay.io/invidious/invidious:latest";
-      podman.user = vars.username;
+      podman.user = config.settings.user.username;
 
       environmentFiles = [ config.sops.templates."invidious.env".path ];
 
@@ -172,8 +172,8 @@ in
     wantedBy = [ "timers.target" ];
   };
 
-  services.nginx.virtualHosts."invidious.lan.${vars.domain}" = {
-    useACMEHost = vars.domain;
+  services.nginx.virtualHosts."invidious.lan.${config.settings.server.domain}" = {
+    useACMEHost = config.settings.server.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString invidiousPort}";

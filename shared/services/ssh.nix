@@ -1,16 +1,14 @@
 {
   config,
-  pkgs,
-  vars,
   lib,
   ...
 }:
 
 let
-  cfg = config.system.ssh;
+  cfg = config.settings.ssh;
 in
 {
-  options.system.ssh = {
+  options.settings.ssh = {
     enable = lib.mkEnableOption "enables ssh";
   };
 

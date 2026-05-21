@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  vars,
-  ...
-}:
+{ ... }:
 
 {
   fileSystems."/mnt/ssd1" = {

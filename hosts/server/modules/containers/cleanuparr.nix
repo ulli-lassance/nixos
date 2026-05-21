@@ -1,8 +1,8 @@
-{ vars, ... }:
+{ config, ... }:
 
 {
   systemd.tmpfiles.rules = [
-    "d ${vars.volumeDirectory}/cleanuparr 0755 ${vars.username} users -"
+    "d ${config.settings.server.volumeDirectory}/cleanuparr 0755 ${config.settings.user.username} users -"
   ];
 
   virtualisation.oci-containers.containers = {
@@ -13,14 +13,14 @@
       };
       image = "ghcr.io/cleanuparr/cleanuparr:latest";
 
-      podman.user = vars.username;
+      podman.user = config.settings.user.username;
 
       environment = {
         PORT = "11011";
       };
 
       volumes = [
-        "${vars.volumeDirectory}/cleanuparr/config:/config:U"
+        "${config.settings.server.volumeDirectory}/cleanuparr/config:/config:U"
       ];
       ports = [ "127.0.0.1:11011:11011" ];
 
@@ -36,8 +36,8 @@
     requires = [ "podman-network-media-net.service" ];
   };
 
-  services.nginx.virtualHosts."cleanuparr.lan.${vars.domain}" = {
-    useACMEHost = vars.domain;
+  services.nginx.virtualHosts."cleanuparr.lan.${config.settings.server.domain}" = {
+    useACMEHost = config.settings.server.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://127.0.0.1:11011";

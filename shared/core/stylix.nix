@@ -1,8 +1,8 @@
-{ pkgs, vars, ... }:
+{ config, pkgs, ... }:
 
 let
-  theme = vars.theme;
-  wallpaper = vars.wallpaper;
+  theme = config.settings.theme.colors;
+  wallpaper = config.settings.theme.wallpaper;
 in
 {
   stylix = {
@@ -10,7 +10,7 @@ in
 
     autoEnable = false;
 
-    base16Scheme = ./../../assets/themes/${theme};
+    base16Scheme = ./../../assets/themes + "/${theme}.yaml";
 
     image = ./../../assets/wallpapers/${wallpaper};
 

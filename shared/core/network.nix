@@ -1,7 +1,9 @@
-{ ... }:
+{ config, ... }:
 
 {
   networking = {
+    hostName = config.settings.network.hostName;
+
     networkmanager.enable = true;
 
     nftables.enable = true;

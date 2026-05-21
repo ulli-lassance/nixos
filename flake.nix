@@ -31,16 +31,13 @@
       ...
     }@inputs:
     let
-      systemVars = import ./vars/system.nix;
-      userVars = import ./vars/user.nix;
-      vars = systemVars // userVars;
       packageOverlay = import ./packages/overlay.nix;
     in
     {
       nixosConfigurations = {
 
         desktop = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs vars; };
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/desktop/configuration.nix
             inputs.home-manager.nixosModules.home-manager
@@ -56,7 +53,7 @@
         };
 
         server = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs vars; };
+          specialArgs = { inherit inputs; };
           modules = [
             ./hosts/server/configuration.nix
             inputs.home-manager.nixosModules.home-manager

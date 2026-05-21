@@ -1,6 +1,5 @@
 {
   pkgs,
-  vars,
   config,
   ...
 }:
@@ -15,20 +14,25 @@
     };
   };
 
-  users.users."${vars.username}" = {
-    isNormalUser = true;
-    createHome = true;
-    home = "/home/${vars.username}";
-    shell = pkgs.fish;
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-    hashedPasswordFile = config.sops.secrets."user_password".path;
-  };
+  programs.fish.enable = true;
 
-  users.users.root = {
-    hashedPasswordFile = config.sops.secrets."root_password".path;
+  users = {
+    defaultUserShell = pkgs.fish;
+
+    users."${config.settings.user.username}" = {
+      isNormalUser = true;
+      createHome = true;
+      home = "${config.settings.user.home}";
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
+      hashedPasswordFile = config.sops.secrets."user_password".path;
+    };
+
+    users.root = {
+      hashedPasswordFile = config.sops.secrets."root_password".path;
+    };
   };
 
   security = {
@@ -36,6 +40,4 @@
   };
 
   users.mutableUsers = false;
-
-  programs.fish.enable = true;
 }

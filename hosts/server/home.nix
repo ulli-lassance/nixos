@@ -1,9 +1,9 @@
-{ vars, ... }:
+{ osConfig, ... }:
 
 {
-  home.username = vars.username;
-  home.homeDirectory = vars.homeDirectory;
-  home.stateVersion = vars.stateVersion;
+  home.username = osConfig.settings.user.username;
+  home.homeDirectory = osConfig.settings.user.home;
+  home.stateVersion = osConfig.settings.stateVersion;
 
   imports = [
     ../../home/terminal

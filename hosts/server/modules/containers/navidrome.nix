@@ -1,9 +1,9 @@
-{ vars, ... }:
+{ config, ... }:
 
 {
   systemd.tmpfiles.rules = [
-    "d ${vars.volumeDirectory}/navidrome 0755 ${vars.username} users -"
-    "d ${vars.containerCache}/navidrome 0755 ${vars.username} users -"
+    "d ${config.settings.server.volumeDirectory}/navidrome 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.server.containerCache}/navidrome 0755 ${config.settings.user.username} users -"
   ];
 
   virtualisation.oci-containers.containers = {
@@ -15,7 +15,7 @@
 
       image = "docker.io/deluan/navidrome:latest";
 
-      podman.user = vars.username;
+      podman.user = config.settings.user.username;
 
       environment = {
         ND_SCANSCHEDULE = "1h";
@@ -24,9 +24,9 @@
         ND_IMAGECACHESIZE = "200MB";
       };
       volumes = [
-        "${vars.homeDirectory}/music:/music"
-        "${vars.volumeDirectory}/navidrome/data:/data:U"
-        "${vars.containerCache}/navidrome:/data/cache:U"
+        "${config.settings.user.home}/music:/music"
+        "${config.settings.server.volumeDirectory}/navidrome/data:/data:U"
+        "${config.settings.server.containerCache}/navidrome:/data/cache:U"
       ];
       ports = [ "127.0.0.1:4533:4533" ];
 
@@ -36,8 +36,8 @@
     };
   };
 
-  services.nginx.virtualHosts."navidrome.lan.${vars.domain}" = {
-    useACMEHost = vars.domain;
+  services.nginx.virtualHosts."navidrome.lan.${config.settings.server.domain}" = {
+    useACMEHost = config.settings.server.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://127.0.0.1:4533";

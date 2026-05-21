@@ -1,11 +1,11 @@
-{ vars, ... }:
+{ config, ... }:
 
 {
   systemd.tmpfiles.rules = [
-    "d ${vars.volumeDirectory}/lidarr 0755 ${vars.username} users -"
+    "d ${config.settings.server.volumeDirectory}/lidarr 0755 ${config.settings.user.username} users -"
 
-    "d ${vars.containerCache}/lidarr 0755 ${vars.username} users -"
-    "d ${vars.containerCache}/lidarr/MediaCover 0755 ${vars.username} users -"
+    "d ${config.settings.server.containerCache}/lidarr 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.server.containerCache}/lidarr/MediaCover 0755 ${config.settings.user.username} users -"
   ];
 
   virtualisation.oci-containers.containers = {
@@ -16,7 +16,7 @@
       };
       image = "lscr.io/linuxserver/lidarr:latest";
 
-      podman.user = vars.username;
+      podman.user = config.settings.user.username;
 
       environment = {
         PUID = "1000";
@@ -24,10 +24,10 @@
       };
 
       volumes = [
-        "${vars.volumeDirectory}/lidarr/config:/config:U"
-        "${vars.containerCache}/lidarr/MediaCover:/config/MediaCover"
-        "${vars.homeDirectory}/music:/music"
-        "${vars.homeDirectory}/downloads:/downloads"
+        "${config.settings.server.volumeDirectory}/lidarr/config:/config:U"
+        "${config.settings.server.containerCache}/lidarr/MediaCover:/config/MediaCover"
+        "${config.settings.user.home}/music:/music"
+        "${config.settings.user.home}/downloads:/downloads"
       ];
       ports = [ "127.0.0.1:8686:8686" ];
 
@@ -43,8 +43,8 @@
     requires = [ "podman-network-media-net.service" ];
   };
 
-  services.nginx.virtualHosts."lidarr.lan.${vars.domain}" = {
-    useACMEHost = vars.domain;
+  services.nginx.virtualHosts."lidarr.lan.${config.settings.server.domain}" = {
+    useACMEHost = config.settings.server.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://127.0.0.1:8686";

@@ -1,4 +1,4 @@
-{ pkgs, vars, ... }:
+{ pkgs, config, ... }:
 
 {
   systemd.services."podman-network-invidious-net" = {
@@ -13,10 +13,10 @@
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
-      User = vars.username;
+      User = config.settings.user.username;
     };
     environment = {
-      HOME = vars.homeDirectory;
+      HOME = config.settings.user.home;
       XDG_RUNTIME_DIR = "/run/user/1000";
     };
     script = ''

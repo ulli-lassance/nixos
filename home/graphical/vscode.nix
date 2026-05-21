@@ -1,6 +1,5 @@
 {
   pkgs,
-  vars,
   config,
   lib,
   ...
@@ -58,24 +57,13 @@
             "nix.serverSettings" = {
               "nil" = {
                 "diagnostics" = {
-                  "ignored" = [
-                    "unused_binding"
-                    "unused_with"
-                  ];
+                  # "ignored" = [
+                  #   "unused_binding"
+                  #   "unused_with"
+                  # ];
                 };
                 "formatting" = {
                   "command" = [ "nixfmt" ];
-                };
-              };
-
-              "nixd" = {
-                "formatting" = {
-                  "command" = [ "nixfmt" ];
-                };
-                "options" = {
-                  "nixos" = {
-                    "expr" = "(builtins.getFlake \"${vars.homeDirectory}/nixos\").nixosConfigurations.desktop.options";
-                  };
                 };
               };
             };

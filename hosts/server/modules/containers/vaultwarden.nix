@@ -1,12 +1,12 @@
-{ vars, ... }:
+{ config, ... }:
 
 {
   systemd.tmpfiles.rules = [
-    "d ${vars.volumeDirectory}/vaultwarden 0755 ${vars.username} users -"
+    "d ${config.settings.server.volumeDirectory}/vaultwarden 0755 ${config.settings.user.username} users -"
 
-    "d ${vars.containerCache}/vaultwarden 0755 ${vars.username} users -"
-    "d ${vars.containerCache}/vaultwarden/icon_cache 0755 ${vars.username} users -"
-    "d ${vars.containerCache}/vaultwarden/tmp 0755 ${vars.username} users -"
+    "d ${config.settings.server.containerCache}/vaultwarden 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.server.containerCache}/vaultwarden/icon_cache 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.server.containerCache}/vaultwarden/tmp 0755 ${config.settings.user.username} users -"
   ];
 
   virtualisation.oci-containers.containers = {
@@ -17,23 +17,23 @@
       };
       image = "docker.io/vaultwarden/server:latest";
 
-      podman.user = vars.username;
+      podman.user = config.settings.user.username;
       
       environment = {
         ROCKET_PORT = "1984";
       };
       volumes = [
-        "${vars.volumeDirectory}/vaultwarden/data:/data:U"
-        "${vars.containerCache}/vaultwarden/icon_cache:/data/icon_cache:U"
-        "${vars.containerCache}/vaultwarden/tmp:/data/tmp:U"
+        "${config.settings.server.volumeDirectory}/vaultwarden/data:/data:U"
+        "${config.settings.server.containerCache}/vaultwarden/icon_cache:/data/icon_cache:U"
+        "${config.settings.server.containerCache}/vaultwarden/tmp:/data/tmp:U"
       ];
 
       ports = [ "127.0.0.1:1984:1984" ];
     };
   };
 
-  services.nginx.virtualHosts."vault.lan.${vars.domain}" = {
-    useACMEHost = vars.domain;
+  services.nginx.virtualHosts."vault.lan.${config.settings.server.domain}" = {
+    useACMEHost = config.settings.server.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://127.0.0.1:1984";

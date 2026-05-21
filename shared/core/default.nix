@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./settings.nix
     ./boot.nix
     ./locale.nix
     ./zram.nix

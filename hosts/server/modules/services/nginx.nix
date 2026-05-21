@@ -1,4 +1,4 @@
-{ config, vars, ... }:
+{ config, ... }:
 
 {
   networking.firewall.allowedTCPPorts = [
@@ -17,10 +17,10 @@
 
   security.acme = {
     acceptTerms = true;
-    defaults.email = vars.email;
+    defaults.email = config.settings.user.email;
 
-    certs."${vars.domain}" = {
-      domain = "*.lan.${vars.domain}";
+    certs."${config.settings.server.domain}" = {
+      domain = "*.lan.${config.settings.server.domain}";
       dnsProvider = "cloudflare"; # check Lego docs for your provider code
 
       # path to a file containing your API token

@@ -1,15 +1,14 @@
 {
   config,
-  pkgs,
   lib,
   ...
 }:
 
 let
-  cfg = config.system.podman;
+  cfg = config.settings.podman;
 in
 {
-  options.system.podman = {
+  options.settings.podman = {
     enable = lib.mkEnableOption "enables podman and sets it as the oci-container backend";
   };
 
@@ -25,6 +24,9 @@ in
         flags = [ "--all" ];
       };
     };
+
+    # needed for rootless podman
+    users.users."${config.settings.user.username}".linger = true;
 
     virtualisation.oci-containers.backend = "podman";
   };

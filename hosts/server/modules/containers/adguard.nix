@@ -1,8 +1,8 @@
-{ vars, lib, ... }:
+{ config, lib, ... }:
 
 {
   systemd.tmpfiles.rules = [
-    "d ${vars.volumeDirectory}/adguardhome 0755 ${vars.username} users -"
+    "d ${config.settings.server.volumeDirectory}/adguardhome 0755 ${config.settings.user.username} users -"
   ];
 
   boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 53;
@@ -16,11 +16,11 @@
       };
     image = "docker.io/adguard/adguardhome:latest";
 
-    podman.user = vars.username;
+    podman.user = config.settings.user.username;
 
     volumes = [
-      "${vars.volumeDirectory}/adguardhome/work:/opt/adguardhome/work:U"
-      "${vars.volumeDirectory}/adguardhome/conf:/opt/adguardhome/conf:U"
+      "${config.settings.server.volumeDirectory}/adguardhome/work:/opt/adguardhome/work:U"
+      "${config.settings.server.volumeDirectory}/adguardhome/conf:/opt/adguardhome/conf:U"
     ];
     extraOptions = [
       "--network=host"
@@ -33,8 +33,8 @@
   ];
   networking.firewall.allowedUDPPorts = [ 53 ];
 
-  services.nginx.virtualHosts."adguard.lan.${vars.domain}" = {
-    useACMEHost = vars.domain;
+  services.nginx.virtualHosts."adguard.lan.${config.settings.server.domain}" = {
+    useACMEHost = config.settings.server.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://127.0.0.1:3000";

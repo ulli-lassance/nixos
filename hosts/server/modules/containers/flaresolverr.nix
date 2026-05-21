@@ -1,4 +1,4 @@
-{ vars, ... }:
+{ config, ... }:
 
 {
   virtualisation.oci-containers.containers = {
@@ -9,7 +9,7 @@
       };
       image = "ghcr.io/flaresolverr/flaresolverr:latest";
 
-      podman.user = vars.username;
+      podman.user = config.settings.user.username;
 
       ports = [ "127.0.0.1:8191:8191" ];
 
@@ -22,8 +22,8 @@
     requires = [ "podman-network-media-net.service" ];
   };
 
-  services.nginx.virtualHosts."flaresolverr.lan.${vars.domain}" = {
-    useACMEHost = vars.domain;
+  services.nginx.virtualHosts."flaresolverr.lan.${config.settings.server.domain}" = {
+    useACMEHost = config.settings.server.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://127.0.0.1:8191";

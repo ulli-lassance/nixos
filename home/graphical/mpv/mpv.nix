@@ -5,7 +5,7 @@
     config = {
       input-default-bindings = false;
 
-      # Video
+      # video
       vo = "gpu-next";
       hwdec = "auto";
       gpu-api = "vulkan";
@@ -16,8 +16,9 @@
       deband-range = 32;
       deband-grain = 32;
       tscale = "oversample";
+      keep-open = true;
 
-      # Audio and Subtitles
+      # audio and subtitles
       slang = "en,eng,English";
       alang = "ja,jp,jpn,jap,Japanese,en,eng,English";
       sub-blur = 0.5;
@@ -51,7 +52,7 @@
       osd-font = "JetBrains Mono";
       osd-duration = 1000;
 
-      # Screenshots
+      # screenshots
       screenshot-format = "png";
       screenshot-high-bit-depth = false;
       screenshot-tag-colorspace = false;
@@ -59,7 +60,7 @@
       screenshot-dir = "~/Pictures/Screenshots";
       screenshot-template = "%{?demuxer-via-network==yes:\${media-title}%{?demuxer-via-network==yes:_\${filename/no-ext}%{!demuxer-via-network==yes:\${filename}-%wH.%wM.%wS.%wT-#%#00n";
 
-      # Cache
+      # cache
       cache = true;
       cache-pause = false;
       demuxer-max-bytes = "500M";

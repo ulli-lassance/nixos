@@ -1,7 +1,7 @@
-{ vars, ... }:
+{ config, ... }:
 
 {
-  time.timeZone = vars.timezone;
+  time.timeZone = config.settings.timezone;
 
   i18n.defaultLocale = "en_US.UTF-8";
 

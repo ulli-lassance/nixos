@@ -1,4 +1,4 @@
-{ vars, ... }:
+{ config, ... }:
 {
   # Don't forget to set a password with 'sudo smbpasswd -a <your-username>'
   services.samba = {
@@ -14,11 +14,11 @@
         "map to guest" = "bad user";
       };
       storage = {
-        path = "${vars.homeDirectory}";
+        path = "${config.settings.user.home}";
         browseable = "yes";
         "writeable" = "yes";
         "guest ok" = "no";
-        "force user" = "${vars.username}";
+        "force user" = "${config.settings.user.username}";
         "create mask" = "0644";
         "directory mask" = "0755";
       };

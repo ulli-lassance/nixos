@@ -2,7 +2,6 @@
   config,
   pkgs,
   inputs,
-  vars,
   ...
 }:
 let
@@ -27,7 +26,7 @@ in
   };
 
   sops.secrets.github_token = {
-    owner = vars.username; 
+    owner = "${config.settings.user.username}";
   };
 
   environment.systemPackages = with pkgs; [

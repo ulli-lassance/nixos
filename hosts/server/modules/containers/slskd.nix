@@ -1,12 +1,12 @@
-{ vars, ... }:
+{ config, ... }:
 
 {
   systemd.tmpfiles.rules = [
-    "d ${vars.volumeDirectory}/slskd 0755 ${vars.username} users -"
+    "d ${config.settings.server.volumeDirectory}/slskd 0755 ${config.settings.user.username} users -"
     
-    "d ${vars.homeDirectory}/downloads 0755 ${vars.username} users -"
-    "d ${vars.homeDirectory}/downloads/slskd 0755 ${vars.username} users -"
-    "d ${vars.homeDirectory}/downloads/slskd/incomplete 0755 ${vars.username} users -"
+    "d ${config.settings.user.home}/downloads 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.user.home}/downloads/slskd 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.user.home}/downloads/slskd/incomplete 0755 ${config.settings.user.username} users -"
   ];
 
   virtualisation.oci-containers.containers = {
@@ -17,7 +17,7 @@
       };
       image = "docker.io/slskd/slskd:latest";
 
-      podman.user = vars.username;
+      podman.user = config.settings.user.username;
 
       environment = {
         SLSKD_REMOTE_CONFIGURATION = "true";
@@ -28,9 +28,9 @@
 
       };
       volumes = [
-        "${vars.volumeDirectory}/slskd:/app:U"
-        "${vars.homeDirectory}/downloads:/downloads"
-        "${vars.homeDirectory}/music:/music"
+        "${config.settings.server.volumeDirectory}/slskd:/app:U"
+        "${config.settings.user.home}/downloads:/downloads"
+        "${config.settings.user.home}/music:/music"
       ];
       ports = [
         "127.0.0.1:5030:5030"
@@ -43,8 +43,8 @@
     };
   };
 
-  services.nginx.virtualHosts."soulseek.lan.${vars.domain}" = {
-    useACMEHost = vars.domain;
+  services.nginx.virtualHosts."soulseek.lan.${config.settings.server.domain}" = {
+    useACMEHost = config.settings.server.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://127.0.0.1:5030";

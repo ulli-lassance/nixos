@@ -5,10 +5,6 @@
   ...
 }:
 
-let
-  # Set you WAN interface name (check with "ip addr")
-  externalInterface = "enp1s0";
-in
 {
   sops.secrets.wg_server_private_key = {
     owner = "root";
@@ -18,7 +14,7 @@ in
     nat = {
       enable = true;
       enableIPv6 = true;
-      externalInterface = externalInterface;
+      externalInterface = config.settings.server.externalInterface;
       internalInterfaces = [ "wg0" ];
     };
 

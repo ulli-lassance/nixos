@@ -1,9 +1,9 @@
-{ config, vars, ... }:
+{ config, ... }:
 
 {
   systemd.tmpfiles.rules = [
-    "d ${vars.volumeDirectory}/jellyfin 0755 ${vars.username} users -"
-    "d ${vars.containerCache}/jellyfin 0755 ${vars.username} users -"
+    "d ${config.settings.server.volumeDirectory}/jellyfin 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.server.containerCache}/jellyfin 0755 ${config.settings.user.username} users -"
   ];
 
   virtualisation.oci-containers.containers = {
@@ -14,12 +14,12 @@
       };
       image = "docker.io/jellyfin/jellyfin";
 
-      podman.user = vars.username;
+      podman.user = config.settings.user.username;
 
       volumes = [
-        "${vars.homeDirectory}/hd2/movies:/data/movies"
-        "${vars.volumeDirectory}/jellyfin/config:/config:U"
-        "${vars.containerCache}/jellyfin:/cache:U"
+        "${config.settings.user.home}/hd2/movies:/data/movies"
+        "${config.settings.server.volumeDirectory}/jellyfin/config:/config:U"
+        "${config.settings.server.containerCache}/jellyfin:/cache:U"
       ];
       ports = [ "127.0.0.1:8096:8096" ];
 
@@ -32,13 +32,13 @@
   };
 
   # needed for rootless podman gpu passthru
-  users.users."${vars.username}".extraGroups = [
+  users.users."${config.settings.user.username}".extraGroups = [
     "render"
     "video"
   ];
 
-  services.nginx.virtualHosts."jellyfin.lan.${vars.domain}" = {
-    useACMEHost = vars.domain;
+  services.nginx.virtualHosts."jellyfin.lan.${config.settings.server.domain}" = {
+    useACMEHost = config.settings.server.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://127.0.0.1:8096";

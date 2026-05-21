@@ -1,15 +1,15 @@
-{ vars, config, ... }:
+{ config, ... }:
 
 {
   systemd.tmpfiles.rules = [
-    "d ${vars.volumeDirectory}/ddns-updater 0755 ${vars.username} users -"
-    "d ${vars.volumeDirectory}/ddns-updater/data 0755 ${vars.username} users -"
+    "d ${config.settings.server.volumeDirectory}/ddns-updater 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.server.volumeDirectory}/ddns-updater/data 0755 ${config.settings.user.username} users -"
   ];
 
   sops.secrets.cloudflare_dns = { };
 
   sops.templates."ddns-updater.env" = {
-    owner = vars.username;
+    owner = config.settings.user.username;
     content =
       let
         configObject = {
@@ -17,7 +17,7 @@
             {
               provider = "cloudflare";
               zone_identifier = "960b2eaed430da59562a035a0048b525";
-              domain = "vpn.${vars.domain}";
+              domain = "vpn.${config.settings.server.domain}";
               ttl = 600;
               token = config.sops.placeholder."cloudflare_dns";
               ip_version = "ipv4";
@@ -36,10 +36,10 @@
     };
     image = "docker.io/qmcgaw/ddns-updater";
 
-    podman.user = vars.username;
+    podman.user = config.settings.user.username;
 
     volumes = [
-      "${vars.volumeDirectory}/ddns-updater/data:/updater/data:U"
+      "${config.settings.server.volumeDirectory}/ddns-updater/data:/updater/data:U"
     ];
 
     extraOptions = [
@@ -50,8 +50,8 @@
     environmentFiles = [ config.sops.templates."ddns-updater.env".path ];
   };
 
-  services.nginx.virtualHosts."ddns.lan.${vars.domain}" = {
-    useACMEHost = vars.domain;
+  services.nginx.virtualHosts."ddns.lan.${config.settings.server.domain}" = {
+    useACMEHost = config.settings.server.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://127.0.0.1:8000";

@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  vars,
   ...
 }:
 
@@ -13,28 +12,29 @@ let
 in
 {
   options.services.containerVolumeBackup = {
-    enable = mkEnableOption "Container volume rsync backup service";
+    enable = mkEnableOption "container volume rsync backup service";
 
     source = mkOption {
       type = types.path;
-      description = "The directory containing the container volumes to backup.";
+      default = config.settings.server.volumeDirectory;
+      description = "the directory containing the container volumes to backup.";
     };
 
     destination = mkOption {
       type = types.path;
-      description = "The destination directory.";
+      description = "the destination directory.";
     };
 
     keepPruned = mkOption {
       type = types.bool;
       default = true;
-      description = "Whether to use --delete to mirror the source directory.";
+      description = "whether to use --delete to mirror the source directory.";
     };
   };
 
   config = mkIf cfg.enable {
     systemd.services.container-volume-backup = {
-      description = "Container volumes backup service";
+      description = "container volumes backup service";
 
       after = [ "local-fs.target" ];
 
@@ -59,7 +59,7 @@ in
       };
 
       script = ''
-        echo "Starting Pre-Boot container backup..."
+        echo "starting Pre-Boot container backup..."
 
         # Ensure destination exists
         mkdir -p "${cfg.destination}"
@@ -75,7 +75,7 @@ in
         # --stats: print transfer stats to log
         rsync -ah --stats $DELETE_FLAG "${cfg.source}/" "${cfg.destination}/"
 
-        echo "Backup completed."
+        echo "backup completed."
       '';
     };
   };

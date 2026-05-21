@@ -1,9 +1,9 @@
-{ vars, ... }:
+{ config, ... }:
 
 {
   systemd.tmpfiles.rules = [
-    "d ${vars.volumeDirectory}/qbittorrent 0755 ${vars.username} users -"
-    "d ${vars.homeDirectory}/downloads 0755 ${vars.username} users -"
+    "d ${config.settings.server.volumeDirectory}/qbittorrent 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.user.home}/downloads 0755 ${config.settings.user.username} users -"
   ];
 
   virtualisation.oci-containers.containers = {
@@ -14,15 +14,15 @@
       };
       image = "lscr.io/linuxserver/qbittorrent:latest";
 
-      podman.user = vars.username;
+      podman.user = config.settings.user.username;
 
       environment = {
         WEBUI_PORT = "8080";
         TORRENTING_PORT = "6881";
       };
       volumes = [
-        "${vars.volumeDirectory}/qbittorrent/config:/config:U"
-        "${vars.homeDirectory}/downloads:/downloads"
+        "${config.settings.server.volumeDirectory}/qbittorrent/config:/config:U"
+        "${config.settings.user.home}/downloads:/downloads"
       ];
       ports = [
         "127.0.0.1:8080:8080"
@@ -45,8 +45,8 @@
   networking.firewall.allowedTCPPorts = [ 6881 ];
   networking.firewall.allowedUDPPorts = [ 6881 ];
 
-  services.nginx.virtualHosts."qbittorrent.lan.${vars.domain}" = {
-    useACMEHost = vars.domain;
+  services.nginx.virtualHosts."qbittorrent.lan.${config.settings.server.domain}" = {
+    useACMEHost = config.settings.server.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://127.0.0.1:8080";

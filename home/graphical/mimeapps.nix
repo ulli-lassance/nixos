@@ -1,17 +1,9 @@
-{ lib, vars, ... }:
+{ config, lib, ... }:
 
 let
-  # Applications
-  browser = [ "${vars.browser}.desktop" ];
-  imageViewer = [ "imv-dir.desktop" ];
-  videoPlayer = [ "mpv.desktop" ];
-  audioPlayer = [ "mpv.desktop" ];
-  textEditor = [ "codium.desktop" ];
-  pdfViewer = [ "org.gnome.Papers.desktop" ];
-  fileManager = [ "nemo.desktop" ];
-  remoteDesktop = [ "org.remmina.Remmina.desktop" ];
-  archiveManager = [ "org.gnome.FileRoller.desktop" ];
+  cfg = config.settings.defaultApps;
 
+  # media
   imageTypes = [
     "image/jpeg"
     "image/png"
@@ -47,73 +39,167 @@ let
     "video/x-msvideo"
   ];
 
-  documentTypes = [
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+  # office
+  wordTypes = [
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document" # docx
+    "application/msword" # doc
+    "application/vnd.oasis.opendocument.text" # odt
+  ];
+
+  spreadsheetTypes = [
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" # xlsx
+    "application/vnd.ms-excel" # xls
+    "application/vnd.oasis.opendocument.spreadsheet" # ods
+  ];
+
+  presentationTypes = [
+    "application/vnd.openxmlformats-officedocument.presentationml.presentation" # pptx
+    "application/vnd.ms-powerpoint" # ppt
+    "application/vnd.oasis.opendocument.presentation" # odp
+  ];
+
+  # web and remote desktop
+  webTypes = [
+    "text/html"
+    "x-scheme-handler/http"
+    "x-scheme-handler/https"
+    "x-scheme-handler/about"
+    "x-scheme-handler/unknown"
+    "x-scheme-handler/mailto"
+  ];
+
+  remoteDesktopTypes = [
+    "x-scheme-handler/rdp"
+    "x-scheme-handler/remmina"
+    "x-scheme-handler/spice"
+    "x-scheme-handler/vnc"
+    "application/x-remmina"
+  ];
+
+  # text
+  textTypes = [
+    "text/plain"
+    "text/markdown"
+    "inode/x-empty"
+    "application/x-zerosize"
+    "application/json"
+    "application/x-yaml"
+    "application/x-shellscript"
+    "text/x-cmake"
+    "application/x-docbook+xml"
+    "text/css"
+    "text/javascript"
+    "text/x-python"
+    "text/x-go"
+    "application/toml"
+  ];
+
+  # archive and files
+  archiveTypes = [
+    "application/zip"
+    "application/gzip"
+    "application/x-tar"
+    "application/x-bzip2"
+    "application/x-7z-compressed"
+    "application/x-rar-compressed"
+    "application/x-xz"
+  ];
+
+  directoryTypes = [
+    "inode/directory"
+    "application/x-gnome-saved-search"
+  ];
+
+  # misc
+  pdfTypes = [
+    "application/pdf"
+  ];
+
+  discordTypes = [
+    "x-scheme-handler/discord"
   ];
 
 in
 {
-  xdg.mimeApps = {
-    enable = true;
+  options.settings.defaultApps = {
+    browser = lib.mkOption {
+      type = lib.types.str;
+      default = "brave-origin-nightly.desktop";
+    };
+    imageViewer = lib.mkOption {
+      type = lib.types.str;
+      default = "imv-dir.desktop";
+    };
+    videoPlayer = lib.mkOption {
+      type = lib.types.str;
+      default = "mpv.desktop";
+    };
+    audioPlayer = lib.mkOption {
+      type = lib.types.str;
+      default = "mpv.desktop";
+    };
+    textEditor = lib.mkOption {
+      type = lib.types.str;
+      default = "codium.desktop";
+    };
+    pdfViewer = lib.mkOption {
+      type = lib.types.str;
+      default = "org.gnome.Papers.desktop";
+    };
+    fileManager = lib.mkOption {
+      type = lib.types.str;
+      default = "thunar.desktop";
+    };
+    remoteDesktop = lib.mkOption {
+      type = lib.types.str;
+      default = "org.remmina.Remmina.desktop";
+    };
+    archiveManager = lib.mkOption {
+      type = lib.types.str;
+      default = "org.gnome.FileRoller.desktop";
+    };
+    discord = lib.mkOption {
+      type = lib.types.str;
+      default = "vesktop.desktop";
+    };
+    wordProcessor = lib.mkOption {
+      type = lib.types.str;
+      default = "writer.desktop";
+    };
+    spreadsheet = lib.mkOption {
+      type = lib.types.str;
+      default = "calc.desktop";
+    };
+    presentation = lib.mkOption {
+      type = lib.types.str;
+      default = "impress.desktop";
+    };
+  };
 
-    defaultApplications = lib.mkMerge [
-      (lib.genAttrs imageTypes (_: imageViewer))
-      (lib.genAttrs audioTypes (_: audioPlayer))
-      (lib.genAttrs videoTypes (_: videoPlayer))
+  config = {
+    xdg.mimeApps = {
+      enable = true;
 
-      {
-        # Web
-        "text/html" = browser;
-        "x-scheme-handler/http" = browser;
-        "x-scheme-handler/https" = browser;
-        "x-scheme-handler/about" = browser;
-        "x-scheme-handler/unknown" = browser;
-        "x-scheme-handler/mailto" = browser;
+      defaultApplications = lib.mkMerge [
+        (lib.genAttrs imageTypes (_: [ cfg.imageViewer ]))
+        (lib.genAttrs audioTypes (_: [ cfg.audioPlayer ]))
+        (lib.genAttrs videoTypes (_: [ cfg.videoPlayer ]))
 
-        # Archives
-        "application/zip" = archiveManager;
-        "application/gzip" = archiveManager;
-        "application/x-tar" = archiveManager;
-        "application/x-bzip2" = archiveManager;
-        "application/x-7z-compressed" = archiveManager;
-        "application/x-rar-compressed" = archiveManager;
-        "application/x-xz" = archiveManager;
+        (lib.genAttrs wordTypes (_: [ cfg.wordProcessor ]))
+        (lib.genAttrs spreadsheetTypes (_: [ cfg.spreadsheet ]))
+        (lib.genAttrs presentationTypes (_: [ cfg.presentation ]))
 
-        # Text
-        "text/plain" = textEditor;
-        "text/markdown" = textEditor;
-        "inode/x-empty" = textEditor;
-        "application/x-zerosize" = textEditor;
-        "application/json" = textEditor;
-        "application/x-yaml" = textEditor;
-        "application/x-shellscript" = textEditor;
-        "text/x-cmake" = textEditor;
-        "application/x-docbook+xml" = textEditor;
-        "text/css" = textEditor;
-        "text/javascript" = textEditor;
-        "text/x-python" = textEditor;
-        "text/x-go" = textEditor;
-        "application/toml" = textEditor;
+        (lib.genAttrs webTypes (_: [ cfg.browser ]))
+        (lib.genAttrs remoteDesktopTypes (_: [ cfg.remoteDesktop ]))
 
-        # PDF
-        "application/pdf" = pdfViewer;
+        (lib.genAttrs textTypes (_: [ cfg.textEditor ]))
 
-        # Remote Desktop
-        "x-scheme-handler/rdp" = remoteDesktop;
-        "x-scheme-handler/remmina" = remoteDesktop;
-        "x-scheme-handler/spice" = remoteDesktop;
-        "x-scheme-handler/vnc" = remoteDesktop;
-        "application/x-remmina" = remoteDesktop;
+        (lib.genAttrs archiveTypes (_: [ cfg.archiveManager ]))
+        (lib.genAttrs directoryTypes (_: [ cfg.fileManager ]))
 
-        # Directories
-        "inode/directory" = fileManager;
-        "application/x-gnome-saved-search" = fileManager;
-
-        # Misc
-        "x-scheme-handler/discord" = [ "vesktop.desktop" ];
-      }
-    ];
+        (lib.genAttrs pdfTypes (_: [ cfg.pdfViewer ]))
+        (lib.genAttrs discordTypes (_: [ cfg.discord ]))
+      ];
+    };
   };
 }

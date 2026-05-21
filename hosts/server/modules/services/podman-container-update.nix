@@ -1,4 +1,4 @@
-{ pkgs, vars, ... }:
+{ pkgs, config, ... }:
 
 {
   systemd.timers."podman-auto-update" = {
@@ -27,7 +27,7 @@
 
       # find all running containers owned by the user that have the autoupdate label.
       # output format: ContainerName ImageURL
-      CONTAINERS=$(sudo -u ${vars.username} podman ps --filter "label=io.containers.autoupdate=registry" --format "{{.Names}} {{.Image}}")
+      CONTAINERS=$(sudo -u ${config.settings.user.username} podman ps --filter "label=io.containers.autoupdate=registry" --format "{{.Names}} {{.Image}}")
 
       # read through the list line by line
       echo "$CONTAINERS" | while read -r NAME IMAGE; do
@@ -37,7 +37,7 @@
         echo "checking updates for $NAME ($IMAGE)..."
         
         # pull the latest image as unprivileged user
-        OUTPUT=$(sudo -u ${vars.username} podman pull "$IMAGE" 2>&1)
+        OUTPUT=$(sudo -u ${config.settings.user.username} podman pull "$IMAGE" 2>&1)
 
         # look for podman success strings in the output
         if echo "$OUTPUT" | grep -E -q "(Downloaded newer image|Writing manifest)"; then
@@ -50,7 +50,7 @@
       done
 
       echo "cleaning up old images..."
-      sudo -u ${vars.username} podman image prune -f
+      sudo -u ${config.settings.user.username} podman image prune -f
 
       echo "update process complete."
     '';

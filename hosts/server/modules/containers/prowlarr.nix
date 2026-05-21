@@ -1,8 +1,8 @@
-{ vars, ... }:
+{ config, ... }:
 
 {
   systemd.tmpfiles.rules = [
-    "d ${vars.volumeDirectory}/prowlarr 0755 ${vars.username} users -"
+    "d ${config.settings.server.volumeDirectory}/prowlarr 0755 ${config.settings.user.username} users -"
   ];
 
   virtualisation.oci-containers.containers = {
@@ -13,14 +13,14 @@
       };
       image = "lscr.io/linuxserver/prowlarr:latest";
 
-      podman.user = vars.username;
+      podman.user = config.settings.user.username;
 
       environment = {
         PUID = "1000";
         PGID = "100";
       };
 
-      volumes = [ "${vars.volumeDirectory}/prowlarr/config:/config:U" ];
+      volumes = [ "${config.settings.server.volumeDirectory}/prowlarr/config:/config:U" ];
 
       ports = [ "127.0.0.1:9696:9696" ];
 
@@ -36,8 +36,8 @@
     requires = [ "podman-network-media-net.service" ];
   };
 
-  services.nginx.virtualHosts."prowlarr.lan.${vars.domain}" = {
-    useACMEHost = vars.domain;
+  services.nginx.virtualHosts."prowlarr.lan.${config.settings.server.domain}" = {
+    useACMEHost = config.settings.server.domain;
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://127.0.0.1:9696";

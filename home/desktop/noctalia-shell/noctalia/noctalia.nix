@@ -1,13 +1,12 @@
 {
   config,
-  vars,
-  pkgs,
+  osConfig,
   inputs,
   ...
 }:
 let
   colors = config.lib.stylix.colors.withHashtag;
-  wallpaper = ./../../../../assets/wallpapers + "/${vars.wallpaper}";
+  wallpaper = ./../../../../assets/wallpapers + "/${osConfig.settings.theme.wallpaper}";
 in
 {
   imports = [
