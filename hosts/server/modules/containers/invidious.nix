@@ -94,7 +94,7 @@ in
       labels = {
         "io.containers.autoupdate" = "registry";
       };
-      image = "quay.io/invidious/invidious-companion:master";
+      image = "quay.io/invidious/invidious-companion:latest";
       podman.user = config.settings.user.username;
 
       environmentFiles = [ config.sops.templates."invidious-companion.env".path ];
