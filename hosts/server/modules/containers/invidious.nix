@@ -76,9 +76,6 @@ in
 
       volumes = [
         "${config.settings.server.volumeDirectory}/invidious/postgres:/var/lib/postgresql/data"
-        "${config.settings.server.volumeDirectory}/invidious/sql:/config/sql"
-        "${config.settings.server.volumeDirectory}/invidious/init-invidious-db.sh:/docker-entrypoint-initdb.d/init-invidious-db.sh"
-        
       ];
       extraOptions = [
         "--network=invidious-net"
