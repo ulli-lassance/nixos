@@ -56,7 +56,6 @@ in
   systemd.tmpfiles.rules = [
     "d ${config.settings.server.volumeDirectory}/invidious 0755 ${config.settings.user.username} users -"
     "d ${config.settings.server.volumeDirectory}/invidious/postgres 0755 ${config.settings.user.username} users -"
-    "d ${config.settings.server.volumeDirectory}/invidious/data 0755 ${config.settings.user.username} users -"
 
     "d ${config.settings.server.containerCache}/invidious 0755 ${config.settings.user.username} users -"
     "d ${config.settings.server.containerCache}/invidious/companion 0755 ${config.settings.user.username} users -"
@@ -76,7 +75,10 @@ in
       };
 
       volumes = [
-        "${config.settings.server.volumeDirectory}/invidious/postgres:/var/lib/postgresql/data:U"
+        "${config.settings.server.volumeDirectory}/invidious/postgres:/var/lib/postgresql/data"
+        "${config.settings.server.volumeDirectory}/invidious/sql:/config/sql"
+        "${config.settings.server.volumeDirectory}/invidious/init-invidious-db.sh:/docker-entrypoint-initdb.d/init-invidious-db.sh"
+        
       ];
       extraOptions = [
         "--network=invidious-net"
@@ -98,7 +100,7 @@ in
       environmentFiles = [ config.sops.templates."invidious-companion.env".path ];
 
       volumes = [
-        "${config.settings.server.containerCache}/invidious/companion:/var/tmp/youtubei.js:U"
+        "${config.settings.server.containerCache}/invidious/companion:/var/tmp/youtubei.js:rw"
       ];
       extraOptions = [
         "--network=invidious-net"
@@ -110,6 +112,7 @@ in
 
     invidious = {
       autoStart = true;
+      dependsOn = [ "invidious-db" "invidious-companion" ];
       labels = {
         "io.containers.autoupdate" = "registry";
       };
@@ -139,20 +142,13 @@ in
     requires = [ "podman-network-invidious-net.service" ];
   };
 
-  systemd.services."podman-invidious" = {
-    after = [
-      "podman-network-invidious-net.service"
-      "podman-invidious-db.service"
-    ];
-    requires = [ "podman-network-invidious-net.service" ];
-  };
 
   systemd.services."restart-invidious" = {
     description = "periodic restart of Invidious";
     after = [ "podman-invidious.service" ];
     script = ''
       echo "triggering scheduled restart of podman-invidious.service..."
-      
+
       if systemctl restart podman-invidious.service; then
         echo "successfully restarted podman-invidious.service."
       else

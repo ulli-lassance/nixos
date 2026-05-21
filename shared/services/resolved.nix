@@ -5,11 +5,7 @@ let
 in
 {
   options.settings.resolved = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = true;
-      description = "enables the systemd-resolved daemon";
-    };
+    enable = lib.mkEnableOption "enables the systemd-resolved daemon";
   };
 
   config = lib.mkIf cfg.enable {
