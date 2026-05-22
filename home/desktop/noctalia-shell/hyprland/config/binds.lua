@@ -5,11 +5,27 @@ local screenshot_dir = os.getenv("HOME") .. "/Pictures/Screenshots/"
 if _G.vars.layout == "dwindle" then
     hl.bind("SUPER + Z", hl.dsp.layout("togglesplit"))
     hl.bind("SUPER + X", hl.dsp.layout("swapsplit"))
+
+    hl.bind("SUPER + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+    hl.bind("SUPER + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 elseif _G.vars.layout == "master" then
     hl.bind("SUPER + A", hl.dsp.layout("swapwithmaster ignoremaster"))
     hl.bind("SUPER + SHIFT + A", hl.dsp.layout("focusmaster master"))
     hl.bind("SUPER + Z", hl.dsp.layout("cyclenext"))
     hl.bind("SUPER + X", hl.dsp.layout("cycleprev"))
+
+
+    hl.bind("SUPER + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+    hl.bind("SUPER + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
+elseif _G.vars.layout == "scrolling" then
+    hl.bind("SUPER + A", hl.dsp.layout("colresize +conf"))
+    hl.bind("SUPER + SHIFT + A", hl.dsp.layout("fit active"))
+    hl.bind("SUPER + Z", hl.dsp.layout("fit visible"))
+    hl.bind("SUPER + X", hl.dsp.layout("fit all"))
+    -- hl.bind("SUPER + mouse_down", hl.dsp.focus({ direction = "l" }))
+    -- hl.bind("SUPER + mouse_up", hl.dsp.focus({ direction = "r" }))
+    hl.bind("SUPER + mouse_down", hl.dsp.layout("move -col"))
+    hl.bind("SUPER + mouse_up", hl.dsp.layout("move +col"))
 end
 
 hl.bind("SUPER + Return", hl.dsp.exec_cmd(_G.vars.terminal))
@@ -31,9 +47,6 @@ hl.bind("SUPER + Q", hl.dsp.window.close())
 hl.bind("SUPER + W", hl.dsp.window.float({ action = "toggle" }))
 hl.bind("SUPER + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 
-
-hl.bind("SUPER + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
-hl.bind("SUPER + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 
 for i = 1, 9 do
     hl.bind("SUPER + " .. i, hl.dsp.focus({ workspace = tostring(i) }))
