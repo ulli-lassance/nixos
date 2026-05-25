@@ -5,6 +5,7 @@
     ./hardware.nix
     ../../shared
     ./home-manager.nix
+    ./stylix.nix
     ./modules
   ];
 

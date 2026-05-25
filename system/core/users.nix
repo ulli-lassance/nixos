@@ -14,11 +14,7 @@
     };
   };
 
-  programs.fish.enable = true;
-
   users = {
-    defaultUserShell = pkgs.fish;
-
     users."${config.settings.user.username}" = {
       isNormalUser = true;
       createHome = true;

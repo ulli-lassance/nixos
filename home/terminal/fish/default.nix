@@ -1,5 +1,4 @@
 {
-  osConfig,
   config,
   lib,
   pkgs,
@@ -7,8 +6,6 @@
 }:
 
 {
-  stylix.targets.fish.enable = true;
-
   home.shell.enableFishIntegration = true;
 
   programs.fish = {
@@ -16,22 +13,10 @@
 
     shellAliases = { };
 
-    interactiveShellInit = ''
-      set fish_greeting
-
-      fzf_configure_bindings --directory=\ec --history=\cr
-
-      export GITHUB_TOKEN=$(cat ${osConfig.sops.secrets.github_token.path})
-    '';
-
     plugins = [
       {
         name = "grc";
         src = pkgs.fishPlugins.grc.src;
-      }
-      {
-        name = "fzf-fish";
-        src = pkgs.fishPlugins.fzf-fish.src;
       }
       {
         name = "sponge";

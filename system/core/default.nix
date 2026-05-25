@@ -10,7 +10,6 @@
     ./nix.nix
     ./sops
     ./users.nix
-    ./stylix.nix
     ./storage-optimization.nix
   ];
 }

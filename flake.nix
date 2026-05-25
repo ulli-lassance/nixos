@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    # nixpkgs.url = "github:NixOS/nixpkgs/master";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -57,7 +56,6 @@
           modules = [
             ./hosts/server/configuration.nix
             inputs.home-manager.nixosModules.home-manager
-            inputs.stylix.nixosModules.stylix
           ];
         };
       };
