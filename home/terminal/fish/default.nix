@@ -15,12 +15,8 @@
 
     plugins = [
       {
-        name = "grc";
-        src = pkgs.fishPlugins.grc.src;
-      }
-      {
-        name = "sponge";
-        src = pkgs.fishPlugins.sponge.src;
+        name = "fzf-fish";
+        src = pkgs.fishPlugins.fzf-fish.src;
       }
       {
         name = "autopair";
