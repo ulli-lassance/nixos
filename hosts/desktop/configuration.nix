@@ -3,7 +3,7 @@
 {
   imports = [
     ./hardware.nix
-    ../../shared
+    ../../system
     ./home-manager.nix
     ./stylix.nix
     ./modules
