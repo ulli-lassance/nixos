@@ -19,14 +19,12 @@ let
 
   audioTypes = [
     "audio/aac"
+    "audio/flac"
     "audio/mp4"
     "audio/mpeg"
     "audio/mpegurl"
     "audio/ogg"
-    "audio/x-flac"
-    "audio/x-mp3"
-    "audio/x-wav"
-    "audio/x-vorbis+ogg"
+    "audio/wav"
     "audio/vnd.rn-realaudio"
   ];
 
@@ -37,25 +35,6 @@ let
     "video/quicktime"
     "video/x-flv"
     "video/x-msvideo"
-  ];
-
-  # office
-  wordTypes = [
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document" # docx
-    "application/msword" # doc
-    "application/vnd.oasis.opendocument.text" # odt
-  ];
-
-  spreadsheetTypes = [
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" # xlsx
-    "application/vnd.ms-excel" # xls
-    "application/vnd.oasis.opendocument.spreadsheet" # ods
-  ];
-
-  presentationTypes = [
-    "application/vnd.openxmlformats-officedocument.presentationml.presentation" # pptx
-    "application/vnd.ms-powerpoint" # ppt
-    "application/vnd.oasis.opendocument.presentation" # odp
   ];
 
   # web and remote desktop
@@ -83,6 +62,7 @@ let
     "inode/x-empty"
     "application/x-zerosize"
     "application/json"
+    "application/yaml"
     "application/x-yaml"
     "application/x-shellscript"
     "text/x-cmake"
@@ -103,11 +83,11 @@ let
     "application/x-7z-compressed"
     "application/x-rar-compressed"
     "application/x-xz"
+    "application/zstd"
   ];
 
   directoryTypes = [
     "inode/directory"
-    "application/x-gnome-saved-search"
   ];
 
   # misc
@@ -162,18 +142,6 @@ in
       type = lib.types.str;
       default = "vesktop.desktop";
     };
-    wordProcessor = lib.mkOption {
-      type = lib.types.str;
-      default = "writer.desktop";
-    };
-    spreadsheet = lib.mkOption {
-      type = lib.types.str;
-      default = "calc.desktop";
-    };
-    presentation = lib.mkOption {
-      type = lib.types.str;
-      default = "impress.desktop";
-    };
   };
 
   config = {
@@ -184,10 +152,6 @@ in
         (lib.genAttrs imageTypes (_: [ cfg.imageViewer ]))
         (lib.genAttrs audioTypes (_: [ cfg.audioPlayer ]))
         (lib.genAttrs videoTypes (_: [ cfg.videoPlayer ]))
-
-        (lib.genAttrs wordTypes (_: [ cfg.wordProcessor ]))
-        (lib.genAttrs spreadsheetTypes (_: [ cfg.spreadsheet ]))
-        (lib.genAttrs presentationTypes (_: [ cfg.presentation ]))
 
         (lib.genAttrs webTypes (_: [ cfg.browser ]))
         (lib.genAttrs remoteDesktopTypes (_: [ cfg.remoteDesktop ]))
