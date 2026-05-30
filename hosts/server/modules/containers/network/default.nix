@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./media-net.nix
+    ./arr-net.nix
     ./invidious-net.nix
   ];
 

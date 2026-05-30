@@ -31,15 +31,15 @@
       ];
 
       extraOptions = [ 
-        "--network=media-net" 
+        "--network=arr-net" 
         "--userns=keep-id"
       ];
     };
   };
 
   systemd.services."podman-qbittorrent" = {
-    after = [ "podman-network-media-net.service" ];
-    requires = [ "podman-network-media-net.service" ];
+    after = [ "podman-network-arr-net.service" ];
+    requires = [ "podman-network-arr-net.service" ];
   };
 
   networking.firewall.allowedTCPPorts = [ 6881 ];

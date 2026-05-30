@@ -32,15 +32,15 @@
       ports = [ "127.0.0.1:7878:7878" ];
 
       extraOptions = [ 
-        "--network=media-net" 
+        "--network=arr-net" 
         "--userns=keep-id" 
       ];
     };
   };
 
   systemd.services."podman-radarr" = {
-    after = [ "podman-network-media-net.service" ];
-    requires = [ "podman-network-media-net.service" ];
+    after = [ "podman-network-arr-net.service" ];
+    requires = [ "podman-network-arr-net.service" ];
   };
 
   services.nginx.virtualHosts."radarr.lan.${config.settings.server.domain}" = {

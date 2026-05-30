@@ -18,5 +18,6 @@
     ./ddns-updater.nix
     ./slskd.nix
     ./invidious.nix
+    ./feishin.nix
   ];
 }

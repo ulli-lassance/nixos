@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 
 {
-  systemd.services."podman-network-media-net" = {
+  systemd.services."podman-network-arr-net" = {
     path = [
       pkgs.podman
       "/run/wrappers"
@@ -20,7 +20,7 @@
       XDG_RUNTIME_DIR = "/run/user/1000";
     };
     script = ''
-      podman network exists media-net || podman network create media-net
+      podman network exists arr-net || podman network create arr-net
     '';
     wantedBy = [ "multi-user.target" ];
   };

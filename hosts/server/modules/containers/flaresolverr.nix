@@ -13,13 +13,13 @@
 
       ports = [ "127.0.0.1:8191:8191" ];
 
-      extraOptions = [ "--network=media-net" ];
+      extraOptions = [ "--network=arr-net" ];
     };
   };
 
   systemd.services."podman-flaresolverr" = {
-    after = [ "podman-network-media-net.service" ];
-    requires = [ "podman-network-media-net.service" ];
+    after = [ "podman-network-arr-net.service" ];
+    requires = [ "podman-network-arr-net.service" ];
   };
 
   services.nginx.virtualHosts."flaresolverr.lan.${config.settings.server.domain}" = {

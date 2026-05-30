@@ -25,15 +25,15 @@
       ports = [ "127.0.0.1:9696:9696" ];
 
       extraOptions = [ 
-        "--network=media-net" 
+        "--network=arr-net" 
         "--userns=keep-id"
       ];
     };
   };
 
   systemd.services."podman-prowlarr" = {
-    after = [ "podman-network-media-net.service" ];
-    requires = [ "podman-network-media-net.service" ];
+    after = [ "podman-network-arr-net.service" ];
+    requires = [ "podman-network-arr-net.service" ];
   };
 
   services.nginx.virtualHosts."prowlarr.lan.${config.settings.server.domain}" = {
