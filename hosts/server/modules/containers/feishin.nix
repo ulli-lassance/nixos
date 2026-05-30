@@ -25,11 +25,6 @@
     };
   };
 
-  systemd.services."podman-feishin" = {
-    after = [ "podman-network-music-net.service" ];
-    requires = [ "podman-network-music-net.service" ];
-  };
-
   services.nginx.virtualHosts."feishin.lan.${config.settings.server.domain}" = {
     useACMEHost = config.settings.server.domain;
     forceSSL = true;
