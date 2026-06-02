@@ -30,8 +30,8 @@
         "6881:6881/udp"
       ];
 
-      extraOptions = [ 
-        "--network=arr-net" 
+      extraOptions = [
+        "--network=arr-net"
         "--userns=keep-id"
       ];
     };

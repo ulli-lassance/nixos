@@ -12,8 +12,8 @@
   virtualisation.oci-containers.containers."adguardhome" = {
     autoStart = true;
     labels = {
-        "io.containers.autoupdate" = "registry";
-      };
+      "io.containers.autoupdate" = "registry";
+    };
     image = "docker.io/adguard/adguardhome:latest";
 
     podman.user = config.settings.user.username;

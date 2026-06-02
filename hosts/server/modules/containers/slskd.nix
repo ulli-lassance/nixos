@@ -3,7 +3,7 @@
 {
   systemd.tmpfiles.rules = [
     "d ${config.settings.server.volumeDirectory}/slskd 0755 ${config.settings.user.username} users -"
-    
+
     "d ${config.settings.user.home}/downloads 0755 ${config.settings.user.username} users -"
     "d ${config.settings.user.home}/downloads/slskd 0755 ${config.settings.user.username} users -"
     "d ${config.settings.user.home}/downloads/slskd/incomplete 0755 ${config.settings.user.username} users -"
@@ -37,7 +37,7 @@
         "50300:50300"
       ];
 
-      extraOptions = [ 
+      extraOptions = [
         "--userns=keep-id"
       ];
     };

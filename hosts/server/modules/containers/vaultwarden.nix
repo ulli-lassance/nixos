@@ -18,7 +18,7 @@
       image = "docker.io/vaultwarden/server:latest";
 
       podman.user = config.settings.user.username;
-      
+
       environment = {
         ROCKET_PORT = "1984";
       };

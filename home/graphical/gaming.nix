@@ -6,7 +6,7 @@
     # prismlauncher
 
     deadlock-mod-manager
-    
+
     fflogs
     xivlauncher
   ];

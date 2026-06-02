@@ -6,4 +6,3 @@
     ./assets.nix
   ];
 }
-

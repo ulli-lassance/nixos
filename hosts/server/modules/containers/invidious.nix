@@ -109,7 +109,10 @@ in
 
     invidious = {
       autoStart = true;
-      dependsOn = [ "invidious-db" "invidious-companion" ];
+      dependsOn = [
+        "invidious-db"
+        "invidious-companion"
+      ];
       labels = {
         "io.containers.autoupdate" = "registry";
       };
@@ -138,7 +141,6 @@ in
     after = [ "podman-network-invidious-net.service" ];
     requires = [ "podman-network-invidious-net.service" ];
   };
-
 
   systemd.services."restart-invidious" = {
     description = "periodic restart of Invidious";

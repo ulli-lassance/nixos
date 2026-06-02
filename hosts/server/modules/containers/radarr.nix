@@ -22,7 +22,7 @@
         PUID = "1000";
         PGID = "100";
       };
-      
+
       volumes = [
         "${config.settings.server.volumeDirectory}/radarr/config:/config:U"
         "${config.settings.server.containerCache}/radarr/MediaCover:/config/MediaCover:U"
@@ -31,9 +31,9 @@
       ];
       ports = [ "127.0.0.1:7878:7878" ];
 
-      extraOptions = [ 
-        "--network=arr-net" 
-        "--userns=keep-id" 
+      extraOptions = [
+        "--network=arr-net"
+        "--userns=keep-id"
       ];
     };
   };

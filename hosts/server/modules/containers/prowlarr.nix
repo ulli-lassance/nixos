@@ -24,8 +24,8 @@
 
       ports = [ "127.0.0.1:9696:9696" ];
 
-      extraOptions = [ 
-        "--network=arr-net" 
+      extraOptions = [
+        "--network=arr-net"
         "--userns=keep-id"
       ];
     };

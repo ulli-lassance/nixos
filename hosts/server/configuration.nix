@@ -32,7 +32,6 @@
     destination = "${config.settings.user.home}/ssd2/backup/containerVolumes";
   };
 
-
   boot = {
     kernelPackages = pkgs.linuxPackages;
   };

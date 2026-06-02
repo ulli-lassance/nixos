@@ -30,7 +30,7 @@
       ];
       ports = [ "127.0.0.1:4533:4533" ];
 
-      extraOptions = [ 
+      extraOptions = [
         "--userns=keep-id"
       ];
     };
