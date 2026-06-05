@@ -9,14 +9,14 @@
         "io.containers.autoupdate" = "registry";
       };
 
-      image = "luuul/4get:latest";
+      image = "docker.io/luuul/4get:latest";
 
       podman.user = config.settings.user.username;
 
       environment = {
         FOURGET_SERVER_NAME = "4get.lan.${config.settings.server.domain}";
 
-        FOURGET_PROTO = "https";
+        FOURGET_PROTO = "http";
       };
 
       ports = [ "127.0.0.1:9181:80" ];
