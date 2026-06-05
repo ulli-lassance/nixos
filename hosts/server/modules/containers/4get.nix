@@ -30,7 +30,7 @@
       ports = [ "127.0.0.1:9181:80" ];
 
       volumes = [
-        "/run/secrets-rendered/google_api.txt:/var/www/html/4get/data/api_keys/google_api.txt:ro"
+        "${config.sops.templates."google_api.txt".path}:/var/www/html/4get/data/api_keys/google_api.txt:ro"
         
         # custom banners
         # "${config.settings.server.volumeDirectory}/4get/banners:/var/www/html/4get/banner:U"
