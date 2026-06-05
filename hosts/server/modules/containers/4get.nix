@@ -1,14 +1,6 @@
 { config, ... }:
 
 {
-
-  sops.secrets.google_api_key = { };
-
-  sops.templates."google_api.txt" = {
-    content = "${config.sops.placeholder.google_api_key}\n";
-    owner = config.settings.user.username;
-  };
-
   virtualisation.oci-containers.containers = {
 
     "4get" = {
@@ -30,8 +22,6 @@
       ports = [ "127.0.0.1:9181:80" ];
 
       volumes = [
-        "${config.sops.templates."google_api.txt".path}:/var/www/html/4get/data/api_keys/google_api.txt:ro"
-        
         # custom banners
         # "${config.settings.server.volumeDirectory}/4get/banners:/var/www/html/4get/banner:U"
       ];
