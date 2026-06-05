@@ -19,5 +19,6 @@
     ./slskd.nix
     ./invidious.nix
     ./feishin.nix
+    ./4get.nix
   ];
 }
