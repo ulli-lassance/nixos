@@ -6,8 +6,9 @@
     settings = {
       music_directory = "${config.settings.user.home}/music";
       port = 6600;
+      bind_to_address = "any";
     };
-    
+
     openFirewall = true;
   };
 }
