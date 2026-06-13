@@ -2,7 +2,8 @@
 {
   services.mpd = {
     enable = true;
-    musicDirectory = "${config.settings.user.home}/music";
-
+    settings = {
+      music_directory = "${config.settings.user.home}/music";
+    };
   };
 }
