@@ -7,5 +7,6 @@
     ./ssh.nix
     ./virtualisation.nix
     ./bluetooth.nix
+    ./audio.nix
   ];
 }

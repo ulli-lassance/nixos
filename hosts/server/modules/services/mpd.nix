@@ -9,13 +9,13 @@
       port = 6600;
       bind_to_address = "any";
 
-      audio_output = [
-        {
-          type = "pipewire";
-          name = "PipeWire Output";
-          mixer_type = "software";
-        }
-      ];
+      # audio_output = [
+      #   {
+      #     type = "pipewire";
+      #     name = "PipeWire Output";
+      #     mixer_type = "software";
+      #   }
+      # ];
     };
 
     openFirewall = true;

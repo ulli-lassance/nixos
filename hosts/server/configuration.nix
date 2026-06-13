@@ -23,6 +23,7 @@
 
     network.hostName = "server";
 
+    audio.enable = true;
     podman.enable = true;
     ssh.enable = true;
   };

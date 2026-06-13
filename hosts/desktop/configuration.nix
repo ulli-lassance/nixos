@@ -17,7 +17,7 @@
     };
 
     network.hostName = "desktop";
-
+    audio.enable = true;
     bluetooth.enable = true;
     virtualMachines = {
       enable = true;
