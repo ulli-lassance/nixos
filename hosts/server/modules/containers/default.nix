@@ -19,6 +19,7 @@
     ./slskd.nix
     ./invidious.nix
     ./feishin.nix
+    ./baikal.nix
     ./4get.nix
   ];
 }
