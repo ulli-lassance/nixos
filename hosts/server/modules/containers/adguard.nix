@@ -33,7 +33,7 @@
   ];
   networking.firewall.allowedUDPPorts = [ 53 ];
 
-  services.nginx.virtualHosts."dns.${config.settings.server.domain}" = {
+  services.nginx.virtualHosts."adguard.lan.${config.settings.server.domain}" = {
     useACMEHost = config.settings.server.domain;
     forceSSL = true;
     http2 = true;
