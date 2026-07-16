@@ -118,9 +118,9 @@ in
       };
 
       # master branch
-      # image = "quay.io/invidious/invidious:master";
+      image = "quay.io/invidious/invidious:master";
 
-      image = "quay.io/invidious/invidious:latest";
+      # image = "quay.io/invidious/invidious:latest";
       podman.user = config.settings.user.username;
 
       environmentFiles = [ config.sops.templates."invidious.env".path ];
