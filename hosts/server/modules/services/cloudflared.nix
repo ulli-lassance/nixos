@@ -22,7 +22,7 @@
 
         ingress = {
           "navidrome.${config.settings.server.domain}" =
-            "https://navidrome.lan.${config.settings.server.domain}";
+            "http://127.0.0.1:4533";
 
         };
       };
