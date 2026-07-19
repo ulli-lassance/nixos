@@ -17,7 +17,7 @@
     ./cleanuparr.nix
     ./ddns-updater.nix
     ./slskd.nix
-    ./invidious.nix
+    # ./invidious.nix
     ./feishin.nix
     ./baikal.nix
     ./4get.nix

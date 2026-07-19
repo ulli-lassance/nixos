@@ -1,0 +1,24 @@
+{ config, ... }:
+
+{
+  sops.secrets."cloudflared_credentials" = {
+    owner = config.services.cloudflared.user;
+    group = config.services.cloudflared.group;
+  };
+
+  services.cloudflared = {
+    enable = true;
+    tunnels = {
+      "50c42027-0c5e-4f46-a660-58b37058c543" = {
+        credentialsFile = config.sops.secrets."cloudflared_credentials".path;
+        default = "http_status:404";
+
+        ingress = {
+          "navidrome.${config.settings.server.domain}" =
+            "https://navidrome.lan.${config.settings.server.domain}";
+
+        };
+      };
+    };
+  };
+}
