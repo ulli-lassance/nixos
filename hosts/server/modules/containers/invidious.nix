@@ -105,6 +105,7 @@ in
         "--cap-drop=ALL"
         "--read-only"
         "--security-opt=no-new-privileges:true"
+        "--sysctl=net.ipv6.conf.all.disable_ipv6=1"
       ];
     };
 
