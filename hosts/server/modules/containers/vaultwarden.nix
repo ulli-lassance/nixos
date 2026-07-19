@@ -33,6 +33,8 @@
   };
 
   services.nginx.virtualHosts."vault.lan.${config.settings.server.domain}" = {
+    serverAliases = [ "vault.${config.settings.server.domain}" ];
+
     useACMEHost = config.settings.server.domain;
     forceSSL = true;
     locations."/" = {

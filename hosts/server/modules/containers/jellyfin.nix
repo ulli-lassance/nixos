@@ -38,6 +38,8 @@
   ];
 
   services.nginx.virtualHosts."jellyfin.lan.${config.settings.server.domain}" = {
+    serverAliases = [ "jellyfin.${config.settings.server.domain}" ];
+
     useACMEHost = config.settings.server.domain;
     forceSSL = true;
     locations."/" = {

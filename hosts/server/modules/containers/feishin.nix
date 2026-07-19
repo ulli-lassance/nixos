@@ -26,6 +26,8 @@
   };
 
   services.nginx.virtualHosts."feishin.lan.${config.settings.server.domain}" = {
+    serverAliases = [ "feishin.${config.settings.server.domain}" ];
+
     useACMEHost = config.settings.server.domain;
     forceSSL = true;
     locations."/" = {

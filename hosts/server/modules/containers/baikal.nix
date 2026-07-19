@@ -29,6 +29,8 @@
   };
 
   services.nginx.virtualHosts."baikal.lan.${config.settings.server.domain}" = {
+    serverAliases = [ "baikal.${config.settings.server.domain}" ];
+    
     useACMEHost = config.settings.server.domain;
     forceSSL = true;
     locations."/" = {

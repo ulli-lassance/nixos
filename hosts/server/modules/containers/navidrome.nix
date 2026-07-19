@@ -37,6 +37,8 @@
   };
 
   services.nginx.virtualHosts."navidrome.lan.${config.settings.server.domain}" = {
+    serverAliases = [ "navidrome.${config.settings.server.domain}" ];
+
     useACMEHost = config.settings.server.domain;
     forceSSL = true;
     locations."/" = {
