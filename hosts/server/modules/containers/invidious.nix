@@ -35,6 +35,7 @@ in
             port = 5432;
           };
           port = invidiousPort;
+          force_resolve = "ipv4";
           check_tables = true;
           invidious_companion = [
             {
