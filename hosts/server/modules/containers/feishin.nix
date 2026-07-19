@@ -16,7 +16,7 @@
         SERVER_NAME = "nixos server";
         SERVER_LOCK = "true";
         SERVER_TYPE = "navidrome";
-        SERVER_URL = "https://navidrome.lan.${config.settings.server.domain}";
+        SERVER_URL = "https://navidrome.${config.settings.server.domain}";
         ANALYTICS_DISABLED = "true";
       };
 
