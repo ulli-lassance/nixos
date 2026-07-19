@@ -29,14 +29,6 @@
             };
           };
 
-          "feishin.${config.settings.server.domain}" = {
-            service = "https://127.0.0.1:443";
-            originRequest = {
-              originServerName = "feishin.lan.${config.settings.server.domain}";
-              noTLSVerify = true;
-            };
-          };
-
           "jellyfin.${config.settings.server.domain}" = {
             service = "https://127.0.0.1:443";
             originRequest = {
