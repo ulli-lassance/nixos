@@ -1,9 +1,16 @@
 { config, ... }:
 
 {
+  users.users.cloudflared = {
+    group = "cloudflared";
+    isSystemUser = true;
+  };
+  users.groups.cloudflared = { };
+
   sops.secrets."cloudflared_credentials" = {
-    owner = config.services.cloudflared.user;
-    group = config.services.cloudflared.group;
+    owner = "cloudflared";
+    group = "cloudflared";
+    mode = "0440";
   };
 
   services.cloudflared = {
