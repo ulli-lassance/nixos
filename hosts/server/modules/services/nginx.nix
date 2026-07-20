@@ -34,6 +34,7 @@
     enable = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
+    recommendedOptimisation = true;
   };
 
   users.users.nginx.extraGroups = [ "acme" ];
