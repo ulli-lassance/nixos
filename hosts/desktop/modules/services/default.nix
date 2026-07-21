@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{ ... }: {
   imports = [
     ./polkit.nix
     ./keyring.nix

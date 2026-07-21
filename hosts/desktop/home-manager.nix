@@ -1,5 +1,8 @@
-{ config, inputs, ... }:
-
+{
+  config,
+  inputs,
+  ...
+}:
 {
   home-manager = {
     useGlobalPkgs = true;
@@ -10,17 +13,15 @@
     users = builtins.listToAttrs [
       {
         name = config.settings.user.username;
-        value =
-          { osConfig, ... }:
-          {
-            home.username = osConfig.settings.user.username;
-            home.homeDirectory = osConfig.settings.user.home;
-            home.stateVersion = osConfig.settings.stateVersion;
+        value = { osConfig, ... }: {
+          home.username = osConfig.settings.user.username;
+          home.homeDirectory = osConfig.settings.user.home;
+          home.stateVersion = osConfig.settings.stateVersion;
 
-            imports = [
-              ../../home
-            ];
-          };
+          imports = [
+            ../../home
+          ];
+        };
       }
     ];
   };

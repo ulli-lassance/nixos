@@ -3,7 +3,6 @@
   lib,
   ...
 }:
-
 let
   cfg = config.settings.ssh;
 in
@@ -13,7 +12,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
     services.openssh = {
       enable = true;
       openFirewall = true;

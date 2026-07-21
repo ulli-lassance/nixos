@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{ ... }: {
   imports = [
     ./samba.nix
     ./container-backup.nix

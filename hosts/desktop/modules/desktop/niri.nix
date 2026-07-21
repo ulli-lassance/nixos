@@ -1,12 +1,10 @@
-{ pkgs, ... }:
-
-{
+{ pkgs, ... }: {
   programs.niri = {
     enable = true;
     useNautilus = false;
   };
 
-  environment.systemPackages = with pkgs; [ xwayland-satellite-git ];
+  environment.systemPackages = with pkgs; [ xwayland-satellite ];
 
   xdg.portal = {
     enable = true;

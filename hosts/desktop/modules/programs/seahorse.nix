@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{ ... }: {
   programs = {
     seahorse.enable = true;
   };

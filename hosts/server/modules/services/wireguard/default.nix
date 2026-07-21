@@ -4,7 +4,6 @@
   lib,
   ...
 }:
-
 {
   sops.secrets.wg_server_private_key = {
     owner = "root";

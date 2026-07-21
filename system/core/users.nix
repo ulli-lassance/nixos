@@ -3,7 +3,6 @@
   config,
   ...
 }:
-
 {
   sops.secrets = {
     "user_password" = {

@@ -4,7 +4,6 @@
   pkgs,
   ...
 }:
-
 let
   # find your GPU path with: ls -l /dev/dri/by-path/
   gpuRenderNode = "/dev/dri/by-path/pci-0000:03:00.0-render";
@@ -57,9 +56,6 @@ in
     };
   };
 }
-
 # waydroid script:
-
 # nix shell github:nix-community/NUR#repos.ataraxiasjel.waydroid-script -c sudo waydroid-script
-
 # select anddroid 13 and use libhoudini for intel and libndk for amd cpu

@@ -1,9 +1,6 @@
-{ ... }:
-
-{
+{ ... }: {
   imports = [
     ./terminal
-    ./desktop
     ./graphical
   ];
 }

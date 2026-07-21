@@ -4,7 +4,6 @@
   pkgs,
   ...
 }:
-
 {
   home.shell.enableFishIntegration = true;
 

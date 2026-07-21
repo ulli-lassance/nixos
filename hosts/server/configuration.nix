@@ -1,8 +1,10 @@
-{ config, pkgs, ... }:
-
+{
+  config,
+  pkgs,
+  ...
+}:
 {
   imports = [
-    ./hardware.nix
     ../../system
     ./home-manager.nix
     ./modules

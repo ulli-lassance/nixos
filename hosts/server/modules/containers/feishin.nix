@@ -1,6 +1,4 @@
-{ config, ... }:
-
-{
+{ config, ... }: {
   virtualisation.oci-containers.containers = {
     feishin = {
       autoStart = true;
@@ -22,7 +20,6 @@
       };
 
       ports = [ "127.0.0.1:9180:9180" ];
-
     };
   };
 

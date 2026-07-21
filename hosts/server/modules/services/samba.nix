@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{ config, ... }: {
   # Don't forget to set a password with 'sudo smbpasswd -a <your-username>'
   services.samba = {
     enable = true;

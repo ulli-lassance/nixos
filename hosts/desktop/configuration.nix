@@ -1,11 +1,12 @@
-{ pkgs, config, ... }:
-
+{
+  pkgs,
+  config,
+  ...
+}:
 {
   imports = [
-    ./hardware.nix
     ../../system
     ./home-manager.nix
-    ./stylix.nix
     ./modules
   ];
 
@@ -24,14 +25,6 @@
       withGui = true;
     };
     ssh.enable = true;
-  };
-
-  stylix = {
-    targets = {
-      console.enable = true;
-      qt.enable = true;
-      gtk.enable = true;
-    };
   };
 
   boot = {

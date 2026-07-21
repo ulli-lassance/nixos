@@ -1,5 +1,8 @@
-{ pkgs, config, ... }:
-
+{
+  pkgs,
+  config,
+  ...
+}:
 {
   systemd.timers."podman-auto-update" = {
     wantedBy = [ "timers.target" ];
@@ -33,16 +36,16 @@
       echo "$CONTAINERS" | while read -r NAME IMAGE; do
         # skip if the line is empty
         if [ -z "$NAME" ]; then continue; fi
-        
+
         echo "checking updates for $NAME ($IMAGE)..."
-        
+
         # pull the latest image as unprivileged user
         OUTPUT=$(sudo -u ${config.settings.user.username} podman pull "$IMAGE" 2>&1)
 
         # look for podman success strings in the output
         if echo "$OUTPUT" | grep -E -q "(Downloaded newer image|Writing manifest)"; then
           echo "new image pulled for $NAME. restarting systemd service..."
-          
+
           systemctl restart "podman-$NAME.service"
         else
           echo "no updates available for $NAME."

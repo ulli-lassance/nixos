@@ -1,8 +1,5 @@
-{ config, ... }:
-
-{
+{ config, ... }: {
   virtualisation.oci-containers.containers = {
-
     "4get" = {
       autoStart = true;
       labels = {

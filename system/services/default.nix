@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{ ... }: {
   imports = [
     ./resolved.nix
     ./podman.nix

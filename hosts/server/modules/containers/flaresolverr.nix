@@ -1,6 +1,4 @@
-{ config, ... }:
-
-{
+{ config, ... }: {
   virtualisation.oci-containers.containers = {
     flaresolverr = {
       autoStart = true;

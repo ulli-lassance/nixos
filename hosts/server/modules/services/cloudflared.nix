@@ -1,6 +1,4 @@
-{ config, ... }:
-
-{
+{ config, ... }: {
   users.users.cloudflared = {
     group = "cloudflared";
     isSystemUser = true;

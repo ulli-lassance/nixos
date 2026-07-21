@@ -1,6 +1,4 @@
-{ config, ... }:
-
-{
+{ config, ... }: {
   fileSystems."${config.settings.user.home}/ssd2" = {
     device = "/dev/disk/by-uuid/ad6a7e42-4ce2-47bb-a270-82d28cee2d37";
     fsType = "ext4";

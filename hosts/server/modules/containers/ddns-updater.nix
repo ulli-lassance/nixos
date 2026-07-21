@@ -1,6 +1,4 @@
-{ config, ... }:
-
-{
+{ config, ... }: {
   systemd.tmpfiles.rules = [
     "d ${config.settings.server.volumeDirectory}/ddns-updater 0755 ${config.settings.user.username} users -"
     "d ${config.settings.server.volumeDirectory}/ddns-updater/data 0755 ${config.settings.user.username} users -"

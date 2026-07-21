@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{ ... }: {
   imports = [
     ./steam.nix
     ./localsend.nix

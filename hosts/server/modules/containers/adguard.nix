@@ -1,5 +1,8 @@
-{ config, lib, ... }:
-
+{
+  config,
+  lib,
+  ...
+}:
 {
   systemd.tmpfiles.rules = [
     "d ${config.settings.server.volumeDirectory}/adguardhome 0755 ${config.settings.user.username} users -"

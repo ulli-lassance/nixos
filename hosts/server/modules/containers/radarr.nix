@@ -1,6 +1,4 @@
-{ config, ... }:
-
-{
+{ config, ... }: {
   systemd.tmpfiles.rules = [
     "d ${config.settings.server.volumeDirectory}/radarr 0755 ${config.settings.user.username} users -"
 

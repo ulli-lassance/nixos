@@ -1,5 +1,8 @@
-{ pkgs, config, ... }:
-
+{
+  pkgs,
+  config,
+  ...
+}:
 {
   systemd.services."podman-network-invidious-net" = {
     path = [

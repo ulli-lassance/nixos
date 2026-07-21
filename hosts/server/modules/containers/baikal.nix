@@ -1,6 +1,4 @@
-{ config, ... }:
-
-{
+{ config, ... }: {
   systemd.tmpfiles.rules = [
     "d ${config.settings.server.volumeDirectory}/baikal 0755 ${config.settings.user.username} users -"
     "d ${config.settings.server.volumeDirectory}/baikal/data 0755 ${config.settings.user.username} users -"
@@ -24,13 +22,12 @@
       ];
 
       ports = [ "127.0.0.1:8088:80" ];
-
     };
   };
 
   services.nginx.virtualHosts."baikal.lan.${config.settings.server.domain}" = {
     serverAliases = [ "baikal.${config.settings.server.domain}" ];
-    
+
     useACMEHost = config.settings.server.domain;
     forceSSL = true;
     locations."/" = {

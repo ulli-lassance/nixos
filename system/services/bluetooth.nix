@@ -1,5 +1,8 @@
-{ config, lib, ... }:
-
+{
+  config,
+  lib,
+  ...
+}:
 let
   cfg = config.settings.bluetooth;
 in
@@ -9,7 +12,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
     hardware.bluetooth = {
       enable = true;
       powerOnBoot = true;

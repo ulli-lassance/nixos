@@ -1,6 +1,4 @@
-{ config, ... }:
-
-{
+{ config, ... }: {
   systemd.tmpfiles.rules = [
     "d ${config.settings.server.volumeDirectory}/slskd 0755 ${config.settings.user.username} users -"
 
@@ -25,7 +23,6 @@
         SLSKD_INCOMPLETE_DIR = "/downloads/slskd/incomplete";
         SLSKD_SHARED_DIR = "/music";
         SLSKD_NO_AUTH = "true";
-
       };
       volumes = [
         "${config.settings.server.volumeDirectory}/slskd:/app:U"

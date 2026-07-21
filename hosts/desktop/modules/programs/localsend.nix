@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{ pkgs, ... }: {
   programs.localsend = {
     enable = true;
     package = pkgs.localsend;

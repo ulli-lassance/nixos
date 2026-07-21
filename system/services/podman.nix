@@ -3,7 +3,6 @@
   lib,
   ...
 }:
-
 let
   cfg = config.settings.podman;
 in
@@ -13,7 +12,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-
     virtualisation.podman = {
       enable = true;
       dockerCompat = true;
