@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 let
   invidiousPort = 3010;
 in
@@ -60,6 +60,30 @@ in
     "d ${config.settings.server.containerCache}/invidious 0755 ${config.settings.user.username} users -"
     "d ${config.settings.server.containerCache}/invidious/companion 0755 ${config.settings.user.username} users -"
   ];
+
+  systemd.services."podman-network-invidious-net" = {
+    path = [
+      pkgs.podman
+      "/run/wrappers"
+    ];
+
+    after = [ "user@1000.service" ];
+    requires = [ "user@1000.service" ];
+
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      User = config.settings.user.username;
+    };
+    environment = {
+      HOME = config.settings.user.home;
+      XDG_RUNTIME_DIR = "/run/user/1000";
+    };
+    script = ''
+      podman network exists invidious-net || podman network create invidious-net
+    '';
+    wantedBy = [ "multi-user.target" ];
+  };
 
   virtualisation.oci-containers.containers = {
     invidious-db = {

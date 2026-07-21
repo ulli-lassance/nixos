@@ -25,8 +25,8 @@
   };
 
   # for windows discovery
-  # services.samba-wsdd = {
-  #   openFirewall = true;
-  #   enable = true;
-  # };
+  services.samba-wsdd = {
+    openFirewall = true;
+    enable = true;
+  };
 }
