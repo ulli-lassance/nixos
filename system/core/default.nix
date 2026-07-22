@@ -10,5 +10,6 @@
     ./sops
     ./users.nix
     ./storage-optimization.nix
+    ./polkit.nix
   ];
 }

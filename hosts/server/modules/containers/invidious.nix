@@ -67,8 +67,8 @@ in
       "/run/wrappers"
     ];
 
-    after = [ "user@${toString config.users.users.${config.settings.user.username}.uid}.service" ];
-    requires = [ "user@${toString config.users.users.${config.settings.user.username}.uid}.service" ];
+    after = [ "user@1000.service" ];
+    requires = [ "user@1000.service" ];
 
     serviceConfig = {
       Type = "oneshot";
@@ -77,7 +77,7 @@ in
     };
     environment = {
       HOME = config.settings.user.home;
-      XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.${config.settings.user.username}.uid}";
+      XDG_RUNTIME_DIR = "/run/user/1000";
     };
     script = ''
       podman network exists invidious-net || podman network create invidious-net
