@@ -143,7 +143,7 @@ in
 
       volumes = [
         "${config.settings.user.home}/hd2/immich:/data:U"
-        "${config.settings.user.home}/ssd/pictures:/external_photos:ro"
+        "${config.settings.user.home}/ssd2/pictures:/external_photos:ro"
         "/etc/localtime:/etc/localtime:ro"
       ];
 
