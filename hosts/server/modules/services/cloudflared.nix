@@ -50,6 +50,14 @@
               noTLSVerify = true;
             };
           };
+
+          "immich.${config.settings.server.domain}" = {
+            service = "https://127.0.0.1:443";
+            originRequest = {
+              originServerName = "immich.lan.${config.settings.server.domain}";
+              noTLSVerify = true;
+            };
+          };
         };
       };
     };
