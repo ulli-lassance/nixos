@@ -18,6 +18,7 @@
 
       volumes = [
         "${config.settings.user.home}/hd2/movies:/data/movies"
+        "${config.settings.user.home}/hd2/series:/data/series"
         "${config.settings.server.volumeDirectory}/jellyfin/config:/config:U"
         "${config.settings.server.containerCache}/jellyfin:/cache:U"
       ];
