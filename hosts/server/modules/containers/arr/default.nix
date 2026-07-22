@@ -4,6 +4,7 @@
 
     ./lidarr.nix
     ./radarr.nix
+    ./sonarr.nix
     ./bazarr.nix
     ./prowlarr.nix
     ./qbittorrent.nix
