@@ -38,8 +38,8 @@ in
       "/run/wrappers"
     ];
 
-    after = [ "user@1000.service" ];
-    requires = [ "user@1000.service" ];
+    after = [ "user@${toString config.users.users.${config.settings.user.username}.uid}.service" ];
+    requires = [ "user@${toString config.users.users.${config.settings.user.username}.uid}.service" ];
 
     serviceConfig = {
       Type = "oneshot";
@@ -48,7 +48,7 @@ in
     };
     environment = {
       HOME = config.settings.user.home;
-      XDG_RUNTIME_DIR = "/run/user/1000";
+      XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.${config.settings.user.username}.uid}";
     };
     script = ''
       podman network exists immich-net || podman network create immich-net
@@ -143,6 +143,7 @@ in
 
       volumes = [
         "${config.settings.user.home}/hd2/immich:/data:U"
+        "${config.settings.user.home}/ssd/pictures:/external_photos:ro"
         "/etc/localtime:/etc/localtime:ro"
       ];
 
@@ -198,6 +199,9 @@ in
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_read_timeout 600s;
+        proxy_send_timeout 600s;
+        proxy_connect_timeout 600s;
       '';
     };
   };

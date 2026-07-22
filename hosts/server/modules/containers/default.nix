@@ -12,5 +12,6 @@
     ./feishin.nix
     ./baikal.nix
     ./4get.nix
+    ./immich.nix
   ];
 }
