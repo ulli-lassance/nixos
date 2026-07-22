@@ -11,6 +11,11 @@
         "security" = "user";
         "guest account" = "nobody";
         "map to guest" = "bad user";
+
+        "map archive" = "no";
+        "map hidden" = "no";
+        "map system" = "no";
+        "store dos attributes" = "yes";
       };
       storage = {
         path = "${config.settings.user.home}";
