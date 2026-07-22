@@ -1,6 +1,7 @@
 { config, ... }: {
   systemd.tmpfiles.rules = [
     "d ${config.settings.server.volumeDirectory}/bazarr 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.server.volumeDirectory}/bazarr/config 0755 ${config.settings.user.username} users -"
     "d ${config.settings.server.containerCache}/bazarr 0755 ${config.settings.user.username} users -"
   ];
 

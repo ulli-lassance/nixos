@@ -6,6 +6,8 @@
 {
   systemd.tmpfiles.rules = [
     "d ${config.settings.server.volumeDirectory}/adguardhome 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.server.volumeDirectory}/adguardhome/work 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.server.volumeDirectory}/adguardhome/conf 0755 ${config.settings.user.username} users -"
   ];
 
   boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 53;

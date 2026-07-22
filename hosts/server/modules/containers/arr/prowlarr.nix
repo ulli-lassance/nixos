@@ -1,6 +1,7 @@
 { config, ... }: {
   systemd.tmpfiles.rules = [
     "d ${config.settings.server.volumeDirectory}/prowlarr 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.server.volumeDirectory}/prowlarr/config 0755 ${config.settings.user.username} users -"
   ];
 
   virtualisation.oci-containers.containers = {

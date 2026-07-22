@@ -1,6 +1,7 @@
 { config, ... }: {
   systemd.tmpfiles.rules = [
     "d ${config.settings.server.volumeDirectory}/lidarr 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.server.volumeDirectory}/lidarr/config 0755 ${config.settings.user.username} users -"
 
     "d ${config.settings.server.containerCache}/lidarr 0755 ${config.settings.user.username} users -"
     "d ${config.settings.server.containerCache}/lidarr/MediaCover 0755 ${config.settings.user.username} users -"

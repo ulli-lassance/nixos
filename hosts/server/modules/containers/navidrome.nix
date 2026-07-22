@@ -1,6 +1,8 @@
 { config, ... }: {
   systemd.tmpfiles.rules = [
     "d ${config.settings.server.volumeDirectory}/navidrome 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.server.volumeDirectory}/navidrome/data 0755 ${config.settings.user.username} users -"
+
     "d ${config.settings.server.containerCache}/navidrome 0755 ${config.settings.user.username} users -"
   ];
 

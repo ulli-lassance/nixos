@@ -26,6 +26,8 @@ in
     # needed for rootless podman
     users.users."${config.settings.user.username}".linger = true;
 
+    systemd.services.linger-users.serviceConfig.RemainAfterExit = true;
+
     virtualisation.oci-containers.backend = "podman";
   };
 }

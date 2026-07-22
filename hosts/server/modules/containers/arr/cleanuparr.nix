@@ -1,6 +1,7 @@
 { config, ... }: {
   systemd.tmpfiles.rules = [
     "d ${config.settings.server.volumeDirectory}/cleanuparr 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.server.volumeDirectory}/cleanuparr/config 0755 ${config.settings.user.username} users -"
   ];
 
   virtualisation.oci-containers.containers = {

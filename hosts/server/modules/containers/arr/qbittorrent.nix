@@ -1,6 +1,8 @@
 { config, ... }: {
   systemd.tmpfiles.rules = [
     "d ${config.settings.server.volumeDirectory}/qbittorrent 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.server.volumeDirectory}/qbittorrent/config 0755 ${config.settings.user.username} users -"
+    
     "d ${config.settings.user.home}/downloads 0755 ${config.settings.user.username} users -"
   ];
 
