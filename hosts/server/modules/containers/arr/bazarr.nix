@@ -18,6 +18,7 @@
       environment = {
         PUID = "1000";
         PGID = "100";
+        TZ = config.time.timeZone;
       };
 
       volumes = [

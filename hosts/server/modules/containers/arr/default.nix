@@ -10,5 +10,6 @@
     ./qbittorrent.nix
     ./flaresolverr.nix
     ./cleanuparr.nix
+    ./seerr.nix
   ];
 }

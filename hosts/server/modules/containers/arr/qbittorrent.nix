@@ -19,6 +19,7 @@
       environment = {
         WEBUI_PORT = "8080";
         TORRENTING_PORT = "6881";
+        TZ = config.time.timeZone;
       };
       volumes = [
         "${config.settings.server.volumeDirectory}/qbittorrent/config:/config:U"
