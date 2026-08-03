@@ -3,10 +3,12 @@
   sops.secrets.protonvpn_wg_key = {
   };
 
-  sops.templates."gluetun-protonvpn.env".content = ''
+  sops.templates."gluetun-protonvpn.env" = {
     owner = config.settings.user.username;
-    WIREGUARD_PRIVATE_KEY=${config.sops.placeholder.protonvpn_wg_key}
-  '';
+    content = ''
+      WIREGUARD_PRIVATE_KEY=${config.sops.placeholder.protonvpn_wg_key}
+    '';
+  };
 
   systemd.tmpfiles.rules = [
     "d ${config.settings.server.volumeDirectory}/qbittorrent 0755 ${config.settings.user.username} users -"
