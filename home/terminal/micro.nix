@@ -4,10 +4,12 @@
     package = pkgs.micro;
     settings = {
       colorscheme = "simple";
+      clipboard = "terminal";
     };
   };
 
   home.sessionVariables = {
     EDITOR = "micro";
   };
+
 }
