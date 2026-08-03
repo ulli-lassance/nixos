@@ -20,7 +20,10 @@
   virtualisation.oci-containers.containers = {
     gluetun = {
       autoStart = true;
-      image = "qmcgaw/gluetun";
+      labels = {
+        "io.containers.autoupdate" = "registry";
+      };
+      image = "docker.io/qmcgaw/gluetun:latest";
       podman.user = config.settings.user.username;
 
       ports = [
@@ -97,6 +100,7 @@
   systemd.services."podman-qbittorrent" = {
     after = [ "podman-network-arr-net.service" ];
     requires = [ "podman-network-arr-net.service" ];
+    bindsTo = [ "podman-gluetun.service" ];
   };
 
   networking.firewall.allowedTCPPorts = [ 6881 ];
