@@ -18,6 +18,7 @@
     gluetun = {
       autoStart = true;
       image = "qmcgaw/gluetun";
+      podman.user = config.settings.user.username;
 
       ports = [
         "127.0.0.1:8080:8080"
@@ -68,6 +69,8 @@
         WEBUI_PORT = "8080";
         TORRENTING_PORT = "6881";
         TZ = config.time.timeZone;
+        PUID = "1000";
+        PGID = "100";
       };
       volumes = [
         "${config.settings.server.volumeDirectory}/qbittorrent/config:/config:U"
