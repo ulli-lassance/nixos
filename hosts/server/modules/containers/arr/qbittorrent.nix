@@ -28,8 +28,8 @@
 
       ports = [
         "127.0.0.1:8080:8080"
-        "6881:6881"
-        "6881:6881/udp"
+        # "6881:6881"
+        # "6881:6881/udp"
       ];
 
       environmentFiles = [
@@ -103,8 +103,8 @@
     bindsTo = [ "podman-gluetun.service" ];
   };
 
-  networking.firewall.allowedTCPPorts = [ 6881 ];
-  networking.firewall.allowedUDPPorts = [ 6881 ];
+  # networking.firewall.allowedTCPPorts = [ 6881 ];
+  # networking.firewall.allowedUDPPorts = [ 6881 ];
 
   services.nginx.virtualHosts."qbittorrent.lan.${config.settings.server.domain}" = {
     useACMEHost = config.settings.server.domain;
