@@ -7,7 +7,8 @@
     ./sonarr.nix
     ./bazarr.nix
     ./prowlarr.nix
-    ./qbittorrent.nix
+    # ./qbittorrent.nixs
+    ./qbittorrent-vpn.nix
     ./flaresolverr.nix
     ./cleanuparr.nix
     ./seerr.nix
