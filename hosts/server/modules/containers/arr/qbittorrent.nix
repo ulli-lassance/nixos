@@ -4,6 +4,7 @@
   };
 
   sops.templates."gluetun-protonvpn.env".content = ''
+    owner = config.settings.user.username;
     WIREGUARD_PRIVATE_KEY=${config.sops.placeholder.protonvpn_wg_key}
   '';
 
