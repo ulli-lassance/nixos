@@ -17,7 +17,7 @@
       podman.user = config.settings.user.username;
 
       volumes = [
-        "${config.settings.server.containerData}/media:/data"
+        "${config.settings.server.containerData}/media:/data/media"
         "${config.settings.server.volumeDirectory}/jellyfin/config:/config:U"
         "${config.settings.server.containerCache}/jellyfin:/cache:U"
       ];

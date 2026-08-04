@@ -21,7 +21,7 @@
       };
       volumes = [
         "${config.settings.server.volumeDirectory}/qbittorrent/config:/config:U"
-        "${config.settings.server.containerData}/torrents:/torrents"
+        "${config.settings.server.containerData}/torrents:/data/torrents"
       ];
       ports = [
         "127.0.0.1:8080:8080"
