@@ -79,7 +79,7 @@
       };
       volumes = [
         "${config.settings.server.volumeDirectory}/qbittorrent-vpn/config:/config:U"
-        "${config.settings.server.containerData}/torrents:/downloads"
+        "${config.settings.server.containerData}/torrents:/torrents"
       ];
 
       extraOptions = [
