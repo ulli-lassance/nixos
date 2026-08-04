@@ -24,8 +24,7 @@
       volumes = [
         "${config.settings.server.volumeDirectory}/bazarr/config:/config:U"
         "${config.settings.server.containerCache}/bazarr:/config/cache:U"
-        "${config.settings.user.home}/hd2/movies:/movies"
-        "${config.settings.user.home}/hd2/series:/series"
+        "${config.settings.server.containerData}/media:/data"
       ];
       ports = [ "127.0.0.1:6767:6767" ];
 

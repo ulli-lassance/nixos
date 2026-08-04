@@ -26,8 +26,7 @@
       volumes = [
         "${config.settings.server.volumeDirectory}/lidarr/config:/config:U"
         "${config.settings.server.containerCache}/lidarr/MediaCover:/config/MediaCover"
-        "${config.settings.user.home}/music:/music"
-        "${config.settings.user.home}/downloads:/downloads"
+        "${config.settings.server.containerData}:/data"
       ];
       ports = [ "127.0.0.1:8686:8686" ];
 

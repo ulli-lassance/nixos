@@ -14,7 +14,6 @@
     "d ${config.settings.server.volumeDirectory}/qbittorrent-vpn 0755 ${config.settings.user.username} users -"
     "d ${config.settings.server.volumeDirectory}/qbittorrent-vpn/config 0755 ${config.settings.user.username} users -"
     "d ${config.settings.server.volumeDirectory}/gluetun 0755 ${config.settings.user.username} users -"
-    "d ${config.settings.user.home}/downloads 0755 ${config.settings.user.username} users -"
   ];
 
   virtualisation.oci-containers.containers = {
@@ -80,7 +79,7 @@
       };
       volumes = [
         "${config.settings.server.volumeDirectory}/qbittorrent-vpn/config:/config:U"
-        "${config.settings.user.home}/downloads:/downloads"
+        "${config.settings.server.containerData}/torrents:/downloads"
       ];
 
       extraOptions = [

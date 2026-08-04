@@ -29,7 +29,7 @@ in
     "d ${config.settings.server.containerCache}/immich 0755 ${config.settings.user.username} users -"
     "d ${config.settings.server.containerCache}/immich/machine-learning 0755 ${config.settings.user.username} users -"
 
-    "d ${config.settings.user.home}/hd2/immich 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.user.home}/hd1/immich 0755 ${config.settings.user.username} users -"
   ];
 
   systemd.services."podman-network-immich-net" = {
@@ -141,7 +141,7 @@ in
       };
 
       volumes = [
-        "${config.settings.user.home}/hd2/immich:/data:U"
+        "${config.settings.user.home}/hd1/immich:/data:U"
         "${config.settings.user.home}/ssd2/pictures:/external_photos"
         "/etc/localtime:/etc/localtime:ro"
       ];

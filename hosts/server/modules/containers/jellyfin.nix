@@ -17,8 +17,7 @@
       podman.user = config.settings.user.username;
 
       volumes = [
-        "${config.settings.user.home}/hd2/movies:/data/movies"
-        "${config.settings.user.home}/hd2/series:/data/series"
+        "${config.settings.server.containerData}/media:/data"
         "${config.settings.server.volumeDirectory}/jellyfin/config:/config:U"
         "${config.settings.server.containerCache}/jellyfin:/cache:U"
       ];
@@ -28,7 +27,7 @@
         "--device=/dev/dri:/dev/dri"
         "--group-add=${toString config.ids.gids.render}"
         "--userns=keep-id"
-        
+
         "--network=arr-net"
       ];
     };

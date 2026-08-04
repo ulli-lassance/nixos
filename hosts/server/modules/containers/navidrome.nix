@@ -24,7 +24,7 @@
         ND_IMAGECACHESIZE = "200MB";
       };
       volumes = [
-        "${config.settings.user.home}/music:/music"
+        "${config.settings.server.containerData}/media/music:/music:ro"
         "${config.settings.server.volumeDirectory}/navidrome/data:/data:U"
         "${config.settings.server.containerCache}/navidrome:/data/cache:U"
       ];

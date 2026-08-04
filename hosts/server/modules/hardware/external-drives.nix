@@ -5,9 +5,9 @@
     options = [ "nofail" ];
   };
 
-  fileSystems."${config.settings.user.home}/hd2" = {
-    device = "/dev/disk/by-uuid/1d691822-1552-46ac-9a3f-c8f1688dd8e8";
-    fsType = "ext4";
+  fileSystems."${config.settings.user.home}/hd1" = {
+    device = "/dev/disk/by-uuid/e0a29dfc-87f7-4465-8387-62ff29655731";
+    fsType = "btrfs";
     options = [ "nofail" ];
   };
 }

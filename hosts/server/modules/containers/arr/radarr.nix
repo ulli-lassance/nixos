@@ -26,8 +26,7 @@
       volumes = [
         "${config.settings.server.volumeDirectory}/radarr/config:/config:U"
         "${config.settings.server.containerCache}/radarr/MediaCover:/config/MediaCover:U"
-        "${config.settings.user.home}/hd2/movies:/data/movies"
-        "${config.settings.user.home}/downloads:/downloads"
+        "${config.settings.server.containerData}:/data"
       ];
       ports = [ "127.0.0.1:7878:7878" ];
 

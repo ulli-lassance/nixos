@@ -27,7 +27,7 @@
       volumes = [
         "${config.settings.server.volumeDirectory}/slskd:/app:U"
         "${config.settings.user.home}/downloads:/downloads"
-        "${config.settings.user.home}/music:/music"
+        "${config.settings.server.containerData}/media/music:/music"
       ];
       ports = [
         "127.0.0.1:5030:5030"

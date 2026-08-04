@@ -1,6 +1,7 @@
 { ... }: {
   imports = [
     ./arr-net.nix
+    ./make-data-dir.nix
 
     ./lidarr.nix
     ./radarr.nix

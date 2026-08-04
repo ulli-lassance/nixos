@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib,config, ... }:
 let
   inherit (lib) mkOption types;
 in
@@ -16,7 +16,13 @@ in
       containerCache = mkOption {
         type = types.str;
         default = "/var/cache/containerCache";
-        description = "directory for container temp files,i.e cache/logs";
+        description = "directory for container temp files, i.e cache/logs";
+      };
+
+      containerData = mkOption {
+        type = types.str;
+        default = "${config.settings.user.home}/hd1/data";
+        description = "directory for container data, i.e media/dowloads";
       };
 
       lanIP = mkOption {

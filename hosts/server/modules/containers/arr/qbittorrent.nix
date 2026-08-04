@@ -2,8 +2,6 @@
   systemd.tmpfiles.rules = [
     "d ${config.settings.server.volumeDirectory}/qbittorrent 0755 ${config.settings.user.username} users -"
     "d ${config.settings.server.volumeDirectory}/qbittorrent/config 0755 ${config.settings.user.username} users -"
-    
-    "d ${config.settings.user.home}/downloads 0755 ${config.settings.user.username} users -"
   ];
 
   virtualisation.oci-containers.containers = {
@@ -23,7 +21,7 @@
       };
       volumes = [
         "${config.settings.server.volumeDirectory}/qbittorrent/config:/config:U"
-        "${config.settings.user.home}/downloads:/downloads"
+        "${config.settings.server.containerData}/torrents:/downloads"
       ];
       ports = [
         "127.0.0.1:8080:8080"
