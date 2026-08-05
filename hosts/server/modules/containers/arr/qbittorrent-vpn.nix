@@ -98,6 +98,7 @@
     after = [ "podman-network-arr-net.service" ];
     requires = [ "podman-network-arr-net.service" ];
     bindsTo = [ "podman-gluetun.service" ];
+    partOf = [ "podman-gluetun.service" ];
   };
 
   services.nginx.virtualHosts."qbittorrent.lan.${config.settings.server.domain}" = {
