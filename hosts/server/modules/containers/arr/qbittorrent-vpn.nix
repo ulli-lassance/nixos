@@ -92,10 +92,14 @@
   systemd.services."podman-gluetun" = {
     after = [ "podman-network-arr-net.service" ];
     requires = [ "podman-network-arr-net.service" ];
+    partOf = [ "podman-qbittorrent-vpn.service" ];
   };
 
   systemd.services."podman-qbittorrent-vpn" = {
-    after = [ "podman-network-arr-net.service" ];
+    after = [
+      "podman-network-arr-net.service"
+      "podman-gluetun.service"
+    ];
     requires = [ "podman-network-arr-net.service" ];
     bindsTo = [ "podman-gluetun.service" ];
     partOf = [ "podman-gluetun.service" ];
