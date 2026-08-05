@@ -8,6 +8,12 @@
   fileSystems."${config.settings.user.home}/hd1" = {
     device = "/dev/disk/by-uuid/e0a29dfc-87f7-4465-8387-62ff29655731";
     fsType = "btrfs";
-    options = [ "nofail" ];
+    options = [
+      "nofail"
+      "compress=zstd:1"
+      "space_cache=v2"
+      "autodefrag"
+      "noatime"
+    ];
   };
 }
