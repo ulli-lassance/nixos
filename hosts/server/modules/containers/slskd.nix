@@ -19,9 +19,9 @@
 
       environment = {
         SLSKD_REMOTE_CONFIGURATION = "true";
-        SLSKD_DOWNLOADS_DIR = "/downloads";
+        SLSKD_DOWNLOADS_DIR = "/downloads/slskd/complete";
         SLSKD_INCOMPLETE_DIR = "/downloads/slskd/incomplete";
-        SLSKD_SHARED_DIR = "/music";
+        SLSKD_SHARED_DIR = "${config.settings.server.containerData}/media/music";
         SLSKD_NO_AUTH = "true";
       };
       volumes = [
