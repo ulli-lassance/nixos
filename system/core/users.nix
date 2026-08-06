@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}:
+{ config, ... }:
 {
   sops.secrets = {
     "user_password" = {

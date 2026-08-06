@@ -13,5 +13,6 @@
     ./baikal.nix
     ./4get.nix
     ./immich.nix
+    ./freshrss.nix
   ];
 }

@@ -11,5 +11,6 @@
     ./users.nix
     ./storage-optimization.nix
     ./polkit.nix
+    ./journald.nix
   ];
 }
