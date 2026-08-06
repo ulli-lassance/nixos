@@ -74,8 +74,6 @@
         WEBUI_PORT = "8080";
         TORRENTING_PORT = "6881";
         TZ = config.time.timeZone;
-        PUID = "1000";
-        PGID = "100";
       };
       volumes = [
         "${config.settings.server.volumeDirectory}/qbittorrent-vpn/config:/config:U"

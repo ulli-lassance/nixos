@@ -42,9 +42,16 @@
   services.nginx.virtualHosts."soulseek.lan.${config.settings.server.domain}" = {
     useACMEHost = config.settings.server.domain;
     forceSSL = true;
+    extraConfig = ''
+      client_max_body_size 0;
+    '';
+
     locations."/" = {
       proxyPass = "http://127.0.0.1:5030";
       proxyWebsockets = true;
+      extraConfig = ''
+        proxy_request_buffering off;
+      '';
     };
   };
 }
