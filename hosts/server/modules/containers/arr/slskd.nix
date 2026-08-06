@@ -1,10 +1,6 @@
 { config, ... }: {
   systemd.tmpfiles.rules = [
     "d ${config.settings.server.volumeDirectory}/slskd 0755 ${config.settings.user.username} users -"
-
-    "d ${config.settings.user.home}/downloads 0755 ${config.settings.user.username} users -"
-    "d ${config.settings.user.home}/downloads/slskd 0755 ${config.settings.user.username} users -"
-    "d ${config.settings.user.home}/downloads/slskd/incomplete 0755 ${config.settings.user.username} users -"
   ];
 
   virtualisation.oci-containers.containers = {
@@ -18,16 +14,18 @@
       podman.user = config.settings.user.username;
 
       environment = {
+        PUID = "1000";
+        PGID = "100";
         SLSKD_REMOTE_CONFIGURATION = "true";
-        SLSKD_DOWNLOADS_DIR = "/downloads/slskd/complete";
-        SLSKD_INCOMPLETE_DIR = "/downloads/slskd/incomplete";
-        SLSKD_SHARED_DIR = "${config.settings.server.containerData}/media/music";
+        SLSKD_DOWNLOADS_DIR = "/soulseek/complete";
+        SLSKD_INCOMPLETE_DIR = "/soulseek/incomplete";
+        SLSKD_SHARED_DIR = "/music";
         SLSKD_NO_AUTH = "true";
       };
       volumes = [
         "${config.settings.server.volumeDirectory}/slskd:/app:U"
-        "${config.settings.user.home}/downloads:/downloads"
-        "${config.settings.server.containerData}/media/music:/music"
+        "${config.settings.server.containerData}/soulseek:/soulseek"
+        "${config.settings.server.containerData}/media/music:/music:ro"
       ];
       ports = [
         "127.0.0.1:5030:5030"
@@ -39,6 +37,9 @@
       ];
     };
   };
+
+  networking.firewall.allowedTCPPorts = [ 50300 ];
+  networking.firewall.allowedUDPPorts = [ 50300 ];
 
   services.nginx.virtualHosts."soulseek.lan.${config.settings.server.domain}" = {
     useACMEHost = config.settings.server.domain;

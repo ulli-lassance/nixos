@@ -7,7 +7,6 @@
     ./jellyfin.nix
     ./vaultwarden.nix
     ./ddns-updater.nix
-    ./slskd.nix
     # ./invidious.nix
     # ./feishin.nix
     ./baikal.nix
