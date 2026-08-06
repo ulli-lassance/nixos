@@ -14,8 +14,6 @@
       podman.user = config.settings.user.username;
 
       environment = {
-        PUID = "1000";
-        PGID = "100";
         SLSKD_REMOTE_CONFIGURATION = "true";
         SLSKD_DOWNLOADS_DIR = "/soulseek/complete";
         SLSKD_INCOMPLETE_DIR = "/soulseek/incomplete";
