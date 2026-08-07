@@ -22,8 +22,12 @@
       };
 
       volumes = [
-        "${config.settings.server.volumeDirectory}/freshrss/data:/var/www/FreshRSS/data:U"
-        "${config.settings.server.volumeDirectory}/freshrss/extensions:/var/www/FreshRSS/extensions:U"
+        "${config.settings.server.volumeDirectory}/freshrss/data:/var/www/FreshRSS/data"
+        "${config.settings.server.volumeDirectory}/freshrss/extensions:/var/www/FreshRSS/extensions"
+      ];
+
+      extraOptions = [
+        "--userns=keep-id"
       ];
 
       ports = [ "127.0.0.1:8089:80" ];
