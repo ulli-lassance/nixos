@@ -16,9 +16,13 @@
 
       podman.user = config.settings.user.username;
 
+      extraOptions = [
+        "--userns=keep-id"
+      ];
+
       volumes = [
-        "${config.settings.server.volumeDirectory}/radicale/data:/var/lib/radicale:U"
-        "${config.settings.server.volumeDirectory}/radicale/config:/etc/radicale:U"
+        "${config.settings.server.volumeDirectory}/radicale/data:/var/lib/radicale"
+        "${config.settings.server.volumeDirectory}/radicale/config:/etc/radicale"
       ];
 
       ports = [ "127.0.0.1:5232:5232" ];
