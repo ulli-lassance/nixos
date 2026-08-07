@@ -28,7 +28,6 @@
       ];
 
       extraOptions = [
-        "--userns=keep-id"
         "--network=host"
       ];
 
