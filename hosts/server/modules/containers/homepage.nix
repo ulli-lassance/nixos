@@ -17,6 +17,7 @@
 
       environment = {
         TZ = config.time.timeZone;
+        PORT = "8082";
 
         HOMEPAGE_ALLOWED_HOSTS = "homepage.lan.${config.settings.server.domain},homepage.${config.settings.server.domain},127.0.0.1,localhost";
       };
@@ -41,7 +42,7 @@
     forceSSL = true;
 
     locations."/" = {
-      proxyPass = "http://127.0.0.1:3001";
+      proxyPass = "http://127.0.0.1:8082";
     };
   };
 }
