@@ -13,11 +13,11 @@
   systemd.tmpfiles.rules = [
     "d ${config.settings.server.volumeDirectory}/qbittorrent-vpn 0755 ${config.settings.user.username} users -"
     "d ${config.settings.server.volumeDirectory}/qbittorrent-vpn/config 0755 ${config.settings.user.username} users -"
-    "d ${config.settings.server.volumeDirectory}/gluetun 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.server.volumeDirectory}/qbit-gluetun 0755 ${config.settings.user.username} users -"
   ];
 
   virtualisation.oci-containers.containers = {
-    gluetun = {
+    qbit-gluetun = {
       autoStart = true;
       labels = {
         "io.containers.autoupdate" = "registry";
@@ -50,7 +50,7 @@
       };
 
       volumes = [
-        "${config.settings.server.volumeDirectory}/gluetun:/gluetun"
+        "${config.settings.server.volumeDirectory}/qbit-gluetun:/gluetun"
       ];
 
       extraOptions = [
@@ -63,7 +63,7 @@
 
     qbittorrent-vpn = {
       autoStart = true;
-      dependsOn = [ "gluetun" ];
+      dependsOn = [ "qbit-gluetun" ];
       labels = {
         "io.containers.autoupdate" = "registry";
       };
@@ -81,13 +81,13 @@
       ];
 
       extraOptions = [
-        "--network=container:gluetun"
+        "--network=container:qbit-gluetun"
         "--userns=keep-id"
       ];
     };
   };
 
-  systemd.services."podman-gluetun" = {
+  systemd.services."podman-qbit-gluetun" = {
     after = [ "podman-network-arr-net.service" ];
     requires = [ "podman-network-arr-net.service" ];
     partOf = [ "podman-qbittorrent-vpn.service" ];
@@ -96,11 +96,11 @@
   systemd.services."podman-qbittorrent-vpn" = {
     after = [
       "podman-network-arr-net.service"
-      "podman-gluetun.service"
+      "podman-qbit-gluetun.service"
     ];
     requires = [ "podman-network-arr-net.service" ];
-    bindsTo = [ "podman-gluetun.service" ];
-    partOf = [ "podman-gluetun.service" ];
+    bindsTo = [ "podman-qbit-gluetun.service" ];
+    partOf = [ "podman-qbit-gluetun.service" ];
   };
 
   services.nginx.virtualHosts."qbittorrent.lan.${config.settings.server.domain}" = {

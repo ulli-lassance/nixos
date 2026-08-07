@@ -11,7 +11,8 @@
     # ./qbittorrent.nix
     ./qbittorrent-vpn.nix
     ./flaresolverr.nix
-    ./slskd.nix
+    # ./slskd.nix
+    ./slskd-vpn.nix
     ./cleanuparr.nix
     ./seerr.nix
   ];
