@@ -38,7 +38,6 @@
         PORT_FORWARD_ONLY = "on";
         VPN_PORT_FORWARDING = "on";
 
-        GLUETUN_HTTP_CONTROL_SERVER_ENABLE = "on";
         HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE = ''{"auth":"apikey","apikey":"YourSecretKey123"}'';
       };
 
