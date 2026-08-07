@@ -12,6 +12,7 @@
   users = {
     users."${config.settings.user.username}" = {
       isNormalUser = true;
+      uid = 1000;
       createHome = true;
       home = "${config.settings.user.home}";
       extraGroups = [

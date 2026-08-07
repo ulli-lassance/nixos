@@ -23,10 +23,7 @@
 
       volumes = [
         "${config.settings.server.volumeDirectory}/homepage/config:/app/config:U"
-
-        "/run/user/${
-          toString config.users.users.${config.settings.user.username}.uid
-        }/podman/podman.sock:/var/run/docker.sock:ro"
+        "/run/user/1000/podman/podman.sock:/var/run/docker.sock:ro"
       ];
 
       ports = [ "127.0.0.1:3000:3000" ];
