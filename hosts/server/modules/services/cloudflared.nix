@@ -43,10 +43,10 @@
             };
           };
 
-          "baikal.${config.settings.server.domain}" = {
+          "radicale.${config.settings.server.domain}" = {
             service = "https://127.0.0.1:443";
             originRequest = {
-              originServerName = "baikal.lan.${config.settings.server.domain}";
+              originServerName = "radicale.${config.settings.server.domain}";
               noTLSVerify = true;
             };
           };
