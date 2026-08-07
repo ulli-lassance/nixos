@@ -10,6 +10,7 @@
     # ./invidious.nix
     # ./feishin.nix
     ./baikal.nix
+    ./radicale.nix
     ./4get.nix
     ./immich.nix
     ./freshrss.nix
