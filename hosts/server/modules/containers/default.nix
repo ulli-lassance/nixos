@@ -13,5 +13,6 @@
     ./4get.nix
     ./immich.nix
     ./freshrss.nix
+    ./homepage.nix
   ];
 }
