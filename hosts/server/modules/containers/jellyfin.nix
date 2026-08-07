@@ -18,8 +18,8 @@
 
       volumes = [
         "${config.settings.server.containerData}/media:/data/media"
-        "${config.settings.server.volumeDirectory}/jellyfin/config:/config:U"
-        "${config.settings.server.containerCache}/jellyfin:/cache:U"
+        "${config.settings.server.volumeDirectory}/jellyfin/config:/config"
+        "${config.settings.server.containerCache}/jellyfin:/cache"
       ];
       ports = [ "127.0.0.1:8096:8096" ];
 

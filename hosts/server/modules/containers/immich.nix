@@ -141,7 +141,7 @@ in
       };
 
       volumes = [
-        "${config.settings.user.home}/hd1/immich:/data:U"
+        "${config.settings.user.home}/hd1/immich:/data"
         "${config.settings.user.home}/ssd2/pictures:/external_photos"
         "/etc/localtime:/etc/localtime:ro"
       ];

@@ -22,9 +22,9 @@
         ROCKET_PORT = "1984";
       };
       volumes = [
-        "${config.settings.server.volumeDirectory}/vaultwarden/data:/data:U"
-        "${config.settings.server.containerCache}/vaultwarden/icon_cache:/data/icon_cache:U"
-        "${config.settings.server.containerCache}/vaultwarden/tmp:/data/tmp:U"
+        "${config.settings.server.volumeDirectory}/vaultwarden/data:/data"
+        "${config.settings.server.containerCache}/vaultwarden/icon_cache:/data/icon_cache"
+        "${config.settings.server.containerCache}/vaultwarden/tmp:/data/tmp"
       ];
 
       ports = [ "127.0.0.1:1984:1984" ];

@@ -18,7 +18,7 @@
         TZ = config.time.timeZone;
       };
 
-      volumes = [ "${config.settings.server.volumeDirectory}/prowlarr/config:/config:U" ];
+      volumes = [ "${config.settings.server.volumeDirectory}/prowlarr/config:/config" ];
 
       ports = [ "127.0.0.1:9696:9696" ];
 

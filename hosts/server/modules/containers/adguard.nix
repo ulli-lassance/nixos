@@ -24,8 +24,8 @@
     podman.user = config.settings.user.username;
 
     volumes = [
-      "${config.settings.server.volumeDirectory}/adguardhome/work:/opt/adguardhome/work:U"
-      "${config.settings.server.volumeDirectory}/adguardhome/conf:/opt/adguardhome/conf:U"
+      "${config.settings.server.volumeDirectory}/adguardhome/work:/opt/adguardhome/work"
+      "${config.settings.server.volumeDirectory}/adguardhome/conf:/opt/adguardhome/conf"
     ];
     extraOptions = [
       "--network=host"

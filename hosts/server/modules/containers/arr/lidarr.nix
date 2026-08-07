@@ -22,7 +22,7 @@
       };
 
       volumes = [
-        "${config.settings.server.volumeDirectory}/lidarr/config:/config:U"
+        "${config.settings.server.volumeDirectory}/lidarr/config:/config"
         "${config.settings.server.containerCache}/lidarr/MediaCover:/config/MediaCover"
         "${config.settings.server.containerData}:/data"
       ];

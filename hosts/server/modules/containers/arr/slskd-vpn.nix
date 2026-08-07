@@ -122,7 +122,7 @@ in
       };
 
       volumes = [
-        "${config.settings.server.volumeDirectory}/slskd-vpn:/app:U"
+        "${config.settings.server.volumeDirectory}/slskd-vpn:/app"
         "${config.settings.server.containerData}/soulseek:/soulseek"
         "${config.settings.server.containerData}/media/music:/music:ro"
       ];

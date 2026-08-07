@@ -66,7 +66,7 @@ in
         SLSKD_NO_AUTH = "true";
       };
       volumes = [
-        "${config.settings.server.volumeDirectory}/slskd:/app:U"
+        "${config.settings.server.volumeDirectory}/slskd:/app"
         "${config.settings.server.containerData}/soulseek:/soulseek"
         "${config.settings.server.containerData}/media/music:/music:ro"
       ];

@@ -79,7 +79,7 @@
         TZ = config.time.timeZone;
       };
       volumes = [
-        "${config.settings.server.volumeDirectory}/qbittorrent-vpn/config:/config:U"
+        "${config.settings.server.volumeDirectory}/qbittorrent-vpn/config:/config"
         "${config.settings.server.containerData}/torrents:/data/torrents"
       ];
 

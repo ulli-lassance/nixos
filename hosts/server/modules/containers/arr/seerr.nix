@@ -20,7 +20,7 @@
       };
 
       volumes = [
-        "${config.settings.server.volumeDirectory}/seerr/config:/app/config:U"
+        "${config.settings.server.volumeDirectory}/seerr/config:/app/config"
       ];
       ports = [ "127.0.0.1:5055:5055" ];
 

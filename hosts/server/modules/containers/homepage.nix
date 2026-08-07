@@ -23,7 +23,7 @@
       };
 
       volumes = [
-        "${config.settings.server.volumeDirectory}/homepage/config:/app/config:U"
+        "${config.settings.server.volumeDirectory}/homepage/config:/app/config"
         "/run/user/1000/podman/podman.sock:/var/run/docker.sock:ro"
       ];
 

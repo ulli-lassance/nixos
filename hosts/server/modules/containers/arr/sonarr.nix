@@ -22,8 +22,8 @@
       };
 
       volumes = [
-        "${config.settings.server.volumeDirectory}/sonarr/config:/config:U"
-        "${config.settings.server.containerCache}/sonarr/MediaCover:/config/MediaCover:U"
+        "${config.settings.server.volumeDirectory}/sonarr/config:/config"
+        "${config.settings.server.containerCache}/sonarr/MediaCover:/config/MediaCover"
         "${config.settings.server.containerData}:/data"
       ];
       ports = [ "127.0.0.1:8989:8989" ];

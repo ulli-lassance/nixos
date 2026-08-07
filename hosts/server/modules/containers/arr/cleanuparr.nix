@@ -19,7 +19,7 @@
       };
 
       volumes = [
-        "${config.settings.server.volumeDirectory}/cleanuparr/config:/config:U"
+        "${config.settings.server.volumeDirectory}/cleanuparr/config:/config"
       ];
       ports = [ "127.0.0.1:11011:11011" ];
 

@@ -20,7 +20,7 @@
         TZ = config.time.timeZone;
       };
       volumes = [
-        "${config.settings.server.volumeDirectory}/qbittorrent/config:/config:U"
+        "${config.settings.server.volumeDirectory}/qbittorrent/config:/config"
         "${config.settings.server.containerData}/torrents:/data/torrents"
       ];
       ports = [

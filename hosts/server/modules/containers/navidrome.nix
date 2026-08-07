@@ -25,8 +25,8 @@
       };
       volumes = [
         "${config.settings.server.containerData}/media/music:/music:ro"
-        "${config.settings.server.volumeDirectory}/navidrome/data:/data:U"
-        "${config.settings.server.containerCache}/navidrome:/data/cache:U"
+        "${config.settings.server.volumeDirectory}/navidrome/data:/data"
+        "${config.settings.server.containerCache}/navidrome:/data/cache"
       ];
       ports = [ "127.0.0.1:4533:4533" ];
 
