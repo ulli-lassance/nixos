@@ -26,7 +26,8 @@
       podman.user = config.settings.user.username;
 
       ports = [
-        "127.0.0.1:8080:8080"
+        "127.0.0.1:8080:8080" # webui
+        "127.0.0.1:8001:8000" # http control server
       ];
 
       environmentFiles = [
@@ -39,6 +40,8 @@
         SERVER_COUNTRIES = "Uruguay,Brazil,Argentina,Paraguay";
         PORT_FORWARD_ONLY = "on";
         VPN_PORT_FORWARDING = "on";
+
+        HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE = ''{"auth":"apikey","apikey":"J53y9cfFHmK8xszQ5PfhKgTak61rkia6"}'';
 
         VPN_PORT_FORWARDING_UP_COMMAND = ''
           /bin/sh -c 'until wget -qO- http://127.0.0.1:8080/api/v2/app/version >/dev/null 2>&1; do sleep 2; done; wget -qO- --retry-connrefused --header="Referer: http://127.0.0.1:8080" --post-data "json={\"listen_port\":{{PORT}},\"current_network_interface\":\"{{VPN_INTERFACE}}\",\"random_port\":false,\"upnp\":false}" http://127.0.0.1:8080/api/v2/app/setPreferences'

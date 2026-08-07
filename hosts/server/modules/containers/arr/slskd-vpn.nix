@@ -71,6 +71,7 @@ in
 
       ports = [
         "127.0.0.1:5030:5030"
+        "127.0.0.1:8002:8000" # http control server
       ];
 
       environmentFiles = [
@@ -84,7 +85,7 @@ in
         PORT_FORWARD_ONLY = "on";
         VPN_PORT_FORWARDING = "on";
 
-        HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE = ''{"auth":"apikey","apikey":"YourSecretKey123"}'';
+        HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE = ''{"auth":"apikey","apikey":"y5vX8koCOewPSWKU7C4B3sbLQNraqOFa"}'';
       };
 
       volumes = [
@@ -117,7 +118,7 @@ in
         SLSKD_VPN = "true";
         SLSKD_VPN_PORT_FORWARDING = "true";
         SLSKD_VPN_GLUETUN_URL = "http://localhost:8000";
-        SLSKD_VPN_GLUETUN_API_KEY = "YourSecretKey123";
+        SLSKD_VPN_GLUETUN_API_KEY = "y5vX8koCOewPSWKU7C4B3sbLQNraqOFa";
       };
 
       volumes = [
