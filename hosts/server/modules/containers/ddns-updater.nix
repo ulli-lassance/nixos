@@ -37,11 +37,12 @@
     podman.user = config.settings.user.username;
 
     volumes = [
-      "${config.settings.server.volumeDirectory}/ddns-updater/data:/updater/data:U"
+      "${config.settings.server.volumeDirectory}/ddns-updater/data:/updater/data"
     ];
 
     extraOptions = [
       "--network=bridge"
+      "--userns=keep-id"
     ];
     ports = [ "127.0.0.1:8000:8000" ];
 
