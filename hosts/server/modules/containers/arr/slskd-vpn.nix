@@ -4,6 +4,16 @@
     "d ${config.settings.server.volumeDirectory}/slskd-gluetun 0755 ${config.settings.user.username} users -"
   ];
 
+  sops.secrets.slskd_protonvpn_wg_key = {
+  };
+
+  sops.templates."slskd-gluetun-wg-key.env" = {
+    owner = config.settings.user.username;
+    content = ''
+      WIREGUARD_PRIVATE_KEY=${config.sops.placeholder.slskd_protonvpn_wg_key}
+    '';
+  };
+
   virtualisation.oci-containers.containers = {
     slskd-gluetun = {
       autoStart = true;
@@ -18,7 +28,7 @@
       ];
 
       environmentFiles = [
-        config.sops.templates."gluetun-protonvpn.env".path
+        config.sops.templates."slskd-gluetun-wg-key.env".path
       ];
 
       environment = {

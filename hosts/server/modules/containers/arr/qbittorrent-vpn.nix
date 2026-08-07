@@ -1,12 +1,12 @@
 { config, ... }: {
 
-  sops.secrets.protonvpn_wg_key = {
+  sops.secrets.qbit_protonvpn_wg_key = {
   };
 
-  sops.templates."gluetun-protonvpn.env" = {
+  sops.templates."qbit-gluetun-wg-key.env" = {
     owner = config.settings.user.username;
     content = ''
-      WIREGUARD_PRIVATE_KEY=${config.sops.placeholder.protonvpn_wg_key}
+      WIREGUARD_PRIVATE_KEY=${config.sops.placeholder.qbit_protonvpn_wg_key}
     '';
   };
 
@@ -30,7 +30,7 @@
       ];
 
       environmentFiles = [
-        config.sops.templates."gluetun-protonvpn.env".path
+        config.sops.templates."qbit-gluetun-wg-key.env".path
       ];
 
       environment = {
