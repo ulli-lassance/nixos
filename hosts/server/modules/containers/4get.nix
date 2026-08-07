@@ -20,7 +20,7 @@
 
       volumes = [
         # custom banners
-        # "${config.settings.server.volumeDirectory}/4get/banners:/var/www/html/4get/banner:U"
+        # "${config.settings.server.volumeDirectory}/4get/banners:/var/www/html/4get/banner"
       ];
     };
   };
