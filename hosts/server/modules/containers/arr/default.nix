@@ -8,11 +8,9 @@
     ./sonarr.nix
     ./bazarr.nix
     ./prowlarr.nix
-    # ./qbittorrent.nix
-    ./qbittorrent-vpn.nix
+    ./qbittorrent
     ./flaresolverr.nix
-    # ./slskd.nix
-    ./slskd-vpn.nix
+    ./slskd
     ./cleanuparr.nix
     ./seerr.nix
   ];
