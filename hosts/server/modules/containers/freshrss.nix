@@ -26,10 +26,6 @@
         "${config.settings.server.volumeDirectory}/freshrss/extensions:/var/www/FreshRSS/extensions"
       ];
 
-      extraOptions = [
-        "--userns=keep-id"
-      ];
-
       ports = [ "127.0.0.1:8089:80" ];
     };
   };
