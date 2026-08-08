@@ -13,5 +13,6 @@
     ./slskd
     ./cleanuparr.nix
     ./seerr.nix
+    ./autobrr.nix
   ];
 }
