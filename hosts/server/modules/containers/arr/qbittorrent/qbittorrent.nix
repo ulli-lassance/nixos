@@ -44,7 +44,7 @@
   networking.firewall.allowedTCPPorts = [ 6881 ];
   networking.firewall.allowedUDPPorts = [ 6881 ];
 
-  services.nginx.virtualHosts."qbittorrent.lan.${config.settings.server.domain}" = {
+  services.nginx.virtualHosts."qbit.lan.${config.settings.server.domain}" = {
     useACMEHost = config.settings.server.domain;
     forceSSL = true;
     locations."/" = {

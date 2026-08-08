@@ -1,6 +1,6 @@
 { ... }: {
   imports = [
-    # ./qbittorrent.nix
+    ./qbittorrent.nix
     ./qbittorrent-vpn.nix
   ];
 }

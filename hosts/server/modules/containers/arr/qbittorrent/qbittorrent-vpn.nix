@@ -106,7 +106,7 @@
     partOf = [ "podman-qbit-gluetun.service" ];
   };
 
-  services.nginx.virtualHosts."qbittorrent.lan.${config.settings.server.domain}" = {
+  services.nginx.virtualHosts."qbit-vpn.lan.${config.settings.server.domain}" = {
     useACMEHost = config.settings.server.domain;
     forceSSL = true;
     locations."/" = {
