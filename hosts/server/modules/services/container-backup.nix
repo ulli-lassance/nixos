@@ -50,8 +50,12 @@ in
 
       path = [ pkgs.rsync ];
 
+      restartIfChanged = false;
+
       serviceConfig = {
         Type = "oneshot";
+        RemainAfterExit = true;
+
         User = "root";
         TimeoutStartSec = "300";
       };
