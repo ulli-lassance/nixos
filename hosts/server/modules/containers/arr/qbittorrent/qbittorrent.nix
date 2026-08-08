@@ -16,7 +16,7 @@
 
       environment = {
         WEBUI_PORT = "8081";
-        TORRENTING_PORT = "6881";
+        TORRENTING_PORT = "50413";
         TZ = config.time.timeZone;
       };
       volumes = [
@@ -25,8 +25,8 @@
       ];
       ports = [
         "127.0.0.1:8081:8081"
-        "6881:6881"
-        "6881:6881/udp"
+        "50413:50413"
+        "50413:50413/udp"
       ];
 
       extraOptions = [
@@ -41,8 +41,8 @@
     requires = [ "podman-network-arr-net.service" ];
   };
 
-  networking.firewall.allowedTCPPorts = [ 6881 ];
-  networking.firewall.allowedUDPPorts = [ 6881 ];
+  networking.firewall.allowedTCPPorts = [ 50413 ];
+  networking.firewall.allowedUDPPorts = [ 50413 ];
 
   services.nginx.virtualHosts."qbit.lan.${config.settings.server.domain}" = {
     useACMEHost = config.settings.server.domain;
