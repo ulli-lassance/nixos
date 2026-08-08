@@ -30,7 +30,7 @@
 
   systemd.services."podman-autobrr" = {
     after = [ "podman-network-arr-net.service" ];
-    reautobrrres = [ "podman-network-arr-net.service" ];
+    requires = [ "podman-network-arr-net.service" ];
   };
 
   services.nginx.virtualHosts."autobrr.lan.${config.settings.server.domain}" = {
