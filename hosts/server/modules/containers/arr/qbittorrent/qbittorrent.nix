@@ -15,7 +15,7 @@
       podman.user = config.settings.user.username;
 
       environment = {
-        WEBUI_PORT = "8080";
+        WEBUI_PORT = "8081";
         TORRENTING_PORT = "6881";
         TZ = config.time.timeZone;
       };
@@ -24,7 +24,7 @@
         "${config.settings.server.containerData}/torrents:/data/torrents"
       ];
       ports = [
-        "127.0.0.1:8080:8080"
+        "127.0.0.1:8081:8081"
         "6881:6881"
         "6881:6881/udp"
       ];
@@ -48,7 +48,7 @@
     useACMEHost = config.settings.server.domain;
     forceSSL = true;
     locations."/" = {
-      proxyPass = "http://127.0.0.1:8080";
+      proxyPass = "http://127.0.0.1:8081";
       proxyWebsockets = true;
       extraConfig = ''
         proxy_set_header Host $host;
