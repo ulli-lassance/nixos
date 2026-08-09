@@ -1,48 +1,4 @@
-{ config, pkgs, ... }:
-
-let
-  srcDir = "${config.settings.server.containerData}/soulseek/complete";
-  destDir = "${config.settings.server.containerData}/media/music/unsorted";
-
-  moveSoulseekMusic = pkgs.writeShellApplication {
-    name = "move-soulseek-music";
-
-    runtimeInputs = [
-      pkgs.coreutils
-    ];
-
-    text = ''
-      SRC="${srcDir}"
-      DEST="${destDir}"
-
-      if [ ! -d "$SRC" ]; then
-        echo "Error: Source directory '$SRC' does not exist." >&2
-        exit 1
-      fi
-
-      if [ ! -d "$DEST" ]; then
-        echo "Error: Destination directory '$DEST' does not exist." >&2
-        exit 1
-      fi
-
-      shopt -s nullglob dotglob
-      files=("$SRC"/*)
-
-      if [ ''${#files[@]} -eq 0 ]; then
-        echo "No music files found in '$SRC' to move."
-        exit 0
-      fi
-
-      echo "Moving ''${#files[@]} item(s) from '$SRC' to '$DEST'..."
-      mv "''${files[@]}" "$DEST"/
-      echo "Done!"
-    '';
-  };
-in
-{
-  environment.systemPackages = [
-    moveSoulseekMusic
-  ];
+{ config, ... }: {
 
   systemd.tmpfiles.rules = [
     "d ${config.settings.server.volumeDirectory}/slskd 0755 ${config.settings.user.username} users -"
@@ -77,6 +33,7 @@ in
 
       extraOptions = [
         "--userns=keep-id"
+        "--network=arr-net"
       ];
     };
   };
