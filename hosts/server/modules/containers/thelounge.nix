@@ -19,6 +19,10 @@
       ];
 
       ports = [ "127.0.0.1:9000:9000" ];
+
+      extraOptions = [
+        "--userns=keep-id"
+      ];
     };
   };
 
