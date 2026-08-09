@@ -16,6 +16,7 @@
 
       volumes = [
         "${config.settings.server.volumeDirectory}/qui/config:/config"
+        "${config.settings.server.containerData}/torrents:/data/torrents"
       ];
       ports = [
         "127.0.0.1:7476:7476"
