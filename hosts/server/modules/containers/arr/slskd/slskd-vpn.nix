@@ -65,9 +65,9 @@
 
       environment = {
         SLSKD_REMOTE_CONFIGURATION = "true";
-        SLSKD_DOWNLOADS_DIR = "/soulseek/complete";
-        SLSKD_INCOMPLETE_DIR = "/soulseek/incomplete";
-        SLSKD_SHARED_DIR = "/music";
+        SLSKD_DOWNLOADS_DIR = "/data/soulseek/complete";
+        SLSKD_INCOMPLETE_DIR = "/data/soulseek/incomplete";
+        SLSKD_SHARED_DIR = "/data/media/music";
         SLSKD_NO_AUTH = "true";
 
         SLSKD_VPN = "true";
@@ -78,8 +78,8 @@
 
       volumes = [
         "${config.settings.server.volumeDirectory}/slskd-vpn:/app"
-        "${config.settings.server.containerData}/soulseek:/soulseek"
-        "${config.settings.server.containerData}/media/music:/music:ro"
+        "${config.settings.server.containerData}/soulseek:/data/soulseek"
+        "${config.settings.server.containerData}/media/music:/data/media/music:ro"
       ];
 
       extraOptions = [
