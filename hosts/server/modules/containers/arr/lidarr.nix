@@ -13,7 +13,7 @@
       labels = {
         "io.containers.autoupdate" = "registry";
       };
-      image = "lscr.io/linuxserver/lidarr:latest";
+      image = "lscr.io/linuxserver/lidarr:nightly";
 
       podman.user = config.settings.user.username;
 
