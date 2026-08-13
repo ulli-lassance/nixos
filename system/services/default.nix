@@ -6,5 +6,6 @@
     ./virtualisation.nix
     ./bluetooth.nix
     ./audio.nix
+    ./avahi.nix
   ];
 }

@@ -27,6 +27,7 @@
 
     podman.enable = true;
     ssh.enable = true;
+    avahi.enable = true;
   };
 
   services.containerVolumeBackup = {
