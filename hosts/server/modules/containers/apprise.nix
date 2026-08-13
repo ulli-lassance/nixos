@@ -30,11 +30,11 @@
         "${config.settings.server.volumeDirectory}/apprise/plugin:/plugin"
         "${config.settings.server.volumeDirectory}/apprise/attach:/attach"
       ];
-
       ports = [ "127.0.0.1:8100:8000" ];
 
       extraOptions = [
         "--network=arr-net"
+        "--userns=keep-id"
       ];
     };
   };
