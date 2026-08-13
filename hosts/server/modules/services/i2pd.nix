@@ -12,11 +12,16 @@
       4444
       4447
       7656
+      27500
+    ];
+    allowedUDPPorts = [
+      27500
     ];
   };
 
   services.i2pd = {
     enable = true;
+    port = 27500;
 
     bandwidth = 2048;
 
