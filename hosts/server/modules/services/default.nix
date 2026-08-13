@@ -6,5 +6,6 @@
     ./nginx.nix
     ./wireguard
     ./cloudflared.nix
+    ./i2pd.nix
   ];
 }
