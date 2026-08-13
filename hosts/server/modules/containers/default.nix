@@ -13,6 +13,5 @@
     ./freshrss.nix
     ./homepage.nix
     ./thelounge.nix
-    ./apprise.nix
   ];
 }
