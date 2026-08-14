@@ -23,7 +23,8 @@
     enable = true;
     port = 27500;
 
-    bandwidth = 2048;
+    # in KBps, default is 32
+    # bandwidth = 2048;
 
     proto = {
       http = {
