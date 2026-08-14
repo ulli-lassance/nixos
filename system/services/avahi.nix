@@ -10,6 +10,7 @@ in
   config = lib.mkIf cfg.enable {
     services.avahi = {
       enable = true;
+      ipv6 = false;
       nssmdns4 = true;
       openFirewall = true;
 
@@ -19,23 +20,6 @@ in
         domain = true;
         userServices = true;
         workstation = true;
-      };
-
-      extraServiceFiles = {
-        smb = ''
-          <service-group>
-            <name replace-wildcards="yes">%h</name>
-            <service>
-              <type>_smb._tcp</type>
-              <port>445</port>
-            </service>
-            <service>
-              <type>_device-info._tcp</type>
-              <port>0</port>
-              <txt-record>model=RackMac</txt-record>
-            </service>
-          </service-group>
-        '';
       };
     };
   };
