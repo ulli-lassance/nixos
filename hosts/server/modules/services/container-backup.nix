@@ -63,7 +63,7 @@ in
       script = ''
         echo "starting Pre-Boot container backup..."
 
-        # Ensure destination exists
+        # ensure destination exists
         mkdir -p "${cfg.destination}"
 
         DELETE_FLAG=""
