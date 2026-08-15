@@ -41,7 +41,7 @@
     environment = {
       TZ = config.time.timeZone;
       DNS_SERVER_DOMAIN = "technitium-dns-server";
-      DNS_SERVER_OPTIONAL_PROTOCOL_DNS_OVER_HTTP = true;
+      DNS_SERVER_OPTIONAL_PROTOCOL_DNS_OVER_HTTP = "true";
       DNS_SERVER_WEB_SERVICE_HTTP_PORT = "5380";
 
     };
