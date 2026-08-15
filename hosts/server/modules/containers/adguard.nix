@@ -23,6 +23,10 @@
 
     podman.user = config.settings.user.username;
 
+    environment = {
+      TZ = config.time.timeZone;
+    };
+
     volumes = [
       "${config.settings.server.volumeDirectory}/adguardhome/work:/opt/adguardhome/work"
       "${config.settings.server.volumeDirectory}/adguardhome/conf:/opt/adguardhome/conf"
@@ -36,6 +40,7 @@
     53
     3000
   ];
+
   networking.firewall.allowedUDPPorts = [ 53 ];
 
   services.nginx.virtualHosts."adguard.lan.${config.settings.server.domain}" = {

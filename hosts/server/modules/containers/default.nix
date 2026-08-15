@@ -2,7 +2,8 @@
   imports = [
     ./arr
 
-    ./adguard.nix
+    # ./adguard.nix
+    ./technitium.nix
     ./navidrome.nix
     ./jellyfin.nix
     ./vaultwarden.nix
