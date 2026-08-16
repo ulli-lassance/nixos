@@ -1,7 +1,7 @@
 { ... }: {
   imports = [
     ./arr
-
+	
     ./technitium.nix
     ./navidrome.nix
     ./jellyfin.nix
@@ -12,6 +12,7 @@
     ./immich.nix
     ./freshrss.nix
     ./homepage.nix
+    ./beszel.nix
     ./thelounge.nix
   ];
 }

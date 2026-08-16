@@ -27,9 +27,14 @@
         "/run/user/1000/podman/podman.sock:/var/run/docker.sock:ro"
       ];
 
+      ports = [
+              "127.0.0.1:8082:8082"
+      ];
+
       extraOptions = [
-        "--network=host"
+        # "--network=host"
         "--userns=keep-id"
+        "--network=pasta:--map-gw"
       ];
 
     };

@@ -47,7 +47,7 @@
 
       environment = {
         PORT = "45876";
-        KEY = "YOUR_BESZEL_PUBLIC_KEY_HERE";
+        KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINAqXQiJQqkx5uRT735hcoMNyyqsCQ8CUZPPmBVtgx/U";
       };
 
       volumes = [
