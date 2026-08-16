@@ -12,7 +12,6 @@
     ./immich.nix
     ./freshrss.nix
     ./homepage.nix
-    ./beszel.nix
     ./thelounge.nix
   ];
 }
