@@ -29,12 +29,6 @@
       "127.0.0.1:8053:80/tcp"
     ];
 
-    # if i plan to use dhcp server
-    # extraOptions = [
-    #   "--network=host"
-    #   "--cap-add=NET_RAW"
-    # ];
-
     volumes = [
       "${config.settings.server.volumeDirectory}/technitium/config:/etc/dns"
     ];
@@ -42,7 +36,6 @@
     environment = {
       TZ = config.time.timeZone;
       DNS_SERVER_DOMAIN = "technitium-dns-server";
-      DNS_SERVER_OPTIONAL_PROTOCOL_DNS_OVER_HTTP = "true";
       DNS_SERVER_WEB_SERVICE_HTTP_PORT = "5380";
 
     };

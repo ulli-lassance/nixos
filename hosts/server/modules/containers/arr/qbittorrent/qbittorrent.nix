@@ -51,9 +51,6 @@
       proxyPass = "http://127.0.0.1:8081";
       proxyWebsockets = true;
       extraConfig = ''
-        proxy_set_header Host $host;
-        proxy_set_header X-Forwarded-For $remote_addr;
-        proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header Referer "";
         proxy_set_header Origin "";
       '';
