@@ -26,6 +26,7 @@
       "53:53/tcp"
       "53:53/udp"
       "127.0.0.1:5380:5380/tcp"
+      "127.0.0.1:8053:80/tcp"
     ];
 
     # if i plan to use dhcp server
@@ -56,7 +57,7 @@
     http2 = true;
 
     locations."/dns-query" = {
-      proxyPass = "http://127.0.0.1:5380/dns-query";
+      proxyPass = "http://127.0.0.1:8053/dns-query";
 
       extraConfig = ''
         proxy_set_header Host $host;
