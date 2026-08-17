@@ -13,5 +13,6 @@
     ./freshrss.nix
     ./homepage.nix
     ./thelounge.nix
+    ./bezsel-hub.nix
   ];
 }

@@ -11,6 +11,6 @@
   boot.kernelParams = [ "i915.enable_guc=3" ];
 
   environment.systemPackages = [
-    pkgs.intel-gpu-tools
+    pkgs.nvtopPackages.intel
   ];
 }

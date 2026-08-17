@@ -7,5 +7,6 @@
     ./wireguard
     ./cloudflared.nix
     # ./i2pd.nix
+    ./beszel-agent.nix
   ];
 }
