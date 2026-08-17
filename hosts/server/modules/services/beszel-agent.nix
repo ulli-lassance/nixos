@@ -17,7 +17,7 @@
       GPU_COLLECTOR = "nvtop";
     };
 
-    extraPath = pkgs.nvtopPackages.intel;
+    extraPath = [ pkgs.nvtopPackages.intel ];
   };
 
   systemd.services.beszel-agent.serviceConfig = {
