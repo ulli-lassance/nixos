@@ -22,7 +22,7 @@
 
   systemd.services.beszel-agent.serviceConfig = {
     # needed to read the rootless podman socket
-    User = config.settings.user.username;
+    User = lib.mkForce config.settings.user.username;
     DynamicUser = lib.mkForce false;
   };
 }
