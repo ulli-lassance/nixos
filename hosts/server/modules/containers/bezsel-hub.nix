@@ -43,6 +43,7 @@
       proxyPass = "http://127.0.0.1:8090";
       extraConfig = ''
         proxy_read_timeout 360s;
+        client_max_body_size 10M;
       '';
     };
   };
