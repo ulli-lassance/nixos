@@ -1,7 +1,7 @@
 { ... }: {
   imports = [
     ./arr
-	
+
     ./technitium.nix
     ./navidrome.nix
     ./jellyfin.nix
