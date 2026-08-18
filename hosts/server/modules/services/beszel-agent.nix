@@ -13,7 +13,7 @@
     smartmon.enable = true;
     environment = {
       DOCKER_HOST = "unix:///run/user/1000/podman/podman.sock";
-      KEY = "ssh-ed25519...";
+      KEY = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAkXUOUDaoRTfJGIGjazg6ZB8ZJWXloNbn9YBD26KJxQ";
       GPU_COLLECTOR = "nvtop";
     };
 

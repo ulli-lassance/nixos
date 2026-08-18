@@ -28,6 +28,10 @@
         "${config.settings.server.volumeDirectory}/beszel/data:/beszel_data"
       ];
 
+      extraOptions = [
+          # "--network=host"
+       ];
+
     };
 
   };
@@ -39,6 +43,7 @@
     forceSSL = true;
 
     locations."/" = {
+      proxyWebsockets = true;
       proxyPass = "http://127.0.0.1:8090";
     };
   };
