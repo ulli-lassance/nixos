@@ -12,7 +12,7 @@
     ./immich.nix
     ./freshrss.nix
     ./homepage.nix
-    ./thelounge.nix
+    # ./thelounge.nix
     ./bezsel-hub.nix
   ];
 }

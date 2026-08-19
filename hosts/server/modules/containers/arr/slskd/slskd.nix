@@ -43,7 +43,7 @@
   networking.firewall.allowedTCPPorts = [ 50300 ];
   networking.firewall.allowedUDPPorts = [ 50300 ];
 
-  services.nginx.virtualHosts."soulseek.lan.${config.settings.server.domain}" = {
+  services.nginx.virtualHosts."slskd.lan.${config.settings.server.domain}" = {
     useACMEHost = config.settings.server.domain;
     forceSSL = true;
     extraConfig = ''
