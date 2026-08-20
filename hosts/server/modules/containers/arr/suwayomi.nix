@@ -1,8 +1,10 @@
 { config, ... }: {
   systemd.tmpfiles.rules = [
     "d ${config.settings.server.volumeDirectory}/suwayomi 0755 ${config.settings.user.username} users -"
-    "d ${config.settings.server.volumeDirectory}/suwayomi/downloads 0755 ${config.settings.user.username} users -"
     "d ${config.settings.server.volumeDirectory}/suwayomi/data 0755 ${config.settings.user.username} users -"
+
+    "d ${config.settings.server.containerCache}/suwayomi 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.server.containerCache}/suwayomi/cache 0755 ${config.settings.user.username} users -"
   ];
 
   virtualisation.oci-containers.containers = {
@@ -14,13 +16,15 @@
 
       environment = {
         "TZ" = "Etc/UTC";
+        "DOWNLOAD_AS_CBZ" = "true";
         "FLARESOLVERR_ENABLED" = "true";
         "FLARESOLVERR_URL" = "http://flaresolverr:8191";
       };
 
       volumes = [
-        "${config.settings.server.volumeDirectory}/suwayomi/downloads:/home/suwayomi/.local/share/Tachidesk/downloads"
+        "${config.settings.server.containerData}/media/manga:/home/suwayomi/.local/share/Tachidesk/downloads"
         "${config.settings.server.volumeDirectory}/suwayomi/data:/home/suwayomi/.local/share/Tachidesk"
+        "${config.settings.server.containerCache}/suwayomi/cache:/home/suwayomi/.local/share/Tachidesk/cache"
       ];
 
       ports = [
@@ -32,6 +36,11 @@
         "--userns=keep-id"
       ];
     };
+  };
+
+  systemd.services."podman-suwayomi" = {
+    after = [ "podman-network-arr-net.service" ];
+    requires = [ "podman-network-arr-net.service" ];
   };
 
   services.nginx.virtualHosts."suwayomi.lan.${config.settings.server.domain}" = {

@@ -15,5 +15,6 @@
     "d ${config.settings.server.containerData}/media/movies 0755 ${config.settings.user.username} users -"
     "d ${config.settings.server.containerData}/media/music 0755 ${config.settings.user.username} users -"
     "d ${config.settings.server.containerData}/media/tv 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.server.containerData}/media/manga 0755 ${config.settings.user.username} users -"
   ];
 }
