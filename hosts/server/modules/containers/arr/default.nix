@@ -14,5 +14,6 @@
     ./cleanuparr.nix
     ./seerr.nix
     ./autobrr.nix
+    ./suwayomi.nix
   ];
 }
