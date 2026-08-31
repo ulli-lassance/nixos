@@ -10,6 +10,9 @@
   virtualisation.oci-containers.containers = {
     suwayomi = {
       autoStart = true;
+      labels = {
+        "io.containers.autoupdate" = "registry";
+      };
       image = "ghcr.io/suwayomi/suwayomi-server:preview";
 
       podman.user = config.settings.user.username;
