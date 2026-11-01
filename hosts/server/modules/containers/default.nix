@@ -8,11 +8,10 @@
     ./vaultwarden.nix
     ./ddns-updater.nix
     ./radicale.nix
-    ./4get.nix
+    ./degoog.nix
     ./immich.nix
     ./freshrss.nix
     ./homepage.nix
-    # ./thelounge.nix
     ./bezsel-hub.nix
   ];
 }
