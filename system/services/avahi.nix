@@ -10,16 +10,20 @@ in
   config = lib.mkIf cfg.enable {
     services.avahi = {
       enable = true;
-      ipv6 = false;
       nssmdns4 = true;
       openFirewall = true;
 
-      publish = {
-        enable = true;
-        addresses = true;
-        domain = true;
-        userServices = true;
-        workstation = true;
+      settings = {
+        server = {
+          use-ipv6 = false;
+        };
+        publish = {
+          disable-publishing = false;
+          disable-user-service-publishing = false;
+          publish-addresses = true;
+          publish-domain = true;
+          publish-workstation = true;
+        };
       };
     };
   };
