@@ -13,5 +13,6 @@
     ./freshrss.nix
     ./homepage.nix
     ./bezsel-hub.nix
+    ./invidious.nix
   ];
 }
