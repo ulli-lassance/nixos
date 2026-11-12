@@ -42,9 +42,20 @@
         "${config.settings.server.volumeDirectory}/degoog/data:/app/data"
       ];
 
+      # bypass the image entrypoint (degoog issue #359): it always runs
+      # `chown` + `su-exec`, which cannot work in a rootless podman userns
+      # ("chown: /app/data: Operation not permitted" /
+      #  "su-exec: setgroups(1000): Operation not permitted").
+      # Running `bun` directly means the process is container uid 0, which
+      # under the default rootless mapping IS the host user - so data files
+      # end up owned by that user on the host, no chown needed.
+      entrypoint = "bun";
+      cmd = [ "run" "src/server/index.ts" ];
+      # NOTE: if a future image update changes the start command, mirror it
+      # here (it currently is `bun run src/server/index.ts`).
+
       extraOptions = [
-        "--userns=keep-id"
-        "--network=arr-net" # for flaresolverr things
+        # "--userns=keep-id"
       ];
     };
   };
