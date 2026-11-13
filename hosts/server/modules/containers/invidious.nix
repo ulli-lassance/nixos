@@ -90,7 +90,7 @@ in
   virtualisation.oci-containers.containers = {
     invidious-db = {
       autoStart = true;
-      image = "docker.io/library/postgres:18";
+      image = "docker.io/library/postgres:14";
       podman.user = config.settings.user.username;
 
       environmentFiles = [ config.sops.templates."invidious-db.env".path ];
@@ -101,7 +101,7 @@ in
       };
 
       volumes = [
-        "${config.settings.server.volumeDirectory}/invidious/postgres:/var/lib/postgresql"
+        "${config.settings.server.volumeDirectory}/invidious/postgres:/var/lib/postgresql/data"
       ];
       extraOptions = [
       	"--userns=keep-id"
