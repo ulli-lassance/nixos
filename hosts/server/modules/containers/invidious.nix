@@ -130,7 +130,6 @@ in
       ports = [ "127.0.0.1:${toString invidiousCompanionPort}:8282" ];
 
       extraOptions = [
-        "--userns=keep-id"
         "--network=invidious-net"
         "--cap-drop=ALL"
         "--read-only"
