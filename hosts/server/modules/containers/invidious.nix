@@ -130,6 +130,7 @@ in
       ports = [ "127.0.0.1:${toString invidiousCompanionPort}:8282" ];
 
       extraOptions = [
+        "--userns=keep-id"
         "--network=invidious-net"
         "--cap-drop=ALL"
         "--read-only"
@@ -158,6 +159,7 @@ in
 
       ports = [ "127.0.0.1:${toString invidiousPort}:${toString invidiousPort}" ];
       extraOptions = [
+        "--userns=keep-id"
         "--network=invidious-net"
         "--health-cmd=wget -nv --tries=1 --spider http://127.0.0.1:${toString invidiousPort}/api/v1/stats || exit 1"
         "--health-interval=30s"

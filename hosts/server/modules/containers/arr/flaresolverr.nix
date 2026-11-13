@@ -11,7 +11,10 @@
 
       ports = [ "127.0.0.1:8191:8191" ];
 
-      extraOptions = [ "--network=arr-net" ];
+      extraOptions = [
+        "--network=arr-net"
+        "--userns=keep-id"
+      ];
     };
   };
 

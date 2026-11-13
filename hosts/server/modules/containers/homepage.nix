@@ -33,7 +33,6 @@
 
       extraOptions = [
         "--network=host"
-        "--userns=keep-id"
       ];
 
     };
