@@ -207,8 +207,6 @@ in
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString invidiousPort}";
       extraConfig = ''
-        proxy_set_header X-Forwarded-For $remote_addr;
-        proxy_set_header Host $host;
         proxy_http_version 1.1;
         proxy_set_header Connection "";
       '';
@@ -217,8 +215,6 @@ in
     locations."/companion" = {
       proxyPass = "http://127.0.0.1:${toString invidiousCompanionPort}";
       extraConfig = ''
-        proxy_set_header X-Forwarded-For $remote_addr;
-        proxy_set_header Host $host;
         proxy_http_version 1.1;
         proxy_set_header Connection "";
       '';
