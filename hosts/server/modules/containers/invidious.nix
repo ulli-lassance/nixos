@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 let
   invidiousPort = 3010;
+  invidiousCompanionPort = 8282;
 in
 {
   sops.secrets."invidious/companion_key" = { };
@@ -39,6 +40,7 @@ in
           invidious_companion = [
             {
               private_url = "http://invidious-companion:8282/companion";
+              public_url = "https://invidious.lan.${config.settings.server.domain}/companion";
             }
           ];
           invidious_companion_key = config.sops.placeholder."invidious/companion_key";
@@ -123,6 +125,9 @@ in
       volumes = [
         "${config.settings.server.containerCache}/invidious/companion:/var/tmp/youtubei.js:rw"
       ];
+
+      ports = [ "127.0.0.1:${toString invidiousCompanionPort}:8282" ];
+
       extraOptions = [
         "--network=invidious-net"
         "--cap-drop=ALL"
@@ -201,6 +206,16 @@ in
     forceSSL = true;
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString invidiousPort}";
+      extraConfig = ''
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header Host $host;
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+      '';
+    };
+
+    locations."/companion" = {
+      proxyPass = "http://127.0.0.1:${toString invidiousCompanionPort}";
       extraConfig = ''
         proxy_set_header X-Forwarded-For $remote_addr;
         proxy_set_header Host $host;
