@@ -60,7 +60,7 @@ in
     "d ${config.settings.server.volumeDirectory}/invidious/postgres 0755 ${config.settings.user.username} users -"
 
     "d ${config.settings.server.containerCache}/invidious 0755 ${config.settings.user.username} users -"
-    "d ${config.settings.server.containerCache}/invidious/companion 0755 ${config.settings.user.username} users -"
+    "d ${config.settings.server.containerCache}/invidious/companion 0755 110000 110000 -"
   ];
 
   systemd.services."podman-network-invidious-net" = {
