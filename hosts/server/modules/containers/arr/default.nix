@@ -4,6 +4,7 @@
     ./make-data-dir.nix
 
     ./lidarr.nix
+    ./droppedneedle.nix
     ./radarr.nix
     ./sonarr.nix
     ./bazarr.nix
