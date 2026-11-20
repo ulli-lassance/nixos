@@ -3,7 +3,7 @@
     ./arr-net.nix
     ./make-data-dir.nix
 
-    ./lidarr.nix
+    # ./lidarr.nix
     ./droppedneedle.nix
     ./radarr.nix
     ./sonarr.nix

@@ -19,7 +19,6 @@
         SLSKD_DOWNLOADS_DIR = "/data/soulseek/complete";
         SLSKD_INCOMPLETE_DIR = "/data/soulseek/incomplete";
         SLSKD_SHARED_DIR = "/data/media/music";
-        SLSKD_NO_AUTH = "true";
       };
 
       volumes = [

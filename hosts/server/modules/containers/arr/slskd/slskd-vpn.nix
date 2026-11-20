@@ -68,7 +68,6 @@
         SLSKD_DOWNLOADS_DIR = "/data/soulseek/complete";
         SLSKD_INCOMPLETE_DIR = "/data/soulseek/incomplete";
         SLSKD_SHARED_DIR = "/data/media/music";
-        SLSKD_NO_AUTH = "true";
 
         SLSKD_VPN = "true";
         SLSKD_VPN_PORT_FORWARDING = "true";
@@ -90,6 +89,8 @@
   };
 
   systemd.services."podman-slskd-gluetun" = {
+    after = [ "podman-network-arr-net.service" ];
+    requires = [ "podman-network-arr-net.service" ];
     partOf = [ "podman-slskd-vpn.service" ];
   };
 

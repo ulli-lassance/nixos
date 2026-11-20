@@ -33,6 +33,11 @@
     };
   };
 
+  systemd.services."podman-jellyfin" = {
+    after = [ "podman-network-arr-net.service" ];
+    requires = [ "podman-network-arr-net.service" ];
+  };
+
   # needed for rootless podman gpu passthru
   users.users."${config.settings.user.username}".extraGroups = [
     "render"

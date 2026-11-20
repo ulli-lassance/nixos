@@ -18,7 +18,7 @@
       podman.user = config.settings.user.username;
 
       environment = {
-        ND_SCANSCHEDULE = "1h";
+        ND_SCANNER_SCHEDULE = "@every 1h";
         ND_PORT = "4533";
         ND_TRANSCODINGCACHESIZE = "500MB";
         ND_IMAGECACHESIZE = "200MB";

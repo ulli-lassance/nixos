@@ -54,10 +54,8 @@
       extraConfig = ''
         proxy_set_header Referer $http_referer;
         proxy_set_header X-Real-Port $remote_port;
-        proxy_set_header X-Forwarded-Port $remote_port;
+        proxy_set_header X-Forwarded-Port $server_port;
         proxy_set_header X-Forwarded-Ssl on;
-
-        proxy_set_header X-Forwarded-Host $host:$remote_port;
       '';
     };
   };
